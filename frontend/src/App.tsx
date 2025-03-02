@@ -1,5 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import Button from './components/button';
+import { ButtonSize, ButtonVariant } from './components/button/button.constants';
 
 function App() {
   const { t, i18n } = useTranslation('translation');
@@ -14,9 +16,9 @@ function App() {
       <p>{t('description')}</p>
 
       <div>
-        <button onClick={() => changeLanguage('en')}>English</button>
-        <button onClick={() => changeLanguage('sk')}>Slovak</button>
-        <button onClick={() => changeLanguage('ua')}>Ukrainian</button>
+        <Button variant={ButtonVariant.SECONDARY} onClick={() => changeLanguage('en')}>English</Button>
+        <Button size={ButtonSize.LARGE} onClick={() => changeLanguage('sk')}>Slovak</Button>
+        <Button size={ButtonSize.SMALL} variant={ButtonVariant.WARNING} onClick={() => changeLanguage('ua')}>Ukrainian</Button>
       </div>
     </div>
   );

@@ -1,0 +1,29 @@
+.loading-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.loading-spinner {
+  min-width: 10px;
+  min-height: 10px;
+  max-width: 50px;
+  max-height: 50px;
+  border: 5px solid #ffffff;
+  border-top: 5px solid #1C3130;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
