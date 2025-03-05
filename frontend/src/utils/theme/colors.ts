@@ -7,6 +7,7 @@ enum ThemeColors {
   Background = "#F2FBFB",
   Warning = "#FF6F59",
   Highlight = "#FFC857",
+  White = "#FFFFFF",
 }
 
 export default ThemeColors;

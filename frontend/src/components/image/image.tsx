@@ -8,6 +8,7 @@ type ImageProps = {
   height?: string;
   asBackground?: boolean;
   children?: React.ReactNode;
+  fixedBg?: boolean;
 };
 
 export default function ImageComponent(props: ImageProps) {
@@ -24,16 +25,16 @@ function Image({ alt, src, css, width, height }: ImageProps) {
   );
 }
 
-function ImageBackground({ src, css, width, height, children }: ImageProps) {
+function ImageBackground({ src, css, width, height, children, fixedBg }: ImageProps) {
   return (
     <div
       style={{
-        backgroundImage: `url(${src})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${src})`,
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
+        backgroundAttachment: fixedBg ? "fixed" : "scroll",
         backgroundPosition: "center",
         backgroundSize: "cover",
-        width: "100%",
+        width,
         height,
         ...css,
       }}

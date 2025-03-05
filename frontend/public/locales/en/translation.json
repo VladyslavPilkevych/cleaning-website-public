@@ -1,4 +1,41 @@
 {
-  "welcome": "Welcome",
-  "description": "This is an example of a multilingual application."
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "contacts": "Contacts",
+    "pricing": "Pricing"
+  },
+  "home": {
+    "slogan": "We Bring Shine to Your Life.",
+    "btn-check-prices": "Check Prices",
+    "services": {
+      "title": "Our Services",
+      "resident-cleaning": "Residential Cleaning",
+      "resident-text": "For those needing housekeeping for their homes.",
+      "office-cleaning": "Office Cleaning",
+      "office-text": "For those in need of a clean working area.",
+      "parties-cleaning": "After Parties",
+      "parties-text": "For those who needs cleaning after parties.",
+      "airbnb-cleaning": "Airbnb Cleaning",
+      "airbnb-text": "For those in need of providing a hospitable Airbnb home."
+    },
+    "needs": {
+      "title": "Your Needs",
+      "description": "Your comfort and cleanliness are our priorities. Let us handle the mess while you relax.",
+      "reasons": {
+        "1": "Reason 1",
+        "1-text": "Professional cleaning ensures a healthier and fresher environment for you and your family.",
+        "2": "Reason 2",
+        "2-text": "We use pet-friendly and eco-friendly products to keep your loved ones safe.",
+        "3": "Reason 3",
+        "3-text": "Save time and energy by leaving the cleaning to our experienced team."
+      }
+    }
+  },
+  "footer": {
+    "links": "Links",
+    "social-media": "Social Media",
+    "contact-info": "Contact Info",
+    "license": "© 2025 Cleaning Company | All Rights Deserved"
+  }
 }

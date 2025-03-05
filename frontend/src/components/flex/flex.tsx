@@ -5,7 +5,9 @@ import {
   AlignItems,
   AlignContent,
   FlexWrap,
+  TextAlign,
 } from "./flex.constants";
+import ThemeColors from "../../utils/theme/colors";
 
 type FlexProps = {
   children: React.ReactNode;
@@ -15,8 +17,10 @@ type FlexProps = {
   justifyContent?: JustifyContent;
   alignItems?: AlignItems;
   alignContent?: AlignContent;
+  textAlign?: TextAlign;
   flexWrap?: FlexWrap;
   width?: string;
+  backgroundColor?: ThemeColors;
   height?: string;
 };
 
@@ -29,6 +33,8 @@ export default function Flex({
   alignItems = AlignItems.CENTER,
   alignContent = AlignContent.CENTER,
   flexWrap = FlexWrap.NOWRAP,
+  textAlign = TextAlign.START,
+  backgroundColor,
   width,
   height,
 }: FlexProps) {
@@ -44,6 +50,8 @@ export default function Flex({
         alignItems,
         alignContent,
         flexWrap,
+        textAlign,
+        backgroundColor: backgroundColor ?? "none",
         ...css,
       }}
     >

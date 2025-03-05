@@ -1,4 +1,41 @@
 {
-  "welcome": "Vitajte",
-  "description": "Toto je príklad mnogolangového aplikácie."
+  "header": {
+    "home": "Domov",
+    "about": "O nás",
+    "contacts": "Kontakt",
+    "pricing": "Cenový list"
+  },
+  "home": {
+    "slogan": "Prinášame lesk do vášho života.",
+    "btn-check-prices": "Pozrieť ceny",
+    "services": {
+      "title": "Naše služby",
+      "resident-cleaning": "Upratovanie domácností",
+      "resident-text": "Pre tých, ktorí potrebujú upratovanie svojich domovov.",
+      "office-cleaning": "Upratovanie kancelárií",
+      "office-text": "Pre tých, ktorí potrebujú čisté pracovné prostredie.",
+      "parties-cleaning": "Po oslavách",
+      "parties-text": "Pre tých, ktorí potrebujú upratať po oslavách.",
+      "airbnb-cleaning": "Upratovanie Airbnb",
+      "airbnb-text": "Pre tých, ktorí chcú zabezpečiť hosťom čisté a pohostinné ubytovanie."
+    },
+    "needs": {
+      "title": "Vaše potreby",
+      "description": "Vaše pohodlie a čistota sú našou prioritou. Nechajte neporiadok na nás a relaxujte.",
+      "reasons": {
+        "1": "Dôvod 1",
+        "1-text": "Profesionálne upratovanie zabezpečuje zdravšie a sviežejšie prostredie pre vás a vašu rodinu.",
+        "2": "Dôvod 2",
+        "2-text": "Používame produkty šetrné k domácim zvieratám a životnému prostrediu, aby sme chránili vašich blízkych.",
+        "3": "Dôvod 3",
+        "3-text": "Ušetrite čas a energiu tým, že upratovanie prenecháte nášmu skúsenému tímu."
+      }
+    }
+  },
+  "footer": {
+    "links": "Odkazy",
+    "social-media": "Söciálne siete",
+    "contact-info": "Kontakty",
+    "license": "© 2025 Cleaning Company | All Rights Deserved"
+  }
 }

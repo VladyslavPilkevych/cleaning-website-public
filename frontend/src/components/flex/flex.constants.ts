@@ -37,3 +37,9 @@ export enum FlexWrap {
   WRAP = "wrap",
   WRAP_REVERSE = "wrap-reverse",
 }
+
+export enum TextAlign {
+  START = "start",
+  CENTER = "center",
+  END = "end",
+}

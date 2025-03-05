@@ -4,15 +4,16 @@ import HomePage from "../../pages/home-page";
 import ContactsPage from "../../pages/contacts-page";
 import AboutPage from "../../pages/about-page";
 import PricingPage from "../../pages/pricing-page";
+import { RouteNames } from "./routes.constants";
 
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/contacts" element={<ContactsPage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/pricing" element={<PricingPage />} />
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path={RouteNames.HOME} element={<HomePage />} />
+      <Route path={RouteNames.CONTACTS} element={<ContactsPage />} />
+      <Route path={RouteNames.ABOUT} element={<AboutPage />} />
+      <Route path={RouteNames.PRICING} element={<PricingPage />} />
+      <Route path="*" element={<Navigate to={RouteNames.HOME} />} />
     </Routes>
   );
 }
