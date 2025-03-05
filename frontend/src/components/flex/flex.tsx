@@ -29,8 +29,8 @@ export default function Flex({
   alignItems = AlignItems.CENTER,
   alignContent = AlignContent.CENTER,
   flexWrap = FlexWrap.NOWRAP,
-  width = "100%",
-  height = "auto",
+  width,
+  height,
 }: FlexProps) {
   return (
     <div

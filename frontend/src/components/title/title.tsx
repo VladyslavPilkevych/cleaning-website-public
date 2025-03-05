@@ -19,6 +19,7 @@ export default function Title({
     <p
       style={{
         fontFamily: "Montserrat",
+        textDecoration: "none",
         ...css,
         fontSize: size,
         color: color,
