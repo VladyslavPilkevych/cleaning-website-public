@@ -32,6 +32,20 @@
       }
     }
   },
+  "prices-vary": {
+    "title": "Prices Vary",
+    "description": "Transparent pricing based on your unique cleaning needs. Learn what affects the cost of our services.",
+    "varies": {
+      "1": "Size Of Property",
+      "1-text": "The larger the space, the more time and effort required, which influences the overall price.",
+      "2":"Cleaning Frequency",
+      "2-text": "Regular cleanings can lower costs over time, while one-time deep cleans may require additional resources.",
+      "3": "Type of Cleaning",
+      "3-text": "From standard cleaning to deep sanitization, the type of service you choose determines the price.",
+      "4": "Additional Services",
+      "4-text": "Extra tasks like window cleaning or appliance detailing can be added for a customized experience."
+    }
+  },
   "footer": {
     "links": "Links",
     "social-media": "Social Media",

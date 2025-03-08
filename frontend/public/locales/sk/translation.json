@@ -32,6 +32,20 @@
       }
     }
   },
+  "prices-vary": {
+    "title": "Ceny sa líšia",
+    "description": "Transparentné ceny na základe vašich jedinečných potrieb čistenia. Zistite, čo ovplyvňuje náklady na naše služby.",
+    "varies": {
+      "1": "Veľkosť nehnuteľnosti",
+      "1-text": "Čím väčší priestor, tým viac času a úsilia je potrebných, čo ovplyvňuje celkovú cenu.",
+      "2": "Frekvencia čistenia",
+      "2-text": "Pravidelné čistenie môže znížiť náklady v priebehu času, zatiaľ čo jednorazové hĺbkové čistenie môže vyžadovať ďalšie zdroje.",
+      "3": "Typ čistenia",
+      "3-text": "Od štandardného čistenia po hĺbkovú dezinfekciu, typ služby, ktorú si vyberiete, určuje cenu.",
+      "4": "Ďalšie služby",
+      "4-text": "Extra úlohy, ako je čistenie okien alebo detailné čistenie spotrebičov, je možné pridať pre prispôsobený zážitok."
+    }
+  },
   "footer": {
     "links": "Odkazy",
     "social-media": "Söciálne siete",

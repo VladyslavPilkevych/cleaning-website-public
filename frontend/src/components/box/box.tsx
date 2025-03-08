@@ -1,7 +1,7 @@
 import React from "react";
 
 type BoxProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   css?: React.CSSProperties;
   width?: string;
   height?: string;

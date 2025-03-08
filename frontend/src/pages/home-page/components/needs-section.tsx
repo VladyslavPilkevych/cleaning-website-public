@@ -13,7 +13,7 @@ import ThemeColors from "../../../utils/theme/colors";
 import { FontWeight } from "../../../utils/theme/fonts";
 import { useTranslation } from "react-i18next";
 
-export default function HomePage() {
+export default function NeedsSection() {
   const { t } = useTranslation("translation");
 
   return (
@@ -36,7 +36,7 @@ export default function HomePage() {
         {t("home.needs.description")}
       </Title>
       <Flex
-        css={{ padding: "5rem" }}
+        css={{ padding: "5rem 5rem 0" }}
         width="80vw"
         justifyContent={JustifyContent.SPACE_AROUND}
       >

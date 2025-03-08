@@ -17,6 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { RouteNames } from "../../utils/routes/routes.constants";
 import { ServiceGallery } from "./components/service-gallery";
 import NeedsSection from "./components/needs-section";
+import PricesVary from "../../components/prices-vary";
+import Form from "../../components/contact-form";
 
 export default function HomePage() {
   const { t } = useTranslation("translation");
@@ -73,6 +75,35 @@ export default function HomePage() {
       <ServiceGallery />
 
       <NeedsSection />
+
+      <PricesVary />
+
+      <ImageComponent
+        asBackground
+        fixedBg
+        src="./images/contact-image.png"
+        css={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "7rem",
+        }}
+      >
+        <Box
+          css={{
+            maxWidth: "600px",
+            padding: "2.5rem",
+            borderRadius: "10px",
+            backdropFilter: "blur(10px)",
+            background: "rgba(0, 0, 0, 0.1)",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          <Form />
+        </Box>
+      </ImageComponent>
+
+      {/* <Box width="100%" height="50px" /> */}
     </Box>
   );
 }

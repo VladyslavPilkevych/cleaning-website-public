@@ -16,6 +16,7 @@ export default function Title({
   css,
   size = TitleSize.H3,
   color = ThemeColors.Primary,
+  fontWeight,
 }: TitleProps) {
   return (
     <p
@@ -23,6 +24,7 @@ export default function Title({
         fontFamily: "Montserrat",
         textDecoration: "none",
         lineHeight: "1.5",
+        fontWeight,
         ...css,
         fontSize: size,
         color: color,
