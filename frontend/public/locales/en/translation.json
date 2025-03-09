@@ -38,12 +38,41 @@
     "varies": {
       "1": "Size Of Property",
       "1-text": "The larger the space, the more time and effort required, which influences the overall price.",
-      "2":"Cleaning Frequency",
+      "2": "Cleaning Frequency",
       "2-text": "Regular cleanings can lower costs over time, while one-time deep cleans may require additional resources.",
       "3": "Type of Cleaning",
       "3-text": "From standard cleaning to deep sanitization, the type of service you choose determines the price.",
       "4": "Additional Services",
       "4-text": "Extra tasks like window cleaning or appliance detailing can be added for a customized experience."
+    }
+  },
+  "contact": {
+    "title1": "Contact info:",
+    "title2": "Contact Us:"
+  },
+  "contact-form": {
+    "full-name-label": "Full Name",
+    "full-name-placeholder": "Your name...",
+    "phone-number-label": "Phone Number",
+    "phone-number-placeholder": "Phone number...",
+    "email-label": "Email Address",
+    "email-placeholder": "Your email...",
+    "message-label": "Message",
+    "message-placeholder": "Text...",
+    "submit": "Submit"
+  },
+  "about": {
+    "title": "About Us",
+    "text": "We have many years of experience in cleaning services, which allows us to guarantee the high quality of our services and an individual approach to assigned tasks. We provide regular as well as one-time cleaning, help with window washing, carpet cleaning, and sofa cleaning. We can also take care of cleaning after renovations, painting, or moving. We are fully available to you, whether you need to clean an apartment, house, office, company, or garage. Just contact us, and we will prepare a non-binding offer for you.",
+    "title-section": "What spaces do we take care of?",
+    "spaces-list": {
+      "0": "Office spaces",
+      "1": "Companies and non-residential premises",
+      "2": "Private apartments and houses",
+      "3": "Residential buildings",
+      "4": "Stores in shopping centers",
+      "5": "Restaurants",
+      "6": "Hotels and guesthouses"
     }
   },
   "footer": {

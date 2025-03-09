@@ -12,8 +12,11 @@ import { TitleSize } from "../../components/title/title.constants";
 import ThemeColors from "../../utils/theme/colors";
 import Form from "../../components/contact-form";
 import Box from "../../components/box";
+import { useTranslation } from "react-i18next";
 
 export default function ContactsPage() {
+  const { t } = useTranslation("translation");
+
   return (
     <>
       <Box
@@ -21,6 +24,18 @@ export default function ContactsPage() {
         height="100px"
         css={{ backgroundColor: ThemeColors.Dark }}
       />
+      <Flex>
+        <Box css={{padding: "1rem"}}>
+          <Title size={TitleSize.H2} color={ThemeColors.White}>
+            {t("contact.title1")}
+          </Title>
+        </Box>
+        <Box css={{ backgroundColor: ThemeColors.Background, padding: "1rem" }}>
+          <Title size={TitleSize.H2} color={ThemeColors.Secondary}>
+            {t("contact.title2")}
+          </Title>
+        </Box>
+      </Flex>
       <Flex width="100%" backgroundColor={ThemeColors.Primary}>
         <Flex
           gap="2rem"
@@ -34,12 +49,12 @@ export default function ContactsPage() {
         >
           <Flex gap="2rem">
             <Icon src="./icons/phone.png" />
-            <Flex flexDirection={FlexDirection.COLUMN}>
+            <Flex flexDirection={FlexDirection.COLUMN} alignItems={AlignItems.START}>
               <Title size={TitleSize.H5} color={ThemeColors.White}>
-                +1(123) 456-789
+                +1(123) 456-789 (English, Slovak)
               </Title>
               <Title size={TitleSize.H5} color={ThemeColors.White}>
-                +1(123) 456-789
+                +1(123) 456-789 (Ukrainian, Russian)
               </Title>
             </Flex>
           </Flex>
@@ -57,13 +72,15 @@ export default function ContactsPage() {
           </Flex>
         </Flex>
         <Flex
-          backgroundColor={ThemeColors.Secondary}
+          backgroundColor={ThemeColors.Background}
           width="50%"
           alignContent={AlignContent.CENTER}
           justifyContent={JustifyContent.CENTER}
-          css={{ padding: "3rem" }}
+          css={{ padding: "1rem 3rem 3rem" }}
+          flexDirection={FlexDirection.COLUMN}
+          gap="2rem"
         >
-          <Form />
+          <Form labelColor={ThemeColors.Secondary} />
         </Flex>
       </Flex>
       <Box

@@ -46,6 +46,35 @@
       "4-text": "Extra úlohy, ako je čistenie okien alebo detailné čistenie spotrebičov, je možné pridať pre prispôsobený zážitok."
     }
   },
+  "contact": {
+    "title1": "Kontaktné informácie:",
+    "title2": "Kontaktujte nás:"
+  },
+  "contact-form": {
+    "full-name-label": "Celé meno",
+    "full-name-placeholder": "Vaše meno...",
+    "phone-number-label": "Telefónne číslo",
+    "phone-number-placeholder": "Telefónne číslo...",
+    "email-label": "Emailová adresa",
+    "email-placeholder": "Váš email...",
+    "message-label": "Správa",
+    "message-placeholder": "Text...",
+    "submit": "Odoslať"
+  },
+  "about": {
+    "title": "O nás",
+    "text": "Máme dlhoročné skúsenosti s upratovacími službami, čo nám umožňuje zaručiť vysokú kvalitu našich služieb a individuálny prístup k zvereným úlohám. Poskytujeme pravidelné aj jednorazové upratovanie, pomáhame s umývaním okien, čistením kobercov a sedačiek. Postaráme sa aj o upratovanie po rekonštrukciách, maľovaní alebo sťahovaní. Sme vám plne k dispozícii, či už potrebujete upratať byt, dom, kanceláriu, firmu alebo garáž. Stačí nás kontaktovať a pripravíme vám nezáväznú ponuku.",
+    "title-section": "O aké priestory sa staráme?",
+    "spaces-list": {
+      "0": "Kancelárske priestory",
+      "1": "Firmy a nebytové priestory",
+      "2": "Súkromné byty a domy",
+      "3": "Obytné budovy",
+      "4": "Obchody v nákupných centrách",
+      "5": "Reštaurácie",
+      "6": "Hotely a penzióny"
+    }
+  },
   "footer": {
     "links": "Odkazy",
     "social-media": "Söciálne siete",

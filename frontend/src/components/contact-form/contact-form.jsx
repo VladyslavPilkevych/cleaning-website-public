@@ -7,6 +7,7 @@ import Flex from "../flex";
 import Box from "../box";
 import { FlexDirection } from "../flex/flex.constants";
 import { ButtonVariant, ButtonSize } from "../button/button.constants";
+import { useTranslation } from "react-i18next";
 
 const Label = styled.label`
   font-family: "Montserrat";
@@ -14,7 +15,6 @@ const Label = styled.label`
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: ${ThemeColors.White};
 `;
 
 const Input = styled.input`
@@ -49,7 +49,13 @@ const TextArea = styled.textarea`
   }
 `;
 
-export default function Form() {
+type FormProps = {
+  labelColor?: ThemeColor,
+};
+
+export default function Form({ labelColor = ThemeColors.White }: FormProps) {
+  const { t } = useTranslation("translation");
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -72,22 +78,26 @@ export default function Form() {
       <Flex flexDirection={FlexDirection.COLUMN} gap="2rem">
         <Flex gap="1rem" width="100%">
           <Box>
-            <Label>Full Name*</Label>
+            <Label style={{ color: labelColor }}>
+              {t("contact-form.full-name-label")}
+            </Label>
             <Input
               type="text"
               name="name"
-              placeholder="Your name..."
+              placeholder={t("contact-form.full-name-placeholder")}
               value={formData.name}
               onChange={handleChange}
             />
           </Box>
 
           <Box>
-            <Label>Phone Number*</Label>
+            <Label style={{ color: labelColor }}>
+              {t("contact-form.phone-number-label")}
+            </Label>
             <Input
               type="text"
               name="phone"
-              placeholder="Phone number..."
+              placeholder={t("contact-form.phone-number-placeholder")}
               value={formData.phone}
               onChange={handleChange}
             />
@@ -95,11 +105,13 @@ export default function Form() {
         </Flex>
 
         <Box>
-          <Label>Email Address*</Label>
+          <Label style={{ color: labelColor }}>
+            {t("contact-form.email-label")}
+          </Label>
           <Input
             type="email"
             name="email"
-            placeholder="Your email..."
+            placeholder={t("contact-form.email-placeholder")}
             value={formData.email}
             onChange={handleChange}
             style={{
@@ -109,10 +121,12 @@ export default function Form() {
         </Box>
 
         <Box>
-          <Label>Message*</Label>
+          <Label style={{ color: labelColor }}>
+            {t("contact-form.message-label")}
+          </Label>
           <TextArea
             name="message"
-            placeholder="Text..."
+            placeholder={t("contact-form.message-placeholder")}
             value={formData.message}
             onChange={handleChange}
           />
@@ -124,7 +138,7 @@ export default function Form() {
           type={ButtonType.SUBMIT}
           css={{ color: ThemeColors.White }}
         >
-          Submit
+          {t("contact-form.submit")}
         </Button>
       </Flex>
     </form>
