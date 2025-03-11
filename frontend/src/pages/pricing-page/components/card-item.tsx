@@ -5,7 +5,6 @@ import { TitleSize } from "../../../components/title/title.constants";
 import ThemeColors from "../../../utils/theme/colors";
 import SvgIcon from "./svg-icon";
 import { FontWeight } from "../../../utils/theme/fonts";
-import Button from "../../../components/button";
 import Flex from "../../../components/flex";
 
 const Card = styled.div<{ selected?: boolean }>`
@@ -16,9 +15,9 @@ const Card = styled.div<{ selected?: boolean }>`
   align-items: center;
   justify-content: center;
   padding: 16px;
-  border: 2px solid #ddd;
+  border: 2px solid ${ThemeColors.White};
   border-radius: 2px;
-  background-color: #f9f9f9;
+  background-color: ${ThemeColors.Light};
   cursor: pointer;
   transition: all 0.3s ease;
   gap: 1rem;
@@ -26,8 +25,8 @@ const Card = styled.div<{ selected?: boolean }>`
   ${(props) =>
     props.selected &&
     css`
-      background-color: ${ThemeColors.Dark};
-      border: none;
+      background-color: ${ThemeColors.Secondary};
+      border: 2px solid ${ThemeColors.Secondary};
     `}
 `;
 
@@ -36,24 +35,30 @@ const Counter = styled.div`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 8px;
+  margin: 11px 0;
 
   button {
-    background-color: #4caf50;
+    width: 32px;
+    height: 32px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid ${ThemeColors.White};
     color: #fff;
-    border: none;
     border-radius: 4px;
-    padding: 4px 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 22px;
 
     &:hover {
-      background-color: #45a049;
+      background-color: rgba(0, 0, 0, 0.5);
     }
   }
 
   span {
-    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    background-color: ${ThemeColors.Light};
+    color: ${ThemeColors.Secondary};
+    font-family: "Montserrat";
+    font-size: 24px;
     font-weight: bold;
   }
 `;
@@ -129,7 +134,11 @@ export default function CardItem({
         gap="0.5rem"
         css={{ padding: "0.5rem" }}
       >
-        <Title size={TitleSize.H5} color={ThemeColors.Dark} fontWeight={FontWeight.Bold}>
+        <Title
+          size={TitleSize.H5}
+          color={ThemeColors.Dark}
+          fontWeight={FontWeight.Bold}
+        >
           14.99 EUR
         </Title>
         <Title
