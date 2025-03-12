@@ -25,7 +25,7 @@ export default function ContactsPage() {
         css={{ backgroundColor: ThemeColors.Dark }}
       />
       <Flex>
-        <Box css={{padding: "1rem"}}>
+        <Box css={{backgroundColor: ThemeColors.Primary, padding: "1rem"}}>
           <Title size={TitleSize.H2} color={ThemeColors.White}>
             {t("contact.title1")}
           </Title>

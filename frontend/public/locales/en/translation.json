@@ -75,6 +75,44 @@
       "6": "Hotels and guesthouses"
     }
   },
+  "pricing": {
+    "vacuum-cleaner": "Is it necessary to order a vacuum cleaner?",
+    "chemical-cleaning": "Order chemical cleaning of furniture and carpets along with cleaning.",
+    "select-date": "Select Date",
+    "select-time": "Select Time",
+    "services": {
+      "title": "Choose services"
+    },
+    "address-form": {
+      "title": "Write your address",
+      "city": "City",
+      "city-placeholder": "City...",
+      "street": "Street",
+      "street-placeholder": "Street name...",
+      "house-number": "House number",
+      "house-number-placeholder": "Your house number...",
+      "Floor": "Floor",
+      "Floor-placeholder": "Floor...",
+      "psc": "PSC",
+      "psc-placeholder": "Your PSC..."
+    },
+    "contact-form": {
+      "title": "Provide your contacts",
+      "full-name-label": "Full Name",
+      "full-name-placeholder": "Your name...",
+      "phone-number-label": "Phone Number",
+      "phone-number-placeholder": "Phone number...",
+      "email-label": "Email Address",
+      "email-placeholder": "Your email...",
+      "message-label": "Message",
+      "message-placeholder": "Text..."
+    },
+    "payment-method": {
+      "card": "Pay by card",
+      "cash": "Pay in cash"
+    },
+    "total": "Total"
+  },
   "footer": {
     "links": "Links",
     "social-media": "Social Media",

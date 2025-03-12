@@ -7,8 +7,13 @@ import Box from "../../components/box";
 import CardContainer from "./components/card-container";
 import Checkbox from "./components/checkbox";
 import SvgIcon from "./components/svg-icon";
+import { useTranslation } from "react-i18next";
+import ThemeColors from "../../utils/theme/colors";
+import AddressForm from "./components/address-form";
 
 export default function PricingPage() {
+  const { t } = useTranslation("translation");
+  
   return (
     <Box>
       <Flex justifyContent={JustifyContent.SPACE_EVENLY}>
@@ -18,7 +23,11 @@ export default function PricingPage() {
 
       <CardContainer />
 
-      <Checkbox text="test" price="14.99 EUR" icon={<SvgIcon src="./icons/cards/oven.svg" />} />
+      <Checkbox text={t("pricing.vacuum-cleaner")} price="14.99 EUR" icon={<SvgIcon src="./icons/vacuum.svg" />} />
+
+      <Box css={{color: ThemeColors.Dark, width: "100%", height: "4px", margin: "4rem 0"}} />
+
+      <AddressForm />
     </Box>
   );
 }
