@@ -6,8 +6,10 @@ import Title from "../../../components/title";
 import { TitleSize } from "../../../components/title/title.constants";
 import FormInput from "../../../components/form-input";
 import Flex from "../../../components/flex";
+import { FlexDirection } from "../../../components/flex/flex.constants";
+import { FontWeight } from "../../../utils/theme/fonts";
 
-export default function PricingPage() {
+export default function AddressForm() {
   const { t } = useTranslation("translation");
 
   const [addressFormData, setAddressFormData] = useState({
@@ -26,9 +28,9 @@ export default function PricingPage() {
   };
 
   return (
-    <Box>
-      <Title size={TitleSize.H3}>{t("pricing.address-form.title")}</Title>
-      <Flex>
+    <Flex flexDirection={FlexDirection.COLUMN} css={{ padding: "0 5rem", width: 'auto', gap: '2rem' }}>
+      <Title size={TitleSize.H3} fontWeight={FontWeight.Bold}>{t("pricing.address-form.title")}</Title>
+      <Flex gap="2rem" css={{width: '100%'}}>
         <FormInput
           name="city"
           label={t("pricing.address-form.city")}
@@ -54,7 +56,7 @@ export default function PricingPage() {
           formValue={addressFormData.psc}
         />
       </Flex>
-      <Flex>
+      <Flex gap="2rem" css={{width: '100%'}}>
         <FormInput
           name="houseNumber"
           label={t("pricing.address-form.house-number")}
@@ -71,7 +73,8 @@ export default function PricingPage() {
           handleChange={handleChange}
           formValue={addressFormData.floor}
         />
+        <Box />
       </Flex>
-    </Box>
+    </Flex>
   );
 }

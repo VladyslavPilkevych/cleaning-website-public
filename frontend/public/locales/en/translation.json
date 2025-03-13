@@ -91,20 +91,20 @@
       "street-placeholder": "Street name...",
       "house-number": "House number",
       "house-number-placeholder": "Your house number...",
-      "Floor": "Floor",
-      "Floor-placeholder": "Floor...",
+      "floor": "Floor",
+      "floor-placeholder": "Floor...",
       "psc": "PSC",
       "psc-placeholder": "Your PSC..."
     },
     "contact-form": {
       "title": "Provide your contacts",
-      "full-name-label": "Full Name",
-      "full-name-placeholder": "Your name...",
-      "phone-number-label": "Phone Number",
-      "phone-number-placeholder": "Phone number...",
-      "email-label": "Email Address",
+      "name": "Full Name",
+      "name-placeholder": "Your name...",
+      "phone": "Phone Number",
+      "phone-placeholder": "Phone number...",
+      "email": "Email Address",
       "email-placeholder": "Your email...",
-      "message-label": "Message",
+      "message": "Message",
       "message-placeholder": "Text..."
     },
     "payment-method": {

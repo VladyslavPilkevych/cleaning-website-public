@@ -8,12 +8,13 @@ export default function CardContainer() {
     setSelectedCards((prev) => {
       const existingCard = prev.find((card) => card.id === id);
 
+      console.log(prev, existingCard);
       if (existingCard) {
         return prev.filter((card) => card.id !== id);
       } else {
         return isMulti
           ? [...prev, { id, count: 1 }]
-          : [{ id, count: 1 }];
+          : [...prev, { id, count: 1 }];
       }
     });
   };

@@ -10,6 +10,8 @@ import SvgIcon from "./components/svg-icon";
 import { useTranslation } from "react-i18next";
 import ThemeColors from "../../utils/theme/colors";
 import AddressForm from "./components/address-form";
+import ContactForm from "./components/contact-form";
+import PaymentMethod from "./components/payment-method";
 
 export default function PricingPage() {
   const { t } = useTranslation("translation");
@@ -28,6 +30,10 @@ export default function PricingPage() {
       <Box css={{color: ThemeColors.Dark, width: "100%", height: "4px", margin: "4rem 0"}} />
 
       <AddressForm />
+
+      <ContactForm />
+
+      <PaymentMethod />
     </Box>
   );
 }

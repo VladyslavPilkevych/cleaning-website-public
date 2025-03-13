@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 
 type SvgIconProps = {
   src: string;
+  css?: React.CSSProperties;
 };
 
-export default function SvgIcon({ src }: SvgIconProps) {
+export default function SvgIcon({ src, css }: SvgIconProps) {
   const [svgContent, setSvgContent] = useState("");
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function SvgIcon({ src }: SvgIconProps) {
   return (
     <div
       dangerouslySetInnerHTML={{ __html: svgContent }}
-      style={{ width: "70px", height: "70px", fill: "red" }} // stroke: "red"
+      style={{ width: "70px", height: "70px", ...css }}
     />
   );
 }

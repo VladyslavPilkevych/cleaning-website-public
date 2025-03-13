@@ -36,7 +36,7 @@ export default function ContactForm({ labelColor = ThemeColors.White }: ContactF
   return (
     <form onSubmit={handleSubmit}>
       <Flex flexDirection={FlexDirection.COLUMN} gap="2rem">
-        <Flex gap="1rem" width="100%">
+        <Flex gap="2rem" width="100%">
           <FormInput
             handleChange={handleChange}
             formValue={formData.name}

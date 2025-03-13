@@ -14,7 +14,7 @@ const Input = styled.input`
   width: 90%;
   padding: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 3px;
   background: ${ThemeColors.Accent};
   color: white;
   font-size: 16px;
