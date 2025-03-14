@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Box from "../../../components/box";
 import { useTranslation } from "react-i18next";
 import ThemeColors from "../../../utils/theme/colors";
 import Title from "../../../components/title";
@@ -30,7 +29,7 @@ export default function ContactForm() {
   return (
     <Flex
       flexDirection={FlexDirection.COLUMN}
-      css={{ padding: "0 5rem", width: "auto", gap: "2rem", marginTop: "6rem" }}
+      css={{ padding: "0 15rem", width: "auto", gap: "2rem", marginTop: "6rem" }}
     >
       <Title size={TitleSize.H3} fontWeight={FontWeight.Bold}>
         {t("pricing.contact-form.title")}

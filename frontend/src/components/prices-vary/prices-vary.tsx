@@ -13,7 +13,11 @@ import { FontWeight } from "../../utils/theme/fonts";
 import { TitleSize } from "../title/title.constants";
 import ImageComponent from "../image";
 
-export default function PricesVary() {
+type PricesVaryProps = {
+  showTitle?: boolean;
+}
+
+export default function PricesVary({ showTitle = true }: PricesVaryProps) {
   const { t } = useTranslation("translation");
 
   return (
@@ -25,13 +29,15 @@ export default function PricesVary() {
       css={{ padding: "5rem 10rem" }}
       gap="3.5rem"
     >
-      <Title
-        color={ThemeColors.White}
-        fontWeight={FontWeight.Bold}
-        size={TitleSize.H1}
-      >
-        {t("prices-vary.title")}
-      </Title>
+      {showTitle && (
+        <Title
+          color={ThemeColors.White}
+          fontWeight={FontWeight.Bold}
+          size={TitleSize.H1}
+        >
+          {t("prices-vary.title")}
+        </Title>
+      )}
       <Title color={ThemeColors.White} size={TitleSize.H5}>
         {t("prices-vary.description")}
       </Title>

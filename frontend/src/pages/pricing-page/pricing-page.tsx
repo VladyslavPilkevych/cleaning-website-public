@@ -12,17 +12,28 @@ import ThemeColors from "../../utils/theme/colors";
 import AddressForm from "./components/address-form";
 import ContactForm from "./components/contact-form";
 import PaymentMethod from "./components/payment-method";
+import PaymentBtn from "./components/payment-btn";
+import Title from "../../components/title";
+import { TitleSize } from "../../components/title/title.constants";
+import { FontWeight } from "../../utils/theme/fonts";
+import ImageComponent from "../../components/image";
+import PricesVary from "../../components/prices-vary";
 
 export default function PricingPage() {
   const { t } = useTranslation("translation");
   
   return (
     <Box>
-      <Flex justifyContent={JustifyContent.SPACE_EVENLY}>
+      <ImageComponent height="500px" asBackground src="./images/pricing-header.png" />
+
+      <Flex justifyContent={JustifyContent.SPACE_EVENLY} css={{margin: "4rem auto 0"}}>
         <DateCalendarValue />
         <TimePicker />
       </Flex>
 
+      <Flex>
+        <Title size={TitleSize.H2} fontWeight={FontWeight.Bold} css={{margin: "4rem auto 0"}}>{t("pricing.services.title")}</Title>
+      </Flex>
       <CardContainer />
 
       <Checkbox text={t("pricing.vacuum-cleaner")} price="14.99 EUR" icon={<SvgIcon src="./icons/vacuum.svg" />} />
@@ -34,6 +45,14 @@ export default function PricingPage() {
       <ContactForm />
 
       <PaymentMethod />
+
+      <PaymentBtn />
+
+      <ImageComponent height="500px" asBackground src="./images/pricing-vary.png" css={{alignItems: "center", display: "flex", justifyContent: "center", backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./images/pricing-vary.png)`}}>
+        <Title size={TitleSize.H1} fontWeight={FontWeight.Bold} color={ThemeColors.White}>{t("prices-vary.title")}</Title>
+      </ImageComponent>
+
+      <PricesVary showTitle={false} />
     </Box>
   );
 }

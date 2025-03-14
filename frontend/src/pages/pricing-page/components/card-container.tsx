@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import CardItem from "./card-item";
+import { cards } from "./card-container.cards";
+import { useTranslation } from "react-i18next";
 
 export default function CardContainer() {
+  const { t } = useTranslation("translation");
+  
   const [selectedCards, setSelectedCards] = useState<{ id: string; count: number }[]>([]);
 
   const handleCardToggle = (id: string, isMulti: boolean) => {
@@ -28,25 +32,20 @@ export default function CardContainer() {
   };
 
   return (
-    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-      <CardItem
-        id="1"
-        src="./icons/cards/oven.svg"
-        text="Oven Cleaning"
-        isMulti={false}
-        selectedCards={selectedCards}
-        onToggle={handleCardToggle}
-        onUpdateCount={updateCardCount}
-      />
-      <CardItem
-        id="2"
-        src="./icons/cards/oven.svg"
-        text="Ironing"
-        isMulti={true}
-        selectedCards={selectedCards}
-        onToggle={handleCardToggle}
-        onUpdateCount={updateCardCount}
-      />
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "16px", justifyContent: "center", padding: "4rem 10rem" }}>
+      {cards.map((card) => (
+        <CardItem
+          key={card.id}
+          id={card.id}
+          src={card.src}
+          srcInverted={card.srcInverted}
+          text={t(`pricing.services.cards.${card.text}`)}
+          isMulti={card.isMulti}
+          selectedCards={selectedCards}
+          onToggle={handleCardToggle}
+          onUpdateCount={updateCardCount}
+        />
+      ))}
     </div>
   );
 }

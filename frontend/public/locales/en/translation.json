@@ -81,7 +81,18 @@
     "select-date": "Select Date",
     "select-time": "Select Time",
     "services": {
-      "title": "Choose services"
+      "title": "Choose services",
+      "cards": {
+        "oven": "Oven Cleaning",
+        "iron": "Ironing",
+        "fridge": "Fridge Cleaning",
+        "balcony": "Balcony Cleaning",
+        "microwave": "Microwave Cleaning",
+        "window": "Window Cleaning",
+        "wardrobe": "Wardrobe Cleaning",
+        "pet": "Pet Cleaning",
+        "plates": "Plates Cleaning"
+      }
     },
     "address-form": {
       "title": "Write your address",
@@ -111,7 +122,7 @@
       "card": "Pay by card",
       "cash": "Pay in cash"
     },
-    "total": "Total"
+    "total": "Total:"
   },
   "footer": {
     "links": "Links",

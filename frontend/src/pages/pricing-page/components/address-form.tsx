@@ -28,7 +28,7 @@ export default function AddressForm() {
   };
 
   return (
-    <Flex flexDirection={FlexDirection.COLUMN} css={{ padding: "0 5rem", width: 'auto', gap: '2rem' }}>
+    <Flex flexDirection={FlexDirection.COLUMN} css={{ padding: "0 15rem", width: 'auto', gap: '2rem' }}>
       <Title size={TitleSize.H3} fontWeight={FontWeight.Bold}>{t("pricing.address-form.title")}</Title>
       <Flex gap="2rem" css={{width: '100%'}}>
         <FormInput

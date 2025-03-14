@@ -66,6 +66,7 @@ const Counter = styled.div`
 type CardItemProps = {
   id: string;
   src: string;
+  srcInverted: string;
   text: string;
   isMulti: boolean;
   selectedCards: { id: string; count: number }[];
@@ -76,6 +77,7 @@ type CardItemProps = {
 export default function CardItem({
   id,
   src,
+  srcInverted,
   text,
   isMulti,
   selectedCards,
@@ -120,7 +122,7 @@ export default function CardItem({
           <button onClick={handleIncrement}>+</button>
         </Counter>
       ) : (
-        <SvgIcon src={src} />
+        <SvgIcon src={isSelected ? srcInverted : src} />
       )}
       <Title
         size={TitleSize.H6}
