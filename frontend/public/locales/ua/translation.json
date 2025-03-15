@@ -75,6 +75,64 @@
       "6": "Готелі та пансіонати"
     }
   },
+  "pricing": {
+    "vacuum-cleaner": "Чи потрібно замовити пилосос?",
+    "chemical-cleaning": "Замовте хімчистку меблів і килимів разом з прибиранням.",
+    "select-date": "Оберіть дату",
+    "select-time": "Оберіть час",
+    "services": {
+      "title": "Оберіть послуги",
+      "cards": {
+        "oven": "Чистка духовки",
+        "iron": "Прасування",
+        "fridge": "Чистка холодильника",
+        "balcony": "Прибирання балкона",
+        "microwave": "Чистка мікрохвильовки",
+        "window": "Миття вікон",
+        "wardrobe": "Чистка шафи",
+        "pet": "Прибирання після тварин",
+        "plates": "Миття посуду"
+      },
+      "cleaning-cards": {
+        "sofa": "Чистка дивана",
+        "sofa-single": "Чистка односпального дивана",
+        "armchair": "Чистка крісла",
+        "mattress": "Чистка матраца",
+        "sofa-corner": "Чистка кутового дивана",
+        "carpet": "Чистка килима",
+        "sofa-corner-question": "Кількість місць?"
+      }
+    },
+    "address-form": {
+      "title": "Вкажіть вашу адресу",
+      "city": "Місто",
+      "city-placeholder": "Місто...",
+      "street": "Вулиця",
+      "street-placeholder": "Назва вулиці...",
+      "house-number": "Номер будинку",
+      "house-number-placeholder": "Ваш номер будинку...",
+      "floor": "Поверх",
+      "floor-placeholder": "Поверх...",
+      "psc": "Поштовий індекс",
+      "psc-placeholder": "Ваш поштовий індекс..."
+    },
+    "contact-form": {
+      "title": "Вкажіть ваші контакти",
+      "name": "Повне ім'я",
+      "name-placeholder": "Ваше ім'я...",
+      "phone": "Номер телефону",
+      "phone-placeholder": "Номер телефону...",
+      "email": "Електронна пошта",
+      "email-placeholder": "Ваш email...",
+      "message": "Повідомлення",
+      "message-placeholder": "Текст..."
+    },
+    "payment-method": {
+      "card": "Оплатити карткою",
+      "cash": "Оплатити готівкою"
+    },
+    "total": "Разом:"
+  },
   "footer": {
     "links": "Посилання",
     "social-media": "Соціальні мережі",

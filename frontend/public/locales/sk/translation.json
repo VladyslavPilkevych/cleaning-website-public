@@ -75,6 +75,64 @@
       "6": "Hotely a penzióny"
     }
   },
+  "pricing": {
+    "vacuum-cleaner": "Je potrebné objednať vysávač?",
+    "chemical-cleaning": "Objednajte si chemické čistenie nábytku a kobercov spolu s upratovaním.",
+    "select-date": "Vyberte dátum",
+    "select-time": "Vyberte čas",
+    "services": {
+      "title": "Vyberte si služby",
+      "cards": {
+        "oven": "Čistenie rúry",
+        "iron": "Žehlenie",
+        "fridge": "Čistenie chladničky",
+        "balcony": "Čistenie balkóna",
+        "microwave": "Čistenie mikrovlnky",
+        "window": "Čistenie okien",
+        "wardrobe": "Čistenie skrine",
+        "pet": "Čistenie po domácich zvieratách",
+        "plates": "Umývanie riadu"
+      },
+      "cleaning-cards": {
+        "sofa": "Čistenie pohovky",
+        "sofa-single": "Čistenie jednosedadlovej pohovky",
+        "armchair": "Čistenie kresla",
+        "mattress": "Čistenie matraca",
+        "sofa-corner": "Čistenie rohovej pohovky",
+        "carpet": "Čistenie koberca",
+        "sofa-corner-question": "Počet sedadiel?"
+      }
+    },
+    "address-form": {
+      "title": "Napíšte svoju adresu",
+      "city": "Mesto",
+      "city-placeholder": "Mesto...",
+      "street": "Ulica",
+      "street-placeholder": "Názov ulice...",
+      "house-number": "Číslo domu",
+      "house-number-placeholder": "Vaše číslo domu...",
+      "floor": "Poschodie",
+      "floor-placeholder": "Poschodie...",
+      "psc": "PSČ",
+      "psc-placeholder": "Vaše PSČ..."
+    },
+    "contact-form": {
+      "title": "Uveďte svoje kontakty",
+      "name": "Celé meno",
+      "name-placeholder": "Vaše meno...",
+      "phone": "Telefónne číslo",
+      "phone-placeholder": "Telefónne číslo...",
+      "email": "Emailová adresa",
+      "email-placeholder": "Váš email...",
+      "message": "Správa",
+      "message-placeholder": "Text..."
+    },
+    "payment-method": {
+      "card": "Platiť kartou",
+      "cash": "Platiť v hotovosti"
+    },
+    "total": "Celkom:"
+  },
   "footer": {
     "links": "Odkazy",
     "social-media": "Söciálne siete",

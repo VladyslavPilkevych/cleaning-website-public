@@ -92,6 +92,15 @@
         "wardrobe": "Wardrobe Cleaning",
         "pet": "Pet Cleaning",
         "plates": "Plates Cleaning"
+      },
+      "cleaning-cards": {
+        "sofa": "Sofa Cleaning",
+        "sofa-single": "Single Sofa Cleaning",
+        "armchair": "Armchair Cleaning",
+        "mattress": "Mattress Cleaning",
+        "sofa-corner": "Sofa Corner Cleaning",
+        "carpet": "Carpet Cleaning",
+        "sofa-corner-question": "Seats count?"
       }
     },
     "address-form": {

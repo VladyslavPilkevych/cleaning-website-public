@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import CardItem from "./card-item";
-import { cards } from "./card-container.cards";
 import { useTranslation } from "react-i18next";
+import { ServiceCardType } from "../helpers/types";
 
-export default function CardContainer() {
+type CardContainerProps = {
+  cards: ServiceCardType[];
+  translationPath: string;
+};
+
+export default function CardContainer({ cards, translationPath }: CardContainerProps) {
   const { t } = useTranslation("translation");
   
   const [selectedCards, setSelectedCards] = useState<{ id: string; count: number }[]>([]);
@@ -39,7 +44,8 @@ export default function CardContainer() {
           id={card.id}
           src={card.src}
           srcInverted={card.srcInverted}
-          text={t(`pricing.services.cards.${card.text}`)}
+          text={t(`${translationPath}.${card.text}`)}
+          additionalQuestion={t(`${translationPath}.${card.additionalQuestion}`)}
           isMulti={card.isMulti}
           selectedCards={selectedCards}
           onToggle={handleCardToggle}

@@ -75,6 +75,64 @@
       "6": "Отели и пансионаты"
     }
   },
+  "pricing": {
+    "vacuum-cleaner": "Необходимо ли заказать пылесос?",
+    "chemical-cleaning": "Закажите химчистку мебели и ковров вместе с уборкой.",
+    "select-date": "Выберите дату",
+    "select-time": "Выберите время",
+    "services": {
+      "title": "Выберите услуги",
+      "cards": {
+        "oven": "Чистка духовки",
+        "iron": "Глажка",
+        "fridge": "Чистка холодильника",
+        "balcony": "Уборка балкона",
+        "microwave": "Чистка микроволновки",
+        "window": "Мойка окон",
+        "wardrobe": "Чистка шкафа",
+        "pet": "Уборка после животных",
+        "plates": "Мойка посуды"
+      },
+      "cleaning-cards": {
+        "sofa": "Чистка дивана",
+        "sofa-single": "Чистка одиночного дивана",
+        "armchair": "Чистка кресла",
+        "mattress": "Чистка матраса",
+        "sofa-corner": "Чистка углового дивана",
+        "carpet": "Чистка ковра",
+        "sofa-corner-question": "Количество мест?"
+      }
+    },
+    "address-form": {
+      "title": "Введите ваш адрес",
+      "city": "Город",
+      "city-placeholder": "Город...",
+      "street": "Улица",
+      "street-placeholder": "Название улицы...",
+      "house-number": "Номер дома",
+      "house-number-placeholder": "Ваш номер дома...",
+      "floor": "Этаж",
+      "floor-placeholder": "Этаж...",
+      "psc": "Почтовый индекс",
+      "psc-placeholder": "Ваш почтовый индекс..."
+    },
+    "contact-form": {
+      "title": "Укажите ваши контакты",
+      "name": "Полное имя",
+      "name-placeholder": "Ваше имя...",
+      "phone": "Номер телефона",
+      "phone-placeholder": "Номер телефона...",
+      "email": "Электронная почта",
+      "email-placeholder": "Ваш email...",
+      "message": "Сообщение",
+      "message-placeholder": "Текст..."
+    },
+    "payment-method": {
+      "card": "Оплатить картой",
+      "cash": "Оплатить наличными"
+    },
+    "total": "Итого:"
+  },
   "footer": {
     "links": "Ссылки",
     "social-media": "Социальные сети",

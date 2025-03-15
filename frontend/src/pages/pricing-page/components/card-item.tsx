@@ -6,6 +6,7 @@ import ThemeColors from "../../../utils/theme/colors";
 import SvgIcon from "./svg-icon";
 import { FontWeight } from "../../../utils/theme/fonts";
 import Flex from "../../../components/flex";
+import { FlexDirection } from "../../../components/flex/flex.constants";
 
 const Card = styled.div<{ selected?: boolean }>`
   height: 220px;
@@ -72,6 +73,7 @@ type CardItemProps = {
   selectedCards: { id: string; count: number }[];
   onToggle: (id: string, isMulti: boolean) => void;
   onUpdateCount: (id: string, newCount: number) => void;
+  additionalQuestion?: string;
 };
 
 export default function CardItem({
@@ -80,6 +82,7 @@ export default function CardItem({
   srcInverted,
   text,
   isMulti,
+  additionalQuestion,
   selectedCards,
   onToggle,
   onUpdateCount,
@@ -116,11 +119,22 @@ export default function CardItem({
   return (
     <Card onClick={handleCardClick} selected={isSelected}>
       {isMulti && isSelected ? (
+        <Flex flexDirection={FlexDirection.COLUMN}>
+          {additionalQuestion && (
+            <Title
+              size={TitleSize.H6}
+              color={ThemeColors.Background}
+              fontWeight={FontWeight.Bold}
+            >
+              {additionalQuestion}
+            </Title>
+          )}
         <Counter>
           <button onClick={handleDecrement}>-</button>
           <span>{count}</span>
           <button onClick={handleIncrement}>+</button>
         </Counter>
+        </Flex>
       ) : (
         <SvgIcon src={isSelected ? srcInverted : src} />
       )}

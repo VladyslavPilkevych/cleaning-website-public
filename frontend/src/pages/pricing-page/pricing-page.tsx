@@ -18,27 +18,57 @@ import { TitleSize } from "../../components/title/title.constants";
 import { FontWeight } from "../../utils/theme/fonts";
 import ImageComponent from "../../components/image";
 import PricesVary from "../../components/prices-vary";
+import { chemicalCleaningCards, serviceCards } from "./helpers/constants";
+import Separator from "../../components/separator/separator";
 
 export default function PricingPage() {
   const { t } = useTranslation("translation");
-  
+
   return (
     <Box>
-      <ImageComponent height="500px" asBackground src="./images/pricing-header.png" />
+      <ImageComponent
+        height="500px"
+        asBackground
+        src="./images/pricing-header.png"
+      />
 
-      <Flex justifyContent={JustifyContent.SPACE_EVENLY} css={{margin: "4rem auto 0"}}>
+      <Flex
+        justifyContent={JustifyContent.SPACE_EVENLY}
+        css={{ margin: "4rem auto 0" }}
+      >
         <DateCalendarValue />
         <TimePicker />
       </Flex>
 
+      <Separator />
+      
       <Flex>
-        <Title size={TitleSize.H2} fontWeight={FontWeight.Bold} css={{margin: "4rem auto 0"}}>{t("pricing.services.title")}</Title>
+        <Title
+          size={TitleSize.H2}
+          fontWeight={FontWeight.Bold}
+          css={{ margin: "4rem auto 0" }}
+        >
+          {t("pricing.services.title")}
+        </Title>
       </Flex>
-      <CardContainer />
+      <CardContainer cards={serviceCards} translationPath="pricing.services.cards" />
 
-      <Checkbox text={t("pricing.vacuum-cleaner")} price="14.99 EUR" icon={<SvgIcon src="./icons/vacuum.svg" />} />
+      <Checkbox
+        text={t("pricing.vacuum-cleaner")}
+        price="14.99 EUR"
+        icon={<SvgIcon src="./icons/vacuum.svg" />}
+      />
+      
+      <Separator />
 
-      <Box css={{color: ThemeColors.Dark, width: "100%", height: "4px", margin: "4rem 0"}} />
+      <Checkbox
+        text={t("pricing.chemical-cleaning")}
+        css={{ marginTop: "2rem" }}
+      >
+        <CardContainer cards={chemicalCleaningCards} translationPath="pricing.services.cleaning-cards" />
+      </Checkbox>
+
+      <Separator />
 
       <AddressForm />
 
@@ -48,8 +78,26 @@ export default function PricingPage() {
 
       <PaymentBtn />
 
-      <ImageComponent height="500px" asBackground src="./images/pricing-vary.png" css={{alignItems: "center", display: "flex", justifyContent: "center", backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./images/pricing-vary.png)`}}>
-        <Title size={TitleSize.H1} fontWeight={FontWeight.Bold} color={ThemeColors.White}>{t("prices-vary.title")}</Title>
+      <Separator />
+
+      <ImageComponent
+        height="500px"
+        asBackground
+        src="./images/pricing-vary.png"
+        css={{
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./images/pricing-vary.png)`,
+        }}
+      >
+        <Title
+          size={TitleSize.H1}
+          fontWeight={FontWeight.Bold}
+          color={ThemeColors.White}
+        >
+          {t("prices-vary.title")}
+        </Title>
       </ImageComponent>
 
       <PricesVary showTitle={false} />
