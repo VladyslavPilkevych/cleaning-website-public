@@ -5,6 +5,7 @@ import ContactsPage from "../../pages/contacts-page";
 import AboutPage from "../../pages/about-page";
 import PricingPage from "../../pages/pricing-page";
 import { RouteNames } from "./routes.constants";
+import AdminPanel from "../../pages/admin-panel.tsx";
 
 function AppRoutes() {
   return (
@@ -13,6 +14,7 @@ function AppRoutes() {
       <Route path={RouteNames.CONTACTS} element={<ContactsPage />} />
       <Route path={RouteNames.ABOUT} element={<AboutPage />} />
       <Route path={RouteNames.PRICING} element={<PricingPage />} />
+      <Route path={RouteNames.ADMIN_PANEL} element={<AdminPanel />} />
       <Route path="*" element={<Navigate to={RouteNames.HOME} />} />
     </Routes>
   );
