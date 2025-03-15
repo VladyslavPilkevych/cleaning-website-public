@@ -21,7 +21,7 @@ export default function AddressForm() {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setAddressFormData((prev) => ({ ...prev, [name]: value }));
@@ -30,7 +30,8 @@ export default function AddressForm() {
   return (
     <Flex flexDirection={FlexDirection.COLUMN} css={{ padding: "0 15rem", width: 'auto', gap: '2rem' }}>
       <Title size={TitleSize.H3} fontWeight={FontWeight.Bold}>{t("pricing.address-form.title")}</Title>
-      <Flex gap="2rem" css={{width: '100%'}}>
+      <Title size={TitleSize.H5}>{t("pricing.address-form.city-helper-text")}</Title>
+      <Flex gap="2rem" css={{width: '100%', position: 'relative'}}>
         <FormInput
           name="city"
           label={t("pricing.address-form.city")}
@@ -38,6 +39,7 @@ export default function AddressForm() {
           labelColor={ThemeColors.Primary}
           handleChange={handleChange}
           formValue={addressFormData.city}
+          // helperText={t("pricing.address-form.city-helper-text")}
         />
         <FormInput
           name="street"

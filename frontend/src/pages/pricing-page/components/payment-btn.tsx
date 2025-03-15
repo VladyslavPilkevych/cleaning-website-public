@@ -12,7 +12,7 @@ export default function PaymentBtn() {
   const { t } = useTranslation("translation");
 
   return (
-    <Flex justifyContent={JustifyContent.CENTER} css={{ margin: "4rem 0" }}>
+    <Flex justifyContent={JustifyContent.CENTER} css={{ margin: "2rem 0 4rem" }}>
       <Button
         css={{
           backgroundColor: ThemeColors.Primary,

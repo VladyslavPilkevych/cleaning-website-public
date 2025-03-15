@@ -93,6 +93,11 @@
         "pet": "Čistenie po domácich zvieratách",
         "plates": "Umývanie riadu"
       },
+      "chemics": {
+        "title": "Je potrebné použitie chémie?",
+        "regular": "Bežný ?",
+        "bio": "Bio-hypoalergénnej ?"
+      },
       "cleaning-cards": {
         "sofa": "Čistenie pohovky",
         "sofa-single": "Čistenie jednosedadlovej pohovky",
@@ -107,6 +112,7 @@
       "title": "Napíšte svoju adresu",
       "city": "Mesto",
       "city-placeholder": "Mesto...",
+      "city-helper-text": "Za každý ďalší kilometer nad 35 km od Bratislavy bude účtovaný poplatok +10 EUR. Maximálna vzdialenosť je 100 km od Bratislavy.",
       "street": "Ulica",
       "street-placeholder": "Názov ulice...",
       "house-number": "Číslo domu",
@@ -131,7 +137,8 @@
       "card": "Platiť kartou",
       "cash": "Platiť v hotovosti"
     },
-    "total": "Celkom:"
+    "total": "Celkom:",
+    "prepayment-alert": "Ceny na stránke sú približné a môžu sa zmeniť v závislosti od znečistenia, plochy a ďalších potrieb."
   },
   "footer": {
     "links": "Odkazy",

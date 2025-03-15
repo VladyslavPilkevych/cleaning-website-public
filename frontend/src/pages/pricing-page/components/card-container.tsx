@@ -45,7 +45,7 @@ export default function CardContainer({ cards, translationPath }: CardContainerP
           src={card.src}
           srcInverted={card.srcInverted}
           text={t(`${translationPath}.${card.text}`)}
-          additionalQuestion={t(`${translationPath}.${card.additionalQuestion}`)}
+          additionalQuestion={card.additionalQuestion && t(`${translationPath}.${card.additionalQuestion}`)}
           isMulti={card.isMulti}
           selectedCards={selectedCards}
           onToggle={handleCardToggle}

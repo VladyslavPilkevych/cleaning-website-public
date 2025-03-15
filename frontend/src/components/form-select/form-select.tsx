@@ -10,8 +10,8 @@ const Label = styled.label`
   margin-bottom: 5px;
 `;
 
-const Input = styled.input`
-  width: 90%;
+const Select = styled.select`
+  width: 75%;
   padding: 10px;
   border: none;
   border-radius: 3px;
@@ -23,51 +23,47 @@ const Input = styled.input`
     color: ${ThemeColors.White};
     opacity: 0.4;
   }
+
+  option {
+    background: ${ThemeColors.Accent};
+    color: white;
+  }
 `;
 
-const HelperText = styled.p`
-  font-family: "Montserrat";
-  width: 90%;
-  font-weight: regular;
-  display: block;
-  margin-top: 1rem;
-  position: absolute;
-  color: ${ThemeColors.Primary};
-`;
-
-type FormInputProps = {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+type FormSelectProps = {
+  handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   formValue: string;
   name: string;
   label: string;
-  placeholder: string;
+  options: { value: string; label: string }[];
   labelColor?: ThemeColors;
-  helperText?: string;
   css?: React.CSSProperties;
 };
 
-export default function FormInput({
+export default function FormSelect({
   handleChange,
   formValue,
-  placeholder,
   name,
   label,
+  options,
   css,
-  labelColor = ThemeColors.White,
-  helperText,
-}: FormInputProps) {
+  labelColor = ThemeColors.Primary,
+}: FormSelectProps) {
   return (
     <Box>
       <Label style={{ color: labelColor }}>{label}</Label>
-      <Input
-        type="text"
+      <Select
         name={name}
-        placeholder={placeholder}
         value={formValue}
         onChange={handleChange}
         style={css}
-      />
-      <HelperText>{helperText}</HelperText>
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </Select>
     </Box>
   );
 }

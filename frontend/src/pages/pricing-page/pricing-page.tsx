@@ -19,7 +19,8 @@ import { FontWeight } from "../../utils/theme/fonts";
 import ImageComponent from "../../components/image";
 import PricesVary from "../../components/prices-vary";
 import { chemicalCleaningCards, serviceCards } from "./helpers/constants";
-import Separator from "../../components/separator/separator";
+import Separator from "../../components/separator";
+import Chemics from "./components/chemics";
 
 export default function PricingPage() {
   const { t } = useTranslation("translation");
@@ -41,7 +42,7 @@ export default function PricingPage() {
       </Flex>
 
       <Separator />
-      
+
       <Flex>
         <Title
           size={TitleSize.H2}
@@ -51,21 +52,29 @@ export default function PricingPage() {
           {t("pricing.services.title")}
         </Title>
       </Flex>
-      <CardContainer cards={serviceCards} translationPath="pricing.services.cards" />
+      <CardContainer
+        cards={serviceCards}
+        translationPath="pricing.services.cards"
+      />
 
       <Checkbox
         text={t("pricing.vacuum-cleaner")}
         price="14.99 EUR"
         icon={<SvgIcon src="./icons/vacuum.svg" />}
       />
-      
+
+      <Chemics />
+
       <Separator />
 
       <Checkbox
         text={t("pricing.chemical-cleaning")}
         css={{ marginTop: "2rem" }}
       >
-        <CardContainer cards={chemicalCleaningCards} translationPath="pricing.services.cleaning-cards" />
+        <CardContainer
+          cards={chemicalCleaningCards}
+          translationPath="pricing.services.cleaning-cards"
+        />
       </Checkbox>
 
       <Separator />
@@ -76,6 +85,12 @@ export default function PricingPage() {
 
       <PaymentMethod />
 
+      <Flex
+        justifyContent={JustifyContent.CENTER}
+        css={{ margin: "4rem auto 0" }}
+      >
+        <Title size={TitleSize.H5}>{t("pricing.prepayment-alert")}</Title>
+      </Flex>
       <PaymentBtn />
 
       <Separator />

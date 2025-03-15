@@ -108,6 +108,6 @@ export const chemicalCleaningCards: ServiceCardType[] = [
     src: "./icons/cleaning-cards/carpet.svg",
     srcInverted: "./icons/cleaning-cards/carpet-inverted.svg",
     text: "carpet",
-    isMulti: false,
+    isMulti: true,
   },
 ];

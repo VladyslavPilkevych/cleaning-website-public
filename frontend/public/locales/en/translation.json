@@ -93,6 +93,11 @@
         "pet": "Pet Cleaning",
         "plates": "Plates Cleaning"
       },
+      "chemics": {
+        "title": "Do you need chemicals cleaning?",
+        "regular": "Regular ?",
+        "bio": "Bio-hypoallergenic ?"
+      },
       "cleaning-cards": {
         "sofa": "Sofa Cleaning",
         "sofa-single": "Single Sofa Cleaning",
@@ -107,6 +112,7 @@
       "title": "Write your address",
       "city": "City",
       "city-placeholder": "City...",
+      "city-helper-text": "For every additional kilometer beyond 35 km from Bratislava, there will be an extra charge of +10 EUR. Maximum distance is 100 km from Bratislava.",
       "street": "Street",
       "street-placeholder": "Street name...",
       "house-number": "House number",
@@ -131,7 +137,8 @@
       "card": "Pay by card",
       "cash": "Pay in cash"
     },
-    "total": "Total:"
+    "total": "Total:",
+    "prepayment-alert": "The prices on the website are approximate and may change depending on pollution, area, and additional needs."
   },
   "footer": {
     "links": "Links",
