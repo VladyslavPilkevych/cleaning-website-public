@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./utils/translations/i18n";
 import { BrowserRouter } from "react-router-dom";
-import "./utils/styles/reset.css";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import "./utils/translations/i18n";
+import "./utils/styles/reset.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
