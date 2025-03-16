@@ -8,6 +8,7 @@ import { ButtonVariant, ButtonSize } from "../button/button.constants";
 import { useTranslation } from "react-i18next";
 import FormInput from "../form-input";
 import FormTextarea from "../form-textarea";
+import { useMediaQuery } from "react-responsive";
 
 type ContactFormProps = {
   labelColor?: ThemeColors,
@@ -15,7 +16,8 @@ type ContactFormProps = {
 
 export default function ContactForm({ labelColor = ThemeColors.White }: ContactFormProps) {
   const { t } = useTranslation("translation");
-
+  const isMobile = useMediaQuery({ query: "(max-width: 475px)" });
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,7 +38,7 @@ export default function ContactForm({ labelColor = ThemeColors.White }: ContactF
   return (
     <form onSubmit={handleSubmit}>
       <Flex flexDirection={FlexDirection.COLUMN} gap="2rem">
-        <Flex gap="2rem" width="100%">
+        <Flex gap="2rem" width="100%" flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
           <FormInput
             handleChange={handleChange}
             formValue={formData.name}
