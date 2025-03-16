@@ -32,7 +32,7 @@ export default function IconTitle({
         color: color,
       }}
     >
-      <img src={iconSrc} alt="icon" style={{ width: "24px", height: "24px", marginBottom: "-6px" }} />
+      <img src={`${process.env.PUBLIC_URL}${iconSrc}`} alt="icon" style={{ width: "24px", height: "24px", marginBottom: "-6px" }} />
       {children}
     </p>
   );

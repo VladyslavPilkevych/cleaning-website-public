@@ -50,7 +50,7 @@ export default function ContactsPage() {
           css={{ padding: "3rem" }}
         >
           <Flex gap="2rem">
-            <Icon src="./icons/phone.png" />
+            <Icon src="/icons/phone.png" />
             <Flex flexDirection={FlexDirection.COLUMN} alignItems={AlignItems.START}>
               <Title size={TitleSize.H5} color={ThemeColors.White}>
                 +1(123) 456-789 (English, Slovak)
@@ -61,13 +61,13 @@ export default function ContactsPage() {
             </Flex>
           </Flex>
           <Flex gap="2rem">
-            <Icon src="./icons/mail.png" />
+            <Icon src="/icons/mail.png" />
             <Title size={TitleSize.H5} color={ThemeColors.White}>
               lexishine@gmail.com
             </Title>
           </Flex>
           <Flex gap="2rem">
-            <Icon src="./icons/map-pin.png" />
+            <Icon src="/icons/map-pin.png" />
             <Title size={TitleSize.H5} color={ThemeColors.White}>
               Bratislava, Stare Mesto XXXXXX
             </Title>

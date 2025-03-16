@@ -62,7 +62,7 @@ export default function AdminPanel() {
   return (
     <Box>
       <ImageComponent
-        src="./images/admin-panel.png"
+        src="/images/admin-panel.png"
         asBackground
         fixedBg
         height="400px"

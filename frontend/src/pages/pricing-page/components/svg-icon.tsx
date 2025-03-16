@@ -11,7 +11,7 @@ export default function SvgIcon({ src, css }: SvgIconProps) {
   useEffect(() => {
     const fetchSvg = async () => {
       try {
-        const response = await fetch(src);
+        const response = await fetch(`${process.env.PUBLIC_URL}${src}`);
         const text = await response.text();
         setSvgContent(text);
       } catch (error) {

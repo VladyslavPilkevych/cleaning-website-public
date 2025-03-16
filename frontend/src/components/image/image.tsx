@@ -21,7 +21,7 @@ export default function ImageComponent(props: ImageProps) {
 
 function Image({ alt, src, css, width, height }: ImageProps) {
   return (
-    <img alt={alt ?? "image"} src={src} style={{ width, height, ...css }} />
+    <img alt={alt ?? "image"} src={`${process.env.PUBLIC_URL}${src}`} style={{ width, height, ...css }} />
   );
 }
 
@@ -29,7 +29,7 @@ function ImageBackground({ src, css, width, height, children, fixedBg }: ImagePr
   return (
     <div
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${src})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${process.env.PUBLIC_URL}${src})`,
         backgroundRepeat: "no-repeat",
         backgroundAttachment: fixedBg ? "fixed" : "scroll",
         backgroundPosition: "center",

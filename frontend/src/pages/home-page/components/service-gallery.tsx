@@ -20,7 +20,7 @@ export function ServiceGallery() {
     <>
       <ImageComponent
         asBackground
-        src="./images/resident-cleaning.png"
+        src="/images/resident-cleaning.png"
         height="300px"
       >
         <Flex
@@ -43,7 +43,7 @@ export function ServiceGallery() {
       </ImageComponent>
       <ImageComponent
         asBackground
-        src="./images/office-cleaning.png"
+        src="/images/office-cleaning.png"
         height="300px"
       >
         <Flex
@@ -66,7 +66,7 @@ export function ServiceGallery() {
       </ImageComponent>
       <ImageComponent
         asBackground
-        src="./images/parties-cleaning.png"
+        src="/images/parties-cleaning.png"
         height="300px"
       >
         <Flex
@@ -89,7 +89,7 @@ export function ServiceGallery() {
       </ImageComponent>
       <ImageComponent
         asBackground
-        src="./images/airbnb-cleaning.png"
+        src="/images/airbnb-cleaning.png"
         height="300px"
       >
         <Flex

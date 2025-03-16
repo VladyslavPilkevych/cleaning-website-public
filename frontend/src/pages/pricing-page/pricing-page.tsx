@@ -32,7 +32,7 @@ export default function PricingPage() {
       <ImageComponent
         height="500px"
         asBackground
-        src="./images/pricing-header.png"
+        src="/images/pricing-header.png"
       />
 
       <Flex
@@ -64,7 +64,7 @@ export default function PricingPage() {
       <Checkbox
         text={t("pricing.vacuum-cleaner")}
         price="14.99 EUR"
-        icon={<SvgIcon src="./icons/vacuum.svg" />}
+        icon={<SvgIcon src="/icons/vacuum.svg" />}
       />
 
       <Chemics />
@@ -102,7 +102,7 @@ export default function PricingPage() {
       <ImageComponent
         height={isMobile ? "300px" : "500px"}
         asBackground
-        src="./images/pricing-vary.png"
+        src="/images/pricing-vary.png"
         css={{
           alignItems: "center",
           display: "flex",

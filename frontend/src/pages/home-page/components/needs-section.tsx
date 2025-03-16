@@ -50,7 +50,7 @@ export default function NeedsSection() {
           textAlign={TextAlign.CENTER}
           width={isMobile ? "375px" : "250px"}
         >
-          <ImageComponent src="./images/reason1.png" />
+          <ImageComponent src="/images/reason1.png" />
           <Title
             color={ThemeColors.White}
             size={TitleSize.H3}
@@ -68,7 +68,7 @@ export default function NeedsSection() {
           textAlign={TextAlign.CENTER}
           width="250px"
         >
-          <ImageComponent src="./images/reason2.png" />
+          <ImageComponent src="/images/reason2.png" />
           <Title
             color={ThemeColors.White}
             size={TitleSize.H3}
@@ -86,7 +86,7 @@ export default function NeedsSection() {
           textAlign={TextAlign.CENTER}
           width="250px"
         >
-          <ImageComponent src="./images/reason3.png" />
+          <ImageComponent src="/images/reason3.png" />
           <Title
             color={ThemeColors.White}
             size={TitleSize.H3}

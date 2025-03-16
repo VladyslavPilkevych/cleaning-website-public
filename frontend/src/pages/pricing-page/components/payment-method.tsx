@@ -47,9 +47,9 @@ export default function PaymentMethod() {
         onClick={() => setActiveOption("card")}
       >
         {activeOption === "card" ? (
-          <SvgIcon src="./icons/check.svg" css={{ marginTop: "6px" }} />
+          <SvgIcon src="/icons/check.svg" css={{ marginTop: "6px" }} />
         ) : (
-          <SvgIcon src="./icons/credit-card.svg" />
+          <SvgIcon src="/icons/credit-card.svg" />
         )}
         <Title
           size={TitleSize.H4}
@@ -68,9 +68,9 @@ export default function PaymentMethod() {
         onClick={() => setActiveOption("cash")}
       >
         {activeOption === "cash" ? (
-          <SvgIcon src="./icons/check.svg" css={{ marginTop: "6px" }} />
+          <SvgIcon src="/icons/check.svg" css={{ marginTop: "6px" }} />
         ) : (
-          <SvgIcon src="./icons/cash.svg" />
+          <SvgIcon src="/icons/cash.svg" />
         )}
         <Title
           size={TitleSize.H4}

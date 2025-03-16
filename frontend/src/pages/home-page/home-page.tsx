@@ -30,7 +30,7 @@ export default function HomePage() {
     <Box>
       <ImageComponent
         asBackground
-        src="./images/home.png"
+        src="/images/home.png"
         height="600px"
         fixedBg
       >
@@ -83,7 +83,7 @@ export default function HomePage() {
       <ImageComponent
         asBackground
         fixedBg
-        src="./images/contact-image.png"
+        src="/images/contact-image.png"
         css={{
           display: "flex",
           alignItems: "center",

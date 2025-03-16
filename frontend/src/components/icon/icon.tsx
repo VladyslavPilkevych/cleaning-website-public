@@ -10,6 +10,6 @@ type IconProps = {
 
 export default function Icon({src, css, width = "40px", height = "40px" }: IconProps) {
   return (
-    <img alt="icon" src={src} style={{ width, height, ...css }} />
+    <img alt="icon" src={`${process.env.PUBLIC_URL}${src}`} style={{ width, height, ...css }} />
   );
 }
