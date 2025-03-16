@@ -57,6 +57,7 @@ export default function PricesVary({ showTitle = true }: PricesVaryProps) {
             gap="2rem"
             flexDirection={FlexDirection.COLUMN}
             width={isMobile ? "375px" : "250px"}
+            key={number}
           >
             <ImageComponent src={`./images/${number}.png`} />
             <Title

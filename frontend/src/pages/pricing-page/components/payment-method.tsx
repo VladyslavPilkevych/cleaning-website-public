@@ -17,21 +17,21 @@ const SelectWrapper = styled.div`
   gap: 2rem;
 `;
 
-const Option = styled.div<{ active: boolean }>`
+const Option = styled.div<{ $active: boolean }>`
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 10px 20px;
   border: 1px solid ${ThemeColors.Background};
   border-radius: 5px;
-  background-color: ${({ active }) =>
-    active ? ThemeColors.Primary : ThemeColors.Background};
+  background-color: ${({ $active }) =>
+    $active ? ThemeColors.Primary : ThemeColors.Background};
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: ${({ active }) =>
-      active ? ThemeColors.Primary : ThemeColors.Background};
+    background-color: ${({ $active }) =>
+      $active ? ThemeColors.Primary : ThemeColors.Background};
   }
 `;
 export default function PaymentMethod() {
@@ -43,7 +43,7 @@ export default function PaymentMethod() {
   return (
     <SelectWrapper style={{ flexDirection: isMobile ? FlexDirection.COLUMN : FlexDirection.ROW }}>
       <Option
-        active={activeOption === "card"}
+        $active={activeOption === "card"}
         onClick={() => setActiveOption("card")}
       >
         {activeOption === "card" ? (
@@ -64,7 +64,7 @@ export default function PaymentMethod() {
         </Title>
       </Option>
       <Option
-        active={activeOption === "cash"}
+        $active={activeOption === "cash"}
         onClick={() => setActiveOption("cash")}
       >
         {activeOption === "cash" ? (

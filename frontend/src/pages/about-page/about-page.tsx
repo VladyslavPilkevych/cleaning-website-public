@@ -39,7 +39,7 @@ export default function AboutPage() {
             <Title size={TitleSize.H3}>{t("about.title-section")}</Title>
             <Flex flexDirection={FlexDirection.COLUMN} gap="1rem" css={{marginTop: "1rem"}} alignItems={AlignItems.START}>
               {["0", "1", "2", "3", "4", "5", "6"].map((itemNumber) => (
-                <IconTitle size={TitleSize.H6} iconSrc="./icons/check.png">
+                <IconTitle size={TitleSize.H6} iconSrc="./icons/check.png" key={itemNumber}>
                   {t(`about.spaces-list.${itemNumber}`)}
                 </IconTitle>
               ))}
