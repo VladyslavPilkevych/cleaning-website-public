@@ -59,7 +59,7 @@ export default function PricesVary({ showTitle = true }: PricesVaryProps) {
             width={isMobile ? "375px" : "250px"}
             key={number}
           >
-            <ImageComponent src={`./images/${number}.png`} />
+            <ImageComponent src={`/images/${number}.png`} />
             <Title
               color={ThemeColors.White}
               size={TitleSize.H3}

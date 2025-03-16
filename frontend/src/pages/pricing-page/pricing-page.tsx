@@ -2,7 +2,10 @@ import React from "react";
 import DateCalendarValue from "./components/calendar";
 import TimePicker from "./components/time-picker";
 import Flex from "../../components/flex";
-import { FlexDirection, JustifyContent } from "../../components/flex/flex.constants";
+import {
+  FlexDirection,
+  JustifyContent,
+} from "../../components/flex/flex.constants";
 import Box from "../../components/box";
 import CardContainer from "./components/card-container";
 import Checkbox from "./components/checkbox";
@@ -107,7 +110,7 @@ export default function PricingPage() {
           alignItems: "center",
           display: "flex",
           justifyContent: "center",
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./images/pricing-vary.png)`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${process.env.PUBLIC_URL}/images/pricing-vary.png)`,
         }}
       >
         <Title
