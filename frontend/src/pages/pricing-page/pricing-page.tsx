@@ -2,7 +2,7 @@ import React from "react";
 import DateCalendarValue from "./components/calendar";
 import TimePicker from "./components/time-picker";
 import Flex from "../../components/flex";
-import { JustifyContent } from "../../components/flex/flex.constants";
+import { FlexDirection, JustifyContent } from "../../components/flex/flex.constants";
 import Box from "../../components/box";
 import CardContainer from "./components/card-container";
 import Checkbox from "./components/checkbox";
@@ -21,9 +21,11 @@ import PricesVary from "../../components/prices-vary";
 import { chemicalCleaningCards, serviceCards } from "./helpers/constants";
 import Separator from "../../components/separator";
 import Chemics from "./components/chemics";
+import { useMediaQuery } from "react-responsive";
 
 export default function PricingPage() {
   const { t } = useTranslation("translation");
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <Box>
@@ -36,6 +38,8 @@ export default function PricingPage() {
       <Flex
         justifyContent={JustifyContent.SPACE_EVENLY}
         css={{ margin: "4rem auto 0" }}
+        flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+        gap="2rem"
       >
         <DateCalendarValue />
         <TimePicker />
@@ -45,7 +49,7 @@ export default function PricingPage() {
 
       <Flex>
         <Title
-          size={TitleSize.H2}
+          size={isMobile ? TitleSize.H4 : TitleSize.H2}
           fontWeight={FontWeight.Bold}
           css={{ margin: "4rem auto 0" }}
         >
@@ -87,7 +91,7 @@ export default function PricingPage() {
 
       <Flex
         justifyContent={JustifyContent.CENTER}
-        css={{ margin: "4rem auto 0" }}
+        css={{ margin: "4rem 1rem 0" }}
       >
         <Title size={TitleSize.H5}>{t("pricing.prepayment-alert")}</Title>
       </Flex>
@@ -96,7 +100,7 @@ export default function PricingPage() {
       <Separator />
 
       <ImageComponent
-        height="500px"
+        height={isMobile ? "300px" : "500px"}
         asBackground
         src="./images/pricing-vary.png"
         css={{
@@ -107,7 +111,7 @@ export default function PricingPage() {
         }}
       >
         <Title
-          size={TitleSize.H1}
+          size={isMobile ? TitleSize.H3 : TitleSize.H1}
           fontWeight={FontWeight.Bold}
           color={ThemeColors.White}
         >

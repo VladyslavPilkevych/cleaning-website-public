@@ -5,8 +5,9 @@ import Flex from "../../../components/flex";
 import Title from "../../../components/title";
 import { TitleSize } from "../../../components/title/title.constants";
 import { FontWeight } from "../../../utils/theme/fonts";
-import { JustifyContent } from "../../../components/flex/flex.constants";
+import { FlexDirection, JustifyContent } from "../../../components/flex/flex.constants";
 import Box from "../../../components/box";
+import { useMediaQuery } from "react-responsive";
 
 type CheckboxProps = {
   icon?: React.ReactNode;
@@ -23,6 +24,9 @@ export default function ControlledCheckbox({
   css,
   children,
 }: CheckboxProps) {
+  const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,8 +35,8 @@ export default function ControlledCheckbox({
 
   return (
     <Box>
-      <Flex gap="2rem" justifyContent={JustifyContent.CENTER} css={css}>
-        {icon}
+      <Flex gap={isMobile ? "1rem" : "2rem"} justifyContent={JustifyContent.CENTER} css={css} flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
+        {!isTablet && icon}
         <Flex>
           <Checkbox
             checked={checked}
@@ -47,7 +51,7 @@ export default function ControlledCheckbox({
               "& .MuiSvgIcon-root": { fontSize: 32 },
             }}
           />
-          {text && <Title size={TitleSize.H4}>{text}</Title>}
+          {text && <Title size={isMobile ? TitleSize.H5 : TitleSize.H4}>{text}</Title>}
         </Flex>
         {price && (
           <Flex

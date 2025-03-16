@@ -8,9 +8,11 @@ import Flex from "../../../components/flex";
 import { FlexDirection } from "../../../components/flex/flex.constants";
 import { FontWeight } from "../../../utils/theme/fonts";
 import FormTextarea from "../../../components/form-textarea";
+import { useMediaQuery } from "react-responsive";
 
 export default function ContactForm() {
   const { t } = useTranslation("translation");
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const [contactFormData, setContactFormData] = useState({
     name: "",
@@ -29,12 +31,12 @@ export default function ContactForm() {
   return (
     <Flex
       flexDirection={FlexDirection.COLUMN}
-      css={{ padding: "0 15rem", width: "auto", gap: "2rem", marginTop: "6rem" }}
+      css={{ padding: isMobile ? "0 2rem" : "0 10%", width: "auto", gap: "2rem", marginTop: "6rem" }}
     >
-      <Title size={TitleSize.H3} fontWeight={FontWeight.Bold}>
+      <Title size={isMobile ? TitleSize.H4 : TitleSize.H3} fontWeight={FontWeight.Bold}>
         {t("pricing.contact-form.title")}
       </Title>
-      <Flex gap="2rem" css={{ width: "100%" }}>
+      <Flex gap="2rem" css={{ width: "100%" }} flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
         <FormInput
           name="name"
           label={t("pricing.contact-form.name")}
@@ -68,7 +70,7 @@ export default function ContactForm() {
         name="message"
         label={t("pricing.contact-form.message")}
         labelColor={ThemeColors.Primary}
-        css={{width: '97%'}}
+        css={{ width: isMobile ? '90%' : '97%' }}
       />
     </Flex>
   );

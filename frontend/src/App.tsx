@@ -7,7 +7,7 @@ import Footer from './components/footer';
 function App() {
   
   return (
-    <Box>
+    <Box css={{overflowX: 'hidden'}}>
       <Header />
       <AppRoutes />
       <Footer />

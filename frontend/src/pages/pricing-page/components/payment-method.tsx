@@ -6,6 +6,8 @@ import Title from "../../../components/title";
 import { TitleSize } from "../../../components/title/title.constants";
 import { FontWeight } from "../../../utils/theme/fonts";
 import ThemeColors from "../../../utils/theme/colors";
+import { useMediaQuery } from "react-responsive";
+import { FlexDirection } from "../../../components/flex/flex.constants";
 
 const SelectWrapper = styled.div`
   margin-top: 5rem;
@@ -34,11 +36,12 @@ const Option = styled.div<{ active: boolean }>`
 `;
 export default function PaymentMethod() {
   const { t } = useTranslation("translation");
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const [activeOption, setActiveOption] = useState("card");
 
   return (
-    <SelectWrapper>
+    <SelectWrapper style={{ flexDirection: isMobile ? FlexDirection.COLUMN : FlexDirection.ROW }}>
       <Option
         active={activeOption === "card"}
         onClick={() => setActiveOption("card")}

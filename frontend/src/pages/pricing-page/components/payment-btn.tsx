@@ -7,9 +7,11 @@ import Box from "../../../components/box";
 import Button from "../../../components/button";
 import Flex from "../../../components/flex";
 import { JustifyContent } from "../../../components/flex/flex.constants";
+import { useMediaQuery } from "react-responsive";
 
 export default function PaymentBtn() {
   const { t } = useTranslation("translation");
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <Flex justifyContent={JustifyContent.CENTER} css={{ margin: "2rem 0 4rem" }}>
@@ -17,7 +19,7 @@ export default function PaymentBtn() {
         css={{
           backgroundColor: ThemeColors.Primary,
           padding: "3rem",
-          borderRadius: "50px",
+          borderRadius: isMobile ? "20px" : "50px",
         }}
         onClick={() => {}} // TODO
       >

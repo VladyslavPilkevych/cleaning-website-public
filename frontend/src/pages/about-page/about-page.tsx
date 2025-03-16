@@ -8,9 +8,11 @@ import ThemeColors from "../../utils/theme/colors";
 import { AlignItems, FlexDirection } from "../../components/flex/flex.constants";
 import { useTranslation } from "react-i18next";
 import IconTitle from "../../components/icon-title";
+import { useMediaQuery } from "react-responsive";
 
 export default function AboutPage() {
   const { t } = useTranslation("translation");
+  const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
 
   return (
     <Box>
@@ -32,7 +34,7 @@ export default function AboutPage() {
       </ImageComponent>
       <Box width="85%" css={{ padding: "2rem 1rem", margin: "0 auto" }}>
         <Title size={TitleSize.H5}>{t("about.text")}</Title>
-        <Flex css={{ paddingTop: "2rem" }} alignItems={AlignItems.START}>
+        <Flex css={{ paddingTop: "2rem" }} gap="1rem" alignItems={AlignItems.START} flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
           <Box width="70%">
             <Title size={TitleSize.H3}>{t("about.title-section")}</Title>
             <Flex flexDirection={FlexDirection.COLUMN} gap="1rem" css={{marginTop: "1rem"}} alignItems={AlignItems.START}>

@@ -13,9 +13,11 @@ import ThemeColors from "../../utils/theme/colors";
 import Form from "../../components/contact-form";
 import Box from "../../components/box";
 import { useTranslation } from "react-i18next";
+import { useMediaQuery } from "react-responsive";
 
 export default function ContactsPage() {
   const { t } = useTranslation("translation");
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <>
@@ -24,22 +26,22 @@ export default function ContactsPage() {
         height="100px"
         css={{ backgroundColor: ThemeColors.Dark }}
       />
-      <Flex>
+      {!isMobile && <Flex>
         <Box css={{backgroundColor: ThemeColors.Primary, padding: "1rem"}}>
-          <Title size={TitleSize.H2} color={ThemeColors.White}>
+          <Title size={isMobile ? TitleSize.H4 : TitleSize.H2} color={ThemeColors.White}>
             {t("contact.title1")}
           </Title>
         </Box>
         <Box css={{ backgroundColor: ThemeColors.Background, padding: "1rem" }}>
-          <Title size={TitleSize.H2} color={ThemeColors.Secondary}>
+          <Title size={isMobile ? TitleSize.H4 : TitleSize.H2} color={ThemeColors.Secondary}>
             {t("contact.title2")}
           </Title>
         </Box>
-      </Flex>
-      <Flex width="100%" backgroundColor={ThemeColors.Primary}>
+      </Flex>}
+      <Flex width="100%" backgroundColor={ThemeColors.Primary} flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
         <Flex
           gap="2rem"
-          width="50%"
+          width={isMobile ? "95%" : "50%"}
           flexDirection={FlexDirection.COLUMN}
           justifyContent={JustifyContent.START}
           alignContent={AlignContent.START}
@@ -73,7 +75,7 @@ export default function ContactsPage() {
         </Flex>
         <Flex
           backgroundColor={ThemeColors.Background}
-          width="50%"
+          width={isMobile ? "95%" : "50%"}
           alignContent={AlignContent.CENTER}
           justifyContent={JustifyContent.CENTER}
           css={{ padding: "1rem 3rem 3rem" }}

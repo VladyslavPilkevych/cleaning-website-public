@@ -8,9 +8,11 @@ import FormInput from "../../../components/form-input";
 import Flex from "../../../components/flex";
 import { FlexDirection } from "../../../components/flex/flex.constants";
 import { FontWeight } from "../../../utils/theme/fonts";
+import { useMediaQuery } from "react-responsive";
 
 export default function AddressForm() {
   const { t } = useTranslation("translation");
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   const [addressFormData, setAddressFormData] = useState({
     city: "",
@@ -28,10 +30,10 @@ export default function AddressForm() {
   };
 
   return (
-    <Flex flexDirection={FlexDirection.COLUMN} css={{ padding: "0 15rem", width: 'auto', gap: '2rem' }}>
-      <Title size={TitleSize.H3} fontWeight={FontWeight.Bold}>{t("pricing.address-form.title")}</Title>
+    <Flex flexDirection={FlexDirection.COLUMN} css={{ padding: isMobile ? "0 2rem" : "0 10%", width: 'auto', gap: '2rem' }}>
+      <Title size={isMobile ? TitleSize.H4 : TitleSize.H3} fontWeight={FontWeight.Bold}>{t("pricing.address-form.title")}</Title>
       <Title size={TitleSize.H5}>{t("pricing.address-form.city-helper-text")}</Title>
-      <Flex gap="2rem" css={{width: '100%', position: 'relative'}}>
+      <Flex gap="2rem" css={{width: '100%', position: 'relative'}} flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
         <FormInput
           name="city"
           label={t("pricing.address-form.city")}
@@ -58,7 +60,7 @@ export default function AddressForm() {
           formValue={addressFormData.psc}
         />
       </Flex>
-      <Flex gap="2rem" css={{width: '100%'}}>
+      <Flex gap="2rem" css={{width: '100%'}} flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
         <FormInput
           name="houseNumber"
           label={t("pricing.address-form.house-number")}

@@ -12,9 +12,11 @@ import { TitleSize } from "../../../components/title/title.constants";
 import ThemeColors from "../../../utils/theme/colors";
 import { FontWeight } from "../../../utils/theme/fonts";
 import { useTranslation } from "react-i18next";
+import { useMediaQuery } from "react-responsive";
 
 export default function NeedsSection() {
   const { t } = useTranslation("translation");
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <Flex
@@ -22,13 +24,13 @@ export default function NeedsSection() {
       justifyContent={JustifyContent.CENTER}
       backgroundColor={ThemeColors.Primary}
       flexDirection={FlexDirection.COLUMN}
-      css={{ padding: "5rem 10rem" }}
+      css={{ padding: isMobile ? "2rem" : "5rem 10rem" }}
       gap="3.5rem"
     >
       <Title
         color={ThemeColors.White}
         fontWeight={FontWeight.Bold}
-        size={TitleSize.H1}
+        size={isMobile ? TitleSize.H3 : TitleSize.H1}
       >
         {t("home.needs.title")}
       </Title>
@@ -37,14 +39,16 @@ export default function NeedsSection() {
       </Title>
       <Flex
         css={{ padding: "5rem 5rem 0" }}
-        width="80vw"
+        width={isMobile ? "100%" : "80vw"}
         justifyContent={JustifyContent.SPACE_AROUND}
+        flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+        gap="2rem"
       >
         <Flex
           flexDirection={FlexDirection.COLUMN}
           gap="2.5rem"
           textAlign={TextAlign.CENTER}
-          width="250px"
+          width={isMobile ? "375px" : "250px"}
         >
           <ImageComponent src="./images/reason1.png" />
           <Title

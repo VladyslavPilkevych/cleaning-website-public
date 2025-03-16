@@ -10,9 +10,11 @@ import { TitleSize } from "../../../components/title/title.constants";
 import ThemeColors from "../../../utils/theme/colors";
 import { FontWeight } from "../../../utils/theme/fonts";
 import { useTranslation } from "react-i18next";
+import { useMediaQuery } from "react-responsive";
 
 export function ServiceGallery() {
   const { t } = useTranslation("translation");
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <>
@@ -28,7 +30,7 @@ export function ServiceGallery() {
           gap="2.5rem"
         >
           <Title
-            size={TitleSize.H3}
+            size={isMobile ? TitleSize.H5 : TitleSize.H3}
             color={ThemeColors.White}
             fontWeight={FontWeight.Bold}
           >
@@ -51,7 +53,7 @@ export function ServiceGallery() {
           gap="2.5rem"
         >
           <Title
-            size={TitleSize.H3}
+            size={isMobile ? TitleSize.H5 : TitleSize.H3}
             color={ThemeColors.White}
             fontWeight={FontWeight.Bold}
           >
@@ -74,7 +76,7 @@ export function ServiceGallery() {
           gap="2.5rem"
         >
           <Title
-            size={TitleSize.H3}
+            size={isMobile ? TitleSize.H5 : TitleSize.H3}
             color={ThemeColors.White}
             fontWeight={FontWeight.Bold}
           >
@@ -97,7 +99,7 @@ export function ServiceGallery() {
           gap="2.5rem"
         >
           <Title
-            size={TitleSize.H3}
+            size={isMobile ? TitleSize.H5 : TitleSize.H3}
             color={ThemeColors.White}
             fontWeight={FontWeight.Bold}
           >

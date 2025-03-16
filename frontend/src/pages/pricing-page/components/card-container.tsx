@@ -2,16 +2,25 @@ import React, { useState } from "react";
 import CardItem from "./card-item";
 import { useTranslation } from "react-i18next";
 import { ServiceCardType } from "../helpers/types";
+import { useMediaQuery } from "react-responsive";
 
 type CardContainerProps = {
   cards: ServiceCardType[];
   translationPath: string;
 };
 
-export default function CardContainer({ cards, translationPath }: CardContainerProps) {
+export default function CardContainer({
+  cards,
+  translationPath,
+}: CardContainerProps) {
   const { t } = useTranslation("translation");
-  
-  const [selectedCards, setSelectedCards] = useState<{ id: string; count: number }[]>([]);
+  const isSmallDesktop = useMediaQuery({ query: "(max-width: 1324px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
+
+  const [selectedCards, setSelectedCards] = useState<
+    { id: string; count: number }[]
+  >([]);
 
   const handleCardToggle = (id: string, isMulti: boolean) => {
     setSelectedCards((prev) => {
@@ -37,7 +46,21 @@ export default function CardContainer({ cards, translationPath }: CardContainerP
   };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "16px", justifyContent: "center", padding: "4rem 10rem" }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: isMobile
+          ? "repeat(1, 1fr)"
+          : isTablet
+          ? "repeat(2, 1fr)"
+          : isSmallDesktop
+          ? "repeat(3, 1fr)"
+          : "repeat(5, 1fr)",
+        gap: "16px",
+        justifyContent: "center",
+        padding: "4rem 10rem",
+      }}
+    >
       {cards.map((card) => (
         <CardItem
           key={card.id}
@@ -45,7 +68,10 @@ export default function CardContainer({ cards, translationPath }: CardContainerP
           src={card.src}
           srcInverted={card.srcInverted}
           text={t(`${translationPath}.${card.text}`)}
-          additionalQuestion={card.additionalQuestion && t(`${translationPath}.${card.additionalQuestion}`)}
+          additionalQuestion={
+            card.additionalQuestion &&
+            t(`${translationPath}.${card.additionalQuestion}`)
+          }
           isMulti={card.isMulti}
           selectedCards={selectedCards}
           onToggle={handleCardToggle}

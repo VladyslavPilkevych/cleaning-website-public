@@ -19,10 +19,12 @@ import { ServiceGallery } from "./components/service-gallery";
 import NeedsSection from "./components/needs-section";
 import PricesVary from "../../components/prices-vary";
 import Form from "../../components/contact-form";
+import { useMediaQuery } from "react-responsive";
 
 export default function HomePage() {
   const { t } = useTranslation("translation");
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <Box>
@@ -39,7 +41,7 @@ export default function HomePage() {
           gap="2.5rem"
         >
           <Title
-            size={TitleSize.H2}
+            size={isMobile ? TitleSize.H4 : TitleSize.H2}
             color={ThemeColors.White}
             fontWeight={FontWeight.Bold}
           >
@@ -66,7 +68,7 @@ export default function HomePage() {
         <Title
           color={ThemeColors.White}
           fontWeight={FontWeight.Bold}
-          size={TitleSize.H2}
+          size={isMobile ? TitleSize.H4 : TitleSize.H2}
         >
           {t("home.services.title")}
         </Title>
@@ -86,7 +88,7 @@ export default function HomePage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "7rem",
+          padding: isMobile ? "2rem" : "7rem",
         }}
       >
         <Box
