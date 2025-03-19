@@ -64,6 +64,20 @@ export const serviceCards: ServiceCardType[] = [
     text: "plates",
     isMulti: false,
   },
+  {
+    id: "10",
+    src: "/icons/cards/blinds.svg",
+    srcInverted: "/icons/cards/blinds-inverted.svg",
+    text: "blinds",
+    isMulti: true,
+  },
+  {
+    id: "11",
+    src: "/icons/cards/radiator.svg",
+    srcInverted: "/icons/cards/radiator-inverted.svg",
+    text: "radiator",
+    isMulti: true,
+  },
 ];
 
 export const chemicalCleaningCards: ServiceCardType[] = [

@@ -91,7 +91,9 @@
         "window": "Čistenie okien",
         "wardrobe": "Čistenie skrine",
         "pet": "Čistenie po domácich zvieratách",
-        "plates": "Umývanie riadu"
+        "plates": "Umývanie riadu",
+        "blinds": "Čistenie roletov",
+        "radiator": "Čistenie baterie"
       },
       "chemics": {
         "title": "Je potrebné použitie chémie?",

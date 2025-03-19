@@ -25,6 +25,7 @@ import { chemicalCleaningCards, serviceCards } from "./helpers/constants";
 import Separator from "../../components/separator";
 import Chemics from "./components/chemics";
 import { useMediaQuery } from "react-responsive";
+import Property from "./components/property";
 
 export default function PricingPage() {
   const { t } = useTranslation("translation");
@@ -47,6 +48,8 @@ export default function PricingPage() {
         <DateCalendarValue />
         <TimePicker />
       </Flex>
+
+      <Property />
 
       <Separator />
 

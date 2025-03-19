@@ -91,7 +91,9 @@
         "window": "Window Cleaning",
         "wardrobe": "Wardrobe Cleaning",
         "pet": "Pet Cleaning",
-        "plates": "Plates Cleaning"
+        "plates": "Plates Cleaning",
+        "blinds": "Blinds Cleaning",
+        "radiator": "Radiator Cleaning"
       },
       "chemics": {
         "title": "Do you need chemicals cleaning?",
