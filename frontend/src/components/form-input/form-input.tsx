@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ThemeColors from "../../utils/theme/colors";
 import Box from "../box";
+import { CSSProperties, ChangeEvent } from "react";
 
 const Label = styled.label`
   font-family: "Montserrat";
@@ -35,15 +36,31 @@ const HelperText = styled.p`
   color: ${ThemeColors.Primary};
 `;
 
+export type InputType =
+  | "text"
+  | "number"
+  | "email"
+  | "password"
+  | "date"
+  | "time"
+  | "datetime"
+  | "datetime-local"
+  | "month"
+  | "week"
+  | "year";
+
 type FormInputProps = {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleChange: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   formValue: string;
   name: string;
   label: string;
   placeholder: string;
   labelColor?: ThemeColors;
   helperText?: string;
-  css?: React.CSSProperties;
+  css?: CSSProperties;
+  type?: InputType;
 };
 
 export default function FormInput({
@@ -55,12 +72,13 @@ export default function FormInput({
   css,
   labelColor = ThemeColors.White,
   helperText,
+  type = "text",
 }: FormInputProps) {
   return (
     <Box>
       <Label style={{ color: labelColor }}>{label}</Label>
       <Input
-        type="text"
+        type={type}
         name={name}
         placeholder={placeholder}
         value={formValue}

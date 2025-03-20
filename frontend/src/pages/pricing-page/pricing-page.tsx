@@ -26,6 +26,7 @@ import Separator from "../../components/separator";
 import Chemics from "./components/chemics";
 import { useMediaQuery } from "react-responsive";
 import Property from "./components/property";
+import Windows from "./components/windows";
 
 export default function PricingPage() {
   const { t } = useTranslation("translation");
@@ -50,6 +51,10 @@ export default function PricingPage() {
       </Flex>
 
       <Property />
+
+      <Separator />
+      
+      <Windows />
 
       <Separator />
 

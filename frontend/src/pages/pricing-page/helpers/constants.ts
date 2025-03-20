@@ -36,13 +36,13 @@ export const serviceCards: ServiceCardType[] = [
     text: "microwave",
     isMulti: false,
   },
-  {
-    id: "6",
-    src: "/icons/cards/window.svg",
-    srcInverted: "/icons/cards/window-inverted.svg",
-    text: "window",
-    isMulti: true,
-  },
+  // {
+  //   id: "6",
+  //   src: "/icons/cards/window.svg",
+  //   srcInverted: "/icons/cards/window-inverted.svg",
+  //   text: "window",
+  //   isMulti: true,
+  // },
   {
     id: "7",
     src: "/icons/cards/wardrobe.svg",

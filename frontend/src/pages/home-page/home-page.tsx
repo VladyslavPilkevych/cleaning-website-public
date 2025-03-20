@@ -76,6 +76,30 @@ export default function HomePage() {
 
       <ServiceGallery />
 
+      <Flex
+        alignItems={AlignItems.CENTER}
+        justifyContent={JustifyContent.CENTER}
+        backgroundColor={ThemeColors.Primary}
+        flexDirection={FlexDirection.COLUMN}
+        css={{
+          padding: isMobile ? "2rem 5%" : "2rem 15%",
+        }}
+        gap="2rem"
+      >
+        <Title
+          color={ThemeColors.White}
+          size={isMobile ? TitleSize.H6 : TitleSize.H5}
+        >
+          {t("home.text-info-1")}
+        </Title>
+        <Title
+          color={ThemeColors.White}
+          size={isMobile ? TitleSize.H6 : TitleSize.H5}
+        >
+          {t("home.text-info-2")}
+        </Title>
+      </Flex>
+
       <NeedsSection />
 
       <PricesVary />

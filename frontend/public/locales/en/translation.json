@@ -19,6 +19,8 @@
       "airbnb-cleaning": "Airbnb Cleaning",
       "airbnb-text": "For those in need of providing a hospitable Airbnb home."
     },
+    "text-info-1": "Regular cleaning of carpets and sofas removes mold, odors, mites, bedbugs, and cigarette smells, ensuring a fresh and healthy environment.",
+    "text-info-2": "Classic cleaning focuses on surface-level tidiness, while deep cleaning targets hidden dirt, stains, and hard-to-reach areas. You can also choose additional services to enhance specific aspects of cleaning.",
     "needs": {
       "title": "Your Needs",
       "description": "Your comfort and cleanliness are our priorities. Let us handle the mess while you relax.",
@@ -80,6 +82,25 @@
     "chemical-cleaning": "Order chemical cleaning of furniture and carpets along with cleaning.",
     "select-date": "Select Date",
     "select-time": "Select Time",
+    "property": {
+      "type": "Type of Property",
+      "house": "House",
+      "apartment": "Apartment",
+      "office": "Office",
+      "area": "Area (m2)",
+      "rooms": "Rooms",
+      "steps": "Are there steps ?",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "windows": {
+      "title": "Do you need window cleaning?",
+      "mold": "Is there mold ?",
+      "yes": "Yes",
+      "no": "No",
+      "windows-count": "Windows count",
+      "total-windows-area": "Total windows area (m2)"
+    },
     "services": {
       "title": "Choose services",
       "cards": {

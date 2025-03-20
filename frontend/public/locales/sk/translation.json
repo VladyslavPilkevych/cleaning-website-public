@@ -19,6 +19,8 @@
       "airbnb-cleaning": "Upratovanie Airbnb",
       "airbnb-text": "Pre tých, ktorí chcú zabezpečiť hosťom čisté a pohostinné ubytovanie."
     },
+    "text-info-1": "Pravidelné čistenie kobercov a pohoviek odstraňuje plesne, zápach, roztoče, ploštice a zápach cigariet, čím zabezpečuje svieže a zdravé prostredie.",
+    "text-info-2": "Klasické čistenie sa zameriava na povrchovú čistotu, zatiaľ čo generálne čistenie odstraňuje skrytú špinu, škvrny a ťažko dostupné miesta. Môžete si vybrať aj doplnkové služby na zlepšenie konkrétnych aspektov čistenia.",
     "needs": {
       "title": "Vaše potreby",
       "description": "Vaše pohodlie a čistota sú našou prioritou. Nechajte neporiadok na nás a relaxujte.",
@@ -80,6 +82,25 @@
     "chemical-cleaning": "Objednajte si chemické čistenie nábytku a kobercov spolu s upratovaním.",
     "select-date": "Vyberte dátum",
     "select-time": "Vyberte čas",
+    "property": {
+      "type": "Typ nehnuteľnosti",
+      "house": "Dom",
+      "apartment": "Byt",
+      "office": "Kancelária",
+      "area": "Plocha (m2)",
+      "rooms": "Izby",
+      "steps": "Sú tam schody?",
+      "yes": "Áno",
+      "no": "Nie"
+    },
+    "windows": {
+      "title": "Potrebujete umyť okná?",
+      "mold": "Je tam pleseň?",
+      "yes": "Áno",
+      "no": "Nie",
+      "windows-count": "Počet okien",
+      "total-windows-area": "Celková plocha okien (m2)"
+    },
     "services": {
       "title": "Vyberte si služby",
       "cards": {
