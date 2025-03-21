@@ -104,13 +104,6 @@ export const chemicalCleaningCards: ServiceCardType[] = [
   },
   {
     id: "4",
-    src: "/icons/cleaning-cards/mattress.svg",
-    srcInverted: "/icons/cleaning-cards/mattress-inverted.svg",
-    text: "mattress",
-    isMulti: false,
-  },
-  {
-    id: "5",
     src: "/icons/cleaning-cards/sofa-corner.svg",
     srcInverted: "/icons/cleaning-cards/sofa-corner-inverted.svg",
     text: "sofa-corner",
@@ -118,10 +111,24 @@ export const chemicalCleaningCards: ServiceCardType[] = [
     isMulti: true,
   },
   {
-    id: "6",
+    id: "5",
     src: "/icons/cleaning-cards/carpet.svg",
     srcInverted: "/icons/cleaning-cards/carpet-inverted.svg",
     text: "carpet",
     isMulti: true,
+  },
+  {
+    id: "6",
+    src: "/icons/cleaning-cards/mattress.svg",
+    srcInverted: "/icons/cleaning-cards/mattress-inverted.svg",
+    text: "mattress",
+    isMulti: false,
+  },
+  {
+    id: "7",
+    src: "/icons/cleaning-cards/mattress.svg",
+    srcInverted: "/icons/cleaning-cards/mattress-inverted.svg",
+    text: "mattress-double",
+    isMulti: false,
   },
 ];

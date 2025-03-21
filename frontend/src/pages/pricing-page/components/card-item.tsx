@@ -142,6 +142,7 @@ export default function CardItem({
         size={TitleSize.H6}
         color={isSelected ? ThemeColors.White : ThemeColors.Secondary}
         fontWeight={FontWeight.Bold}
+        css={{ textAlign: "center" }}
       >
         {text}
       </Title>

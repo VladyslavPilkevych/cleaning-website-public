@@ -125,7 +125,8 @@
         "sofa": "Sofa Cleaning",
         "sofa-single": "Single Sofa Cleaning",
         "armchair": "Armchair Cleaning",
-        "mattress": "Mattress Cleaning",
+        "mattress": "Single mattress Cleaning",
+        "mattress-double": "Double mattress Cleaning",
         "sofa-corner": "Sofa Corner Cleaning",
         "carpet": "Carpet Cleaning",
         "sofa-corner-question": "Seats count?"
