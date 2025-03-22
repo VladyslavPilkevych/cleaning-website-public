@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Flex from "../flex";
-import { JustifyContent } from "../flex/flex.constants";
+import { FlexDirection, JustifyContent } from "../flex/flex.constants";
 import Title from "../title";
 import { TitleSize } from "../title/title.constants";
 import styled from "styled-components";
@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../language-switcher";
 import { RouteNames } from "../../utils/routes/routes.constants";
 import { useMediaQuery } from "react-responsive";
+import Logo from "../logo";
 
 export const CustomNavLink = styled(NavLink)`
   position: relative;
@@ -49,49 +50,59 @@ const MobileMenu = styled.div`
 `;
 
 export default function Header() {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 820px)" });
 
   return (
     <Flex
       justifyContent={JustifyContent.SPACE_BETWEEN}
-      css={{ padding: "3rem" }}
+      css={{ padding: "1rem 3rem" }}
     >
-      <NavLink to={RouteNames.HOME}>logo</NavLink>
       {isMobile ? (
         <>
-        <LanguageSwitcher />
-        <MobileMenu>
-          <CustomNavLink to={RouteNames.HOME} end>
-            <Title size={TitleSize.H4}>{t("header.home")}</Title>
-          </CustomNavLink>
-          <CustomNavLink to={RouteNames.CONTACTS}>
-            <Title size={TitleSize.H4}>{t("header.contacts")}</Title>
-          </CustomNavLink>
-          <CustomNavLink to={RouteNames.ABOUT}>
-            <Title size={TitleSize.H4}>{t("header.about")}</Title>
-          </CustomNavLink>
-          <CustomNavLink to={RouteNames.PRICING}>
-            <Title size={TitleSize.H4}>{t("header.pricing")}</Title>
-          </CustomNavLink>
-        </MobileMenu>
+          <Flex flexDirection={FlexDirection.COLUMN}>
+            <NavLink to={RouteNames.HOME}>
+              <Logo />
+            </NavLink>
+            <LanguageSwitcher />
+          </Flex>
+          <MobileMenu>
+            <CustomNavLink to={RouteNames.HOME} end>
+              <Title size={TitleSize.H4}>{t("header.home")}</Title>
+            </CustomNavLink>
+            <CustomNavLink to={RouteNames.CONTACTS}>
+              <Title size={TitleSize.H4}>{t("header.contacts")}</Title>
+            </CustomNavLink>
+            <CustomNavLink to={RouteNames.ABOUT}>
+              <Title size={TitleSize.H4}>{t("header.about")}</Title>
+            </CustomNavLink>
+            <CustomNavLink to={RouteNames.PRICING}>
+              <Title size={TitleSize.H4}>{t("header.pricing")}</Title>
+            </CustomNavLink>
+          </MobileMenu>
         </>
       ) : (
-      <Flex gap="4rem">
-        <CustomNavLink to={RouteNames.HOME} end>
-          <Title size={TitleSize.H4}>{t('header.home')}</Title>
-        </CustomNavLink>
-        <CustomNavLink to={RouteNames.CONTACTS}>
-          <Title size={TitleSize.H4}>{t('header.contacts')}</Title>
-        </CustomNavLink>
-        <CustomNavLink to={RouteNames.ABOUT}>
-          <Title size={TitleSize.H4}>{t('header.about')}</Title>
-        </CustomNavLink>
-        <CustomNavLink to={RouteNames.PRICING}>
-          <Title size={TitleSize.H4}>{t('header.pricing')}</Title>
-        </CustomNavLink>
-        <LanguageSwitcher />
-      </Flex>)}
+        <>
+          <NavLink to={RouteNames.HOME}>
+            <Logo />
+          </NavLink>
+          <Flex gap="4rem">
+            <CustomNavLink to={RouteNames.HOME} end>
+              <Title size={TitleSize.H4}>{t("header.home")}</Title>
+            </CustomNavLink>
+            <CustomNavLink to={RouteNames.CONTACTS}>
+              <Title size={TitleSize.H4}>{t("header.contacts")}</Title>
+            </CustomNavLink>
+            <CustomNavLink to={RouteNames.ABOUT}>
+              <Title size={TitleSize.H4}>{t("header.about")}</Title>
+            </CustomNavLink>
+            <CustomNavLink to={RouteNames.PRICING}>
+              <Title size={TitleSize.H4}>{t("header.pricing")}</Title>
+            </CustomNavLink>
+            <LanguageSwitcher />
+          </Flex>
+        </>
+      )}
     </Flex>
   );
 }
