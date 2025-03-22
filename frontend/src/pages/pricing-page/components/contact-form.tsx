@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import ThemeColors from "../../../utils/theme/colors";
 import Title from "../../../components/title";
@@ -9,41 +9,56 @@ import { FlexDirection } from "../../../components/flex/flex.constants";
 import { FontWeight } from "../../../utils/theme/fonts";
 import FormTextarea from "../../../components/form-textarea";
 import { useMediaQuery } from "react-responsive";
+import { PricingPageFormData } from "../helpers/types";
+import { ChangeFormDataType } from "../pricing-page";
 
-export default function ContactForm() {
+type ContactFormProps = {
+  formData: PricingPageFormData;
+  handleChangeFormData: ChangeFormDataType;
+};
+
+export default function ContactForm({
+  formData,
+  handleChangeFormData,
+}: ContactFormProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
-  const [contactFormData, setContactFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    message: "",
-  });
-
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
-    setContactFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value } = event.target;
+    handleChangeFormData("contacts." + name, value);
   };
 
   return (
     <Flex
       flexDirection={FlexDirection.COLUMN}
-      css={{ padding: isMobile ? "0 2rem" : "0 10%", width: "auto", gap: "2rem", marginTop: "6rem" }}
+      css={{
+        padding: isMobile ? "0 2rem" : "0 10%",
+        width: "auto",
+        gap: "2rem",
+        marginTop: "6rem",
+      }}
     >
-      <Title size={isMobile ? TitleSize.H4 : TitleSize.H3} fontWeight={FontWeight.Bold}>
+      <Title
+        size={isMobile ? TitleSize.H4 : TitleSize.H3}
+        fontWeight={FontWeight.Bold}
+      >
         {t("pricing.contact-form.title")}
       </Title>
-      <Flex gap="2rem" css={{ width: "100%" }} flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
+      <Flex
+        gap="2rem"
+        css={{ width: "100%" }}
+        flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+      >
         <FormInput
           name="name"
           label={t("pricing.contact-form.name")}
           placeholder={t("pricing.contact-form.name-placeholder")}
           labelColor={ThemeColors.Primary}
           handleChange={handleChange}
-          formValue={contactFormData.name}
+          formValue={formData.contacts.name || ""}
         />
         <FormInput
           name="phone"
@@ -51,7 +66,7 @@ export default function ContactForm() {
           placeholder={t("pricing.contact-form.phone-placeholder")}
           labelColor={ThemeColors.Primary}
           handleChange={handleChange}
-          formValue={contactFormData.phone}
+          formValue={formData.contacts.phone || ""}
         />
         <FormInput
           name="email"
@@ -59,18 +74,18 @@ export default function ContactForm() {
           placeholder={t("pricing.contact-form.email-placeholder")}
           labelColor={ThemeColors.Primary}
           handleChange={handleChange}
-          formValue={contactFormData.email}
+          formValue={formData.contacts.email || ""}
         />
       </Flex>
 
       <FormTextarea
         handleChange={handleChange}
-        formValue={contactFormData.message}
+        formValue={formData.contacts.message || ""}
         placeholder={t("pricing.contact-form.message-placeholder")}
         name="message"
         label={t("pricing.contact-form.message")}
         labelColor={ThemeColors.Primary}
-        css={{ width: isMobile ? '90%' : '97%' }}
+        css={{ width: isMobile ? "90%" : "97%" }}
       />
     </Flex>
   );

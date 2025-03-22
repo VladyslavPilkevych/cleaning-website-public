@@ -5,9 +5,13 @@ import Flex from "../../../components/flex";
 import Title from "../../../components/title";
 import { TitleSize } from "../../../components/title/title.constants";
 import { FontWeight } from "../../../utils/theme/fonts";
-import { FlexDirection, JustifyContent } from "../../../components/flex/flex.constants";
+import {
+  FlexDirection,
+  JustifyContent,
+} from "../../../components/flex/flex.constants";
 import Box from "../../../components/box";
 import { useMediaQuery } from "react-responsive";
+import { ChangeFormDataType } from "../pricing-page";
 
 type CheckboxProps = {
   icon?: React.ReactNode;
@@ -15,6 +19,9 @@ type CheckboxProps = {
   price?: string;
   css?: React.CSSProperties;
   children?: React.ReactNode;
+  formData?: boolean | null;
+  handleChangeFormData?: ChangeFormDataType;
+  name?: string;
 };
 
 export default function ControlledCheckbox({
@@ -23,19 +30,31 @@ export default function ControlledCheckbox({
   price,
   css,
   children,
+  formData,
+  name,
+  handleChangeFormData,
 }: CheckboxProps) {
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState(formData || false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
+
+    if (name && handleChangeFormData) {
+      handleChangeFormData(name, event.target.checked);
+    }
   };
 
   return (
     <Box>
-      <Flex gap={isMobile ? "1rem" : "2rem"} justifyContent={JustifyContent.CENTER} css={css} flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
+      <Flex
+        gap={isMobile ? "1rem" : "2rem"}
+        justifyContent={JustifyContent.CENTER}
+        css={css}
+        flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+      >
         {!isTablet && icon}
         <Flex>
           <Checkbox
@@ -51,7 +70,9 @@ export default function ControlledCheckbox({
               "& .MuiSvgIcon-root": { fontSize: 32 },
             }}
           />
-          {text && <Title size={isMobile ? TitleSize.H5 : TitleSize.H4}>{text}</Title>}
+          {text && (
+            <Title size={isMobile ? TitleSize.H5 : TitleSize.H4}>{text}</Title>
+          )}
         </Flex>
         {price && (
           <Flex

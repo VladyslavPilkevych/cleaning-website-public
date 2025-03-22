@@ -122,13 +122,13 @@ export const chemicalCleaningCards: ServiceCardType[] = [
     src: "/icons/cleaning-cards/mattress.svg",
     srcInverted: "/icons/cleaning-cards/mattress-inverted.svg",
     text: "mattress",
-    isMulti: false,
+    isMulti: true,
   },
   {
     id: "7",
     src: "/icons/cleaning-cards/mattress.svg",
     srcInverted: "/icons/cleaning-cards/mattress-inverted.svg",
     text: "mattress-double",
-    isMulti: false,
+    isMulti: true,
   },
 ];

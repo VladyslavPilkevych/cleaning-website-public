@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DateCalendarValue from "./components/calendar";
 import TimePicker from "./components/time-picker";
 import Flex from "../../components/flex";
@@ -27,10 +27,74 @@ import Chemics from "./components/chemics";
 import { useMediaQuery } from "react-responsive";
 import Property from "./components/property";
 import Windows from "./components/windows";
+import { PricingPageFormData } from "./helpers/types";
+import { defaultPricingPageFormData } from "./helpers/utils";
+import { Dayjs } from "dayjs";
+
+export type ChangeFormDataType = (
+  name: string,
+  value: string | boolean | number | Dayjs | null
+) => void;
 
 export default function PricingPage() {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
+  const [formData, setFormData] = useState<PricingPageFormData>(
+    defaultPricingPageFormData
+  );
+
+  // event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  // const handleChangeFormData = (
+  //   name: string,
+  //   value: string | boolean | number | Dayjs | null
+  // ) => {
+  //   // setFormData((prev) => ({ ...prev, [name]: value }));
+  //   setFormData((prev) => {
+  //     const keys = name.split(".");
+  //     const updatedFormData = { ...prev };
+  
+  //     let current = updatedFormData;
+  //     for (let i = 0; i < keys.length - 1; i++) {
+  //       const key = keys[i];
+  
+  //       if (!current[key]) {
+  //         current[key] = {};
+  //       }
+  
+  //       current = current[key];
+  //     }
+  
+  //     current[keys[keys.length - 1]] = value;
+  
+  //     return updatedFormData;
+  //   });
+  // };
+
+  const handleChangeFormData = (
+    name: string,
+    value: string | boolean | number | Dayjs | null,
+  ) => {
+    setFormData((prev) => {
+      const keys = name.split(".");
+      const updatedFormData = { ...prev };
+  
+      let current: any = updatedFormData; // todo any
+      for (let i = 0; i < keys.length - 1; i++) {
+        const key = keys[i];
+  
+        if (!current[key]) {
+          current[key] = {};
+        }
+  
+        current = current[key];
+      }
+  
+      current[keys[keys.length - 1]] = value;
+  
+      return updatedFormData;
+    });
+  };
 
   return (
     <Box>
@@ -46,15 +110,27 @@ export default function PricingPage() {
         flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
         gap="2rem"
       >
-        <DateCalendarValue />
-        <TimePicker />
+        <DateCalendarValue
+          formData={formData}
+          handleChangeFormData={handleChangeFormData}
+        />
+        <TimePicker
+          formData={formData}
+          handleChangeFormData={handleChangeFormData}
+        />
       </Flex>
 
-      <Property />
+      <Property
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+      />
 
       <Separator />
-      
-      <Windows />
+
+      <Windows
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+      />
 
       <Separator />
 
@@ -76,9 +152,15 @@ export default function PricingPage() {
         text={t("pricing.vacuum-cleaner")}
         price="14.99 EUR"
         icon={<SvgIcon src="/icons/vacuum.svg" />}
+        formData={formData.vacuum}
+        handleChangeFormData={handleChangeFormData}
+        name="vacuum"
       />
 
-      <Chemics />
+      <Chemics
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+      />
 
       <Separator />
 
@@ -94,11 +176,20 @@ export default function PricingPage() {
 
       <Separator />
 
-      <AddressForm />
+      <AddressForm
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+      />
 
-      <ContactForm />
+      <ContactForm
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+      />
 
-      <PaymentMethod />
+      <PaymentMethod
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+      />
 
       <Flex
         justifyContent={JustifyContent.CENTER}
@@ -106,7 +197,7 @@ export default function PricingPage() {
       >
         <Title size={TitleSize.H5}>{t("pricing.prepayment-alert")}</Title>
       </Flex>
-      <PaymentBtn />
+      <PaymentBtn formData={formData} />
 
       <Separator />
 

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ThemeColors from "../../../utils/theme/colors";
+import { PricingPageFormData } from "../helpers/types";
+import { ChangeFormDataType } from "../pricing-page";
 
 const GridContainer = styled.div`
   display: grid;
@@ -27,17 +29,22 @@ const TimeBox = styled.div<{ selected: boolean }>`
   }
 `;
 
-const TimeGrid: React.FC = () => {
+type TimeGridProps = {
+  formData: PricingPageFormData;
+  handleChangeFormData: ChangeFormDataType;
+};  
+
+function TimeGrid ({ formData, handleChangeFormData }: TimeGridProps) {
   const times = Array.from({ length: 13 }, (_, i) => `${7 + i}:00`);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  // const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   return (
     <GridContainer>
       {times.map((time) => (
         <TimeBox
           key={time}
-          selected={selectedTime === time}
-          onClick={() => setSelectedTime(time)}
+          selected={formData.time === time}
+          onClick={() => handleChangeFormData("time", time)}
         >
           {time}
         </TimeBox>

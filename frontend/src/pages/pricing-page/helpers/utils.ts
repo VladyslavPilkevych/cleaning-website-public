@@ -1,0 +1,59 @@
+import { ChemicalCleaningType, PricingPageFormData } from "./types";
+
+export const defaultPricingPageFormData: PricingPageFormData = {
+  date: null,
+  time: null,
+  property: {
+    type: null,
+    area: null,
+    rooms: null,
+    steps: null,
+  },
+  windows: {
+    cleaning: null,
+    mold: null,
+    area: null,
+    count: null,
+  },
+  services: {
+    oven: null,
+    iron: null,
+    fridge: null,
+    balcony: null,
+    microwave: null,
+    wardrobe: null,
+    pet: null,
+    plates: null,
+    blinds: null,
+    radiator: null,
+  },
+  vacuum: null,
+  chemicalCleaning: {
+    chemic: null,
+    type: ChemicalCleaningType.REGULAR,
+  },
+  chemicalServices: {
+    sofa: null,
+    sofaSingle: null,
+    armchair: null,
+    sofaCorner: null,
+    carpet: null,
+    mattress: null,
+    mattressDouble: null,
+  },
+  address: {
+    street: null,
+    city: null,
+    psc: null,
+    house: null,
+    floor: null,
+  },
+  contacts: {
+    name: null,
+    email: null,
+    phone: null,
+    message: null,
+  },
+  paymentMethod: null,
+//   totalPrice: null,
+};

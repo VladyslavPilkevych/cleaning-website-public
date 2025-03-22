@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import SvgIcon from "./svg-icon";
@@ -8,6 +7,8 @@ import { FontWeight } from "../../../utils/theme/fonts";
 import ThemeColors from "../../../utils/theme/colors";
 import { useMediaQuery } from "react-responsive";
 import { FlexDirection } from "../../../components/flex/flex.constants";
+import { PAYMENT_METHOD, PricingPageFormData } from "../helpers/types";
+import { ChangeFormDataType } from "../pricing-page";
 
 const SelectWrapper = styled.div`
   margin-top: 5rem;
@@ -34,19 +35,32 @@ const Option = styled.div<{ $active: boolean }>`
       $active ? ThemeColors.Primary : ThemeColors.Background};
   }
 `;
-export default function PaymentMethod() {
+
+type PaymentMethodProps = {
+  formData: PricingPageFormData;
+  handleChangeFormData: ChangeFormDataType;
+};
+
+export default function PaymentMethod({
+  formData,
+  handleChangeFormData,
+}: PaymentMethodProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
-  const [activeOption, setActiveOption] = useState("card");
-
   return (
-    <SelectWrapper style={{ flexDirection: isMobile ? FlexDirection.COLUMN : FlexDirection.ROW }}>
+    <SelectWrapper
+      style={{
+        flexDirection: isMobile ? FlexDirection.COLUMN : FlexDirection.ROW,
+      }}
+    >
       <Option
-        $active={activeOption === "card"}
-        onClick={() => setActiveOption("card")}
+        $active={formData.paymentMethod === PAYMENT_METHOD.CARD}
+        onClick={() =>
+          handleChangeFormData("paymentMethod", PAYMENT_METHOD.CARD)
+        }
       >
-        {activeOption === "card" ? (
+        {formData.paymentMethod === PAYMENT_METHOD.CARD ? (
           <SvgIcon src="/icons/check.svg" css={{ marginTop: "6px" }} />
         ) : (
           <SvgIcon src="/icons/credit-card.svg" />
@@ -55,7 +69,7 @@ export default function PaymentMethod() {
           size={TitleSize.H4}
           fontWeight={FontWeight.Bold}
           color={
-            activeOption === "card"
+            formData.paymentMethod === PAYMENT_METHOD.CARD
               ? ThemeColors.Background
               : ThemeColors.Primary
           }
@@ -64,10 +78,12 @@ export default function PaymentMethod() {
         </Title>
       </Option>
       <Option
-        $active={activeOption === "cash"}
-        onClick={() => setActiveOption("cash")}
+        $active={formData.paymentMethod === PAYMENT_METHOD.CASH}
+        onClick={() =>
+          handleChangeFormData("paymentMethod", PAYMENT_METHOD.CASH)
+        }
       >
-        {activeOption === "cash" ? (
+        {formData.paymentMethod === PAYMENT_METHOD.CASH ? (
           <SvgIcon src="/icons/check.svg" css={{ marginTop: "6px" }} />
         ) : (
           <SvgIcon src="/icons/cash.svg" />
@@ -76,7 +92,7 @@ export default function PaymentMethod() {
           size={TitleSize.H4}
           fontWeight={FontWeight.Bold}
           color={
-            activeOption === "cash"
+            formData.paymentMethod === PAYMENT_METHOD.CASH
               ? ThemeColors.Background
               : ThemeColors.Primary
           }

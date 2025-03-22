@@ -8,28 +8,33 @@ import { JustifyContent } from "../../../components/flex/flex.constants";
 import Box from "../../../components/box";
 import { useTranslation } from "react-i18next";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { ChangeFormDataType } from "../pricing-page";
+import { ChemicalCleaningType, PricingPageFormData } from "../helpers/types";
 
-export default function Chemics() {
+type ChemicsProps = {
+  formData?: PricingPageFormData;
+  handleChangeFormData?: ChangeFormDataType;
+};
+
+export default function Chemics({
+  formData,
+  handleChangeFormData,
+}: ChemicsProps) {
   const { t } = useTranslation("translation");
 
-  const [value, setValue] = React.useState("regular");
-  const [checked, setChecked] = React.useState(false);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-  };
-
-  const handleChangeRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-  };
-
   return (
-    <Box css={{marginTop: "2rem"}}>
+    <Box css={{ marginTop: "2rem" }}>
       <Flex gap="2rem" justifyContent={JustifyContent.CENTER}>
         <Flex>
           <Checkbox
-            checked={checked}
-            onChange={handleChange}
+            checked={formData?.chemicalCleaning?.chemic ?? false}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              console.log("test ")
+              handleChangeFormData?.(
+                "chemicalCleaning.chemic",
+                event.target.checked
+              );
+            }}
             inputProps={{ "aria-label": "controlled" }}
             sx={{
               color: ThemeColors.Primary,
@@ -44,17 +49,22 @@ export default function Chemics() {
           </Title>
         </Flex>
       </Flex>
-      {checked && (
+      {formData?.chemicalCleaning?.chemic && (
         <Flex justifyContent={JustifyContent.CENTER}>
           <Box width="300px">
             <RadioGroup
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
-              value={value}
-              onChange={handleChangeRadio}
+              value={formData?.chemicalCleaning?.type || ""}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                handleChangeFormData?.(
+                  "chemicalCleaning.type",
+                  event.target.value
+                );
+              }}
             >
               <FormControlLabel
-                value="regular"
+                value={ChemicalCleaningType.REGULAR}
                 control={
                   <Radio
                     sx={{
@@ -65,10 +75,14 @@ export default function Chemics() {
                     }}
                   />
                 }
-                label={<Title size={TitleSize.H5} color={ThemeColors.Dark}>{t("pricing.services.chemics.regular")}</Title>}
+                label={
+                  <Title size={TitleSize.H5} color={ThemeColors.Dark}>
+                    {t("pricing.services.chemics.regular")}
+                  </Title>
+                }
               />
               <FormControlLabel
-                value="bio"
+                value={ChemicalCleaningType.BIO}
                 control={
                   <Radio
                     sx={{
@@ -79,7 +93,11 @@ export default function Chemics() {
                     }}
                   />
                 }
-                label={<Title size={TitleSize.H5} color={ThemeColors.Dark}>{t("pricing.services.chemics.bio")}</Title>}
+                label={
+                  <Title size={TitleSize.H5} color={ThemeColors.Dark}>
+                    {t("pricing.services.chemics.bio")}
+                  </Title>
+                }
               />
             </RadioGroup>
           </Box>

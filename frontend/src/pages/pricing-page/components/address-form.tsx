@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { ChangeEvent } from "react";
 import Box from "../../../components/box";
 import { useTranslation } from "react-i18next";
 import ThemeColors from "../../../utils/theme/colors";
@@ -9,38 +9,60 @@ import Flex from "../../../components/flex";
 import { FlexDirection } from "../../../components/flex/flex.constants";
 import { FontWeight } from "../../../utils/theme/fonts";
 import { useMediaQuery } from "react-responsive";
+import { ChangeFormDataType } from "../pricing-page";
+import { PricingPageFormData } from "../helpers/types";
 
-export default function AddressForm() {
+export type AddressFormProps = {
+  formData: PricingPageFormData;
+  handleChangeFormData: ChangeFormDataType;
+};
+
+export default function AddressForm({
+  formData,
+  handleChangeFormData,
+}: AddressFormProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
-  const [addressFormData, setAddressFormData] = useState({
-    city: "",
-    street: "",
-    houseNumber: "",
-    floor: "",
-    psc: "",
-  });
-
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    event: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    const { name, value } = e.target;
-    setAddressFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value } = event.target;
+    handleChangeFormData("address." + name, value);
   };
 
   return (
-    <Flex flexDirection={FlexDirection.COLUMN} css={{ padding: isMobile ? "0 2rem" : "0 10%", width: 'auto', gap: '2rem' }}>
-      <Title size={isMobile ? TitleSize.H4 : TitleSize.H3} fontWeight={FontWeight.Bold}>{t("pricing.address-form.title")}</Title>
-      <Title size={TitleSize.H5}>{t("pricing.address-form.city-helper-text")}</Title>
-      <Flex gap="2rem" css={{width: '100%', position: 'relative'}} flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
+    <Flex
+      flexDirection={FlexDirection.COLUMN}
+      css={{
+        padding: isMobile ? "0 2rem" : "0 10%",
+        width: "auto",
+        gap: "2rem",
+      }}
+    >
+      <Title
+        size={isMobile ? TitleSize.H4 : TitleSize.H3}
+        fontWeight={FontWeight.Bold}
+      >
+        {t("pricing.address-form.title")}
+      </Title>
+      <Title size={TitleSize.H5}>
+        {t("pricing.address-form.city-helper-text")}
+      </Title>
+      <Flex
+        gap="2rem"
+        css={{ width: "100%", position: "relative" }}
+        flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+      >
         <FormInput
           name="city"
           label={t("pricing.address-form.city")}
           placeholder={t("pricing.address-form.city-placeholder")}
           labelColor={ThemeColors.Primary}
           handleChange={handleChange}
-          formValue={addressFormData.city}
+          formValue={formData.address.city || ""}
           // helperText={t("pricing.address-form.city-helper-text")}
         />
         <FormInput
@@ -49,7 +71,7 @@ export default function AddressForm() {
           placeholder={t("pricing.address-form.street-placeholder")}
           labelColor={ThemeColors.Primary}
           handleChange={handleChange}
-          formValue={addressFormData.street}
+          formValue={formData.address.street || ""}
         />
         <FormInput
           name="psc"
@@ -57,17 +79,21 @@ export default function AddressForm() {
           placeholder={t("pricing.address-form.psc-placeholder")}
           labelColor={ThemeColors.Primary}
           handleChange={handleChange}
-          formValue={addressFormData.psc}
+          formValue={formData.address.psc || ""}
         />
       </Flex>
-      <Flex gap="2rem" css={{width: '100%'}} flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}>
+      <Flex
+        gap="2rem"
+        css={{ width: "100%" }}
+        flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+      >
         <FormInput
-          name="houseNumber"
+          name="house"
           label={t("pricing.address-form.house-number")}
           placeholder={t("pricing.address-form.house-number-placeholder")}
           labelColor={ThemeColors.Primary}
           handleChange={handleChange}
-          formValue={addressFormData.houseNumber}
+          formValue={formData.address.house || ""}
         />
         <FormInput
           name="floor"
@@ -75,7 +101,7 @@ export default function AddressForm() {
           placeholder={t("pricing.address-form.floor-placeholder")}
           labelColor={ThemeColors.Primary}
           handleChange={handleChange}
-          formValue={addressFormData.floor}
+          formValue={formData.address.floor || ""}
         />
         <Box />
       </Flex>

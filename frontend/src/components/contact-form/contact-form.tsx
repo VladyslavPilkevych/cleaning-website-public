@@ -14,24 +14,31 @@ type ContactFormProps = {
   labelColor?: ThemeColors,
 };
 
+type ContactFormData = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
 export default function ContactForm({ labelColor = ThemeColors.White }: ContactFormProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 475px)" });
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     phone: "",
-    message: "",
+    message: "",     
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     console.log("Form data:", formData);
   };
 

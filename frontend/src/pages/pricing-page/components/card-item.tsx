@@ -102,13 +102,13 @@ export default function CardItem({
     onToggle(id, isMulti);
   };
 
-  const handleIncrement = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleIncrement = (event: React.MouseEvent) => {
+    event.stopPropagation();
     onUpdateCount(id, count + 1);
   };
 
-  const handleDecrement = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleDecrement = (event: React.MouseEvent) => {
+    event.stopPropagation();
     if (count === 1) {
       onToggle(id, isMulti);
       return;

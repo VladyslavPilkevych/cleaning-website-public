@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import ThemeColors from "../../../utils/theme/colors";
 import Flex from "../../../components/flex";
 import Title from "../../../components/title";
@@ -12,38 +12,27 @@ import Box from "../../../components/box";
 import { useTranslation } from "react-i18next";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import FormInput from "../../../components/form-input";
+import { PricingPageFormData, PropertyType } from "../helpers/types";
+import { ChangeFormDataType } from "../pricing-page";
 
-export default function Property() {
+type PropertyProps = {
+  formData: PricingPageFormData;
+  handleChangeFormData: ChangeFormDataType;
+};
+
+export default function Property({
+  formData,
+  handleChangeFormData,
+}: PropertyProps) {
   const { t } = useTranslation("translation");
-
-  const [value, setValue] = useState("regular");
-  const [valueSteps, setValueSteps] = useState("no");
-  const [formValueArea, setFormValueArea] = useState("");
-  const [formValueRooms, setFormValueRooms] = useState("");
-
-  const handleChangeRadio = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
-
-  const handleChangeSteps = (event: ChangeEvent<HTMLInputElement>) => {
-    setValueSteps(event.target.value);
-  };
-
-  const handleChangeArea = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormValueArea(event.target.value);
-  };
-
-  const handleChangeRooms = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormValueRooms(event.target.value);
-  };
 
   return (
     <Box css={{ marginTop: "2rem" }}>
-      <Flex justifyContent={JustifyContent.SPACE_EVENLY} gap="2rem" flexWrap={FlexWrap.WRAP}>
+      <Flex
+        justifyContent={JustifyContent.SPACE_EVENLY}
+        gap="2rem"
+        flexWrap={FlexWrap.WRAP}
+      >
         <Box width="300px">
           <Flex gap="2rem" justifyContent={JustifyContent.CENTER}>
             <Title size={TitleSize.H4}>{t("pricing.property.type")}</Title>
@@ -51,11 +40,16 @@ export default function Property() {
           <RadioGroup
             aria-labelledby="demo-controlled-radio-buttons-group"
             name="controlled-radio-buttons-group"
-            value={value}
-            onChange={handleChangeRadio}
+            value={formData.property.type}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              handleChangeFormData(
+                "property.type",
+                event.target.value as PropertyType
+              )
+            }
           >
             <FormControlLabel
-              value="house"
+              value={PropertyType.HOUSE}
               control={
                 <Radio
                   sx={{
@@ -73,7 +67,7 @@ export default function Property() {
               }
             />
             <FormControlLabel
-              value="apartment"
+              value={PropertyType.APARTMENT}
               control={
                 <Radio
                   sx={{
@@ -91,7 +85,7 @@ export default function Property() {
               }
             />
             <FormControlLabel
-              value="office"
+              value={PropertyType.OFFICE}
               control={
                 <Radio
                   sx={{
@@ -116,8 +110,10 @@ export default function Property() {
           gap="1rem"
         >
           <FormInput
-            handleChange={handleChangeArea}
-            formValue={formValueArea}
+            handleChange={(
+              event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+            ) => handleChangeFormData("property.area", event.target.value)}
+            formValue={formData.property.area || ""}
             placeholder={t("pricing.property.area")}
             name="area"
             label={t("pricing.property.area")}
@@ -126,8 +122,10 @@ export default function Property() {
             type="number"
           />
           <FormInput
-            handleChange={handleChangeRooms}
-            formValue={formValueRooms}
+            handleChange={(
+              event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+            ) => handleChangeFormData("property.rooms", event.target.value)}
+            formValue={formData.property.rooms || ""}
             placeholder={t("pricing.property.rooms")}
             name="rooms"
             label={t("pricing.property.rooms")}
@@ -137,18 +135,19 @@ export default function Property() {
           />
         </Flex>
         <Box width="300px">
-          {" "}
           <Flex gap="2rem" justifyContent={JustifyContent.CENTER}>
             <Title size={TitleSize.H4}>{t("pricing.property.steps")}</Title>
           </Flex>
           <RadioGroup
             aria-labelledby="demo-controlled-radio-buttons-group"
             name="controlled-radio-buttons-group"
-            value={valueSteps}
-            onChange={handleChangeSteps}
+            value={formData.property.steps}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              handleChangeFormData("property.steps", event.target.value)
+            }
           >
             <FormControlLabel
-              value="yes"
+              value={true}
               control={
                 <Radio
                   sx={{
@@ -166,7 +165,7 @@ export default function Property() {
               }
             />
             <FormControlLabel
-              value="no"
+              value={false}
               control={
                 <Radio
                   sx={{
