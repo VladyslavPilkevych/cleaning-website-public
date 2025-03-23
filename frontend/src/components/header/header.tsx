@@ -51,14 +51,15 @@ const MobileMenu = styled.div`
 
 export default function Header() {
   const { t } = useTranslation("translation");
-  const isMobile = useMediaQuery({ query: "(max-width: 820px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 820px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 420px)" });
 
   return (
     <Flex
       justifyContent={JustifyContent.SPACE_BETWEEN}
-      css={{ padding: "1rem 3rem" }}
+      css={{ padding: isMobile ? "1rem" : "1rem 3rem" }}
     >
-      {isMobile ? (
+      {isTablet ? (
         <>
           <Flex flexDirection={FlexDirection.COLUMN}>
             <NavLink to={RouteNames.HOME}>
