@@ -61,7 +61,13 @@
     "email-placeholder": "Váš email...",
     "message-label": "Správa",
     "message-placeholder": "Text...",
-    "submit": "Odoslať"
+    "submit": "Odoslať",
+    "errors": {
+      "name": "Prosím, zadajte svoje meno.",
+      "email": "Prosím, zadajte svoj e-mail.",
+      "phone": "Prosím, zadajte svoje telefónne číslo.",
+      "message": "Prosím, zadajte svoju správu."
+    }
   },
   "about": {
     "title": "O nás",
@@ -169,5 +175,11 @@
     "social-media": "Söciálne siete",
     "contact-info": "Kontakty",
     "license": "© 2025 Cleaning Company | All Rights Deserved"
+  },
+  "toast": {
+    "sending": "Odosielanie vašej žiadosti...",
+    "success": "Vaša žiadosť bola úspešne odoslaná!",
+    "error": "Chyba pri odosielaní žiadosti. Skúste to znova.",
+    "fill-all-fields": "Prosím, vyplňte všetky polia."
   }
 }

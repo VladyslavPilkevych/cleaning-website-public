@@ -10,11 +10,11 @@ server.use(express.json());
 
 server.use(cors());
 
-server.get("*", (req, res) => {
-  res.sendFile("public/index.html", { root: __dirname });
-});
+// server.get("*", (req, res) => {
+//   res.sendFile("public/index.html", { root: __dirname });
+// });
 
-server.post("/api/feedback", async (req, res) => {
+server.post("/api/contacts", async (req, res) => {
   try {
     const { name, phone, message, email } = req.body;
     if (!name || !phone || !message || !email) {
@@ -35,14 +35,26 @@ server.post("/api/feedback", async (req, res) => {
     });
     
     await transporter.sendMail({
-      from: `ООО 'Тестовая компания' ${process.env.EMAIL_USER}`,
+      from: `LexiShine cleaning ${process.env.EMAIL_USER}`,
       to: email,
       subject: `${name} (${phone})`,
       text: message,
       html: `
-        <p>${name}</p>
-        <p>${phone}</p>
-        <p>${message}</p>
+        <p>Hello, ${name}</p>
+        <p>Thank you for your message</p>
+        <p>Our team will contact you soon</p>
+        `,
+    });
+    
+    await transporter.sendMail({
+      from: `Support request ${process.env.EMAIL_USER}`,
+      to: process.env.EMAIL_USER,
+      subject: `New support request from ${name} (${phone})`,
+      text: message,
+      html: `
+        <p>Name: ${name}</p>
+        <p>Phone: ${phone}</p>
+        <p>Message: ${message}</p>
         `,
     });
 

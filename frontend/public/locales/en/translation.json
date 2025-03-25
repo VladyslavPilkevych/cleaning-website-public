@@ -61,7 +61,13 @@
     "email-placeholder": "Your email...",
     "message-label": "Message",
     "message-placeholder": "Text...",
-    "submit": "Submit"
+    "submit": "Submit",
+    "errors": {
+      "name": "Please enter your name.",
+      "email": "Please enter your email.",
+      "phone": "Please enter your phone number.",
+      "message": "Please enter your message."
+    }
   },
   "about": {
     "title": "About Us",
@@ -169,5 +175,11 @@
     "social-media": "Social Media",
     "contact-info": "Contact Info",
     "license": "© 2025 Cleaning Company | All Rights Deserved"
+  },
+  "toast": {
+    "sending": "Sending your request...",
+    "success": "Your request has been sent successfully!",
+    "error": "Error sending your request. Please try again.",
+    "fill-all-fields": "Please fill in all fields."
   }
 }

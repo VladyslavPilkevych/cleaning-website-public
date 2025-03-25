@@ -3,6 +3,7 @@ import Header from './components/header';
 import AppRoutes from './utils/routes';
 import Box from './components/box';
 import Footer from './components/footer';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <AppRoutes />
       <Footer />
+      <ToastContainer />
     </Box>
   );
 }
