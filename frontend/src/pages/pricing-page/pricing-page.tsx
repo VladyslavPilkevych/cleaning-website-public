@@ -31,7 +31,13 @@ import { PricingPageFormData, ServicesFormData } from "./helpers/types";
 import { defaultPricingPageFormData } from "./helpers/utils";
 import { Dayjs } from "dayjs";
 
-type HandleChangeValueType = string | boolean | number | Dayjs | ServicesFormData[] | null;
+type HandleChangeValueType =
+  | string
+  | boolean
+  | number
+  | Dayjs
+  | ServicesFormData[]
+  | null;
 
 export type ChangeFormDataType = (
   name: string,
@@ -55,45 +61,46 @@ export default function PricingPage() {
   //   setFormData((prev) => {
   //     const keys = name.split(".");
   //     const updatedFormData = { ...prev };
-  
+
   //     let current = updatedFormData;
   //     for (let i = 0; i < keys.length - 1; i++) {
   //       const key = keys[i];
-  
+
   //       if (!current[key]) {
   //         current[key] = {};
   //       }
-  
+
   //       current = current[key];
   //     }
-  
+
   //     current[keys[keys.length - 1]] = value;
-  
+
   //     return updatedFormData;
   //   });
   // };
 
-  const handleChangeFormData = (
-    name: string,
-    value: HandleChangeValueType,
-  ) => {
+  const restartForm = () => {
+    setFormData(defaultPricingPageFormData);
+  };
+
+  const handleChangeFormData = (name: string, value: HandleChangeValueType) => {
     setFormData((prev) => {
       const keys = name.split(".");
       const updatedFormData = { ...prev };
-  
+
       let current: any = updatedFormData; // todo any
       for (let i = 0; i < keys.length - 1; i++) {
         const key = keys[i];
-  
+
         if (!current[key]) {
           current[key] = {};
         }
-  
+
         current = current[key];
       }
-  
+
       current[keys[keys.length - 1]] = value;
-  
+
       return updatedFormData;
     });
   };
@@ -203,7 +210,7 @@ export default function PricingPage() {
       >
         <Title size={TitleSize.H5}>{t("pricing.prepayment-alert")}</Title>
       </Flex>
-      <PaymentBtn formData={formData} />
+      <PaymentBtn formData={formData} restartForm={restartForm} />
 
       <Separator />
 

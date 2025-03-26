@@ -9,22 +9,51 @@ import Flex from "../../../components/flex";
 import { JustifyContent } from "../../../components/flex/flex.constants";
 import { useMediaQuery } from "react-responsive";
 import { PricingPageFormData } from "../helpers/types";
+import { savePricesFormAPI } from "../../../utils/api/api";
+import { toast } from "react-toastify";
 
 type PaymentBtnProps = {
   formData: PricingPageFormData;
+  restartForm: () => void;
 };
 
-export default function PaymentBtn({
-  formData,
-}: PaymentBtnProps) {
+export default function PaymentBtn({ formData, restartForm }: PaymentBtnProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
-  function submit() {
+  async function submit() {
+    const toastId = toast.info(t("toast.sending"), { autoClose: false });
+
+    await savePricesFormAPI(formData)
+      .then((rsp) => {
+        if (rsp.status === 200) {
+          toast.update(toastId, {
+            render: t("toast.success"),
+            type: "success",
+            isLoading: false,
+            autoClose: 3000,
+          });
+          console.log("Contact form submitted successfully");
+          restartForm();
+        }
+      })
+      .catch((err) => {
+        toast.update(toastId, {
+          render: t("toast.error"),
+          type: "error",
+          isLoading: false,
+          autoClose: 3000,
+        });
+        console.error("Error submitting contact form:", err);
+      });
+
     console.log(formData);
   }
   return (
-    <Flex justifyContent={JustifyContent.CENTER} css={{ margin: "2rem 0 4rem" }}>
+    <Flex
+      justifyContent={JustifyContent.CENTER}
+      css={{ margin: "2rem 0 4rem" }}
+    >
       <Button
         css={{
           backgroundColor: ThemeColors.Primary,

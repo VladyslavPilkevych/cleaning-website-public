@@ -8,6 +8,8 @@ enum ThemeColors {
   Warning = "#FF6F59",
   Highlight = "#FFC857",
   White = "#FFFFFF",
+  LightGray = "#f9f9f9",
+  DarkGray = "#333333",
 }
 
 export default ThemeColors;
