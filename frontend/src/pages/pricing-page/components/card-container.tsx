@@ -1,48 +1,73 @@
-import React, { useState } from "react";
+import React from "react";
 import CardItem from "./card-item";
 import { useTranslation } from "react-i18next";
 import { ServiceCardType } from "../helpers/types";
 import { useMediaQuery } from "react-responsive";
+import { PricingPageFormData } from "../helpers/types";
+import { ChangeFormDataType } from "../pricing-page";
 
 type CardContainerProps = {
   cards: ServiceCardType[];
   translationPath: string;
+  formData: PricingPageFormData;
+  handleChangeFormData: ChangeFormDataType;
 };
 
 export default function CardContainer({
   cards,
   translationPath,
+  formData,
+  handleChangeFormData,
 }: CardContainerProps) {
   const { t } = useTranslation("translation");
   const isSmallDesktop = useMediaQuery({ query: "(max-width: 1324px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
 
-  const [selectedCards, setSelectedCards] = useState<
-    { id: string; count: number }[]
-  >([]);
+  // const [selectedCards, setSelectedCards] = useState<
+  //   { id: string; count: number }[]
+  // >([]);
 
+  // const handleCardToggle = (id: string, isMulti: boolean) => {
+  //   setSelectedCards((prev) => {
+  //     const existingCard = prev.find((card) => card.id === id);
+
+  //     console.log(prev, existingCard);
+  //     if (existingCard) {
+  //       return prev.filter((card) => card.id !== id);
+  //     } else {
+  //       return isMulti
+  //         ? [...prev, { id, count: 1 }]
+  //         : [...prev, { id, count: 1 }];
+  //     }
+  //   });
+  // };
   const handleCardToggle = (id: string, isMulti: boolean) => {
-    setSelectedCards((prev) => {
-      const existingCard = prev.find((card) => card.id === id);
+    const existingCard = formData.services.find((card) => card.id === id);
 
-      console.log(prev, existingCard);
-      if (existingCard) {
-        return prev.filter((card) => card.id !== id);
-      } else {
-        return isMulti
-          ? [...prev, { id, count: 1 }]
-          : [...prev, { id, count: 1 }];
-      }
-    });
+    const updatedServices = existingCard
+      ? formData.services.filter((card) => card.id !== id)
+      : isMulti
+      ? [...formData.services, { id, count: 1 }]
+      : [...formData.services, { id, count: 1 }];
+
+    handleChangeFormData("services", updatedServices);
   };
 
+  // const updateCardCount = (id: string, newCount: number) => {
+  //   setSelectedCards((prev) =>
+  //     prev.map((card) => (card.id === id ? { ...card, count: newCount } : card))
+  //   );
+
+  //   // console.log("Selected cards:", selectedCards);
+  // };
+
   const updateCardCount = (id: string, newCount: number) => {
-    setSelectedCards((prev) =>
-      prev.map((card) => (card.id === id ? { ...card, count: newCount } : card))
+    const updatedServices = formData.services.map((card) =>
+      card.id === id ? { ...card, count: newCount } : card
     );
 
-    console.log("Selected cards:", selectedCards);
+    handleChangeFormData("services", updatedServices);
   };
 
   return (
@@ -64,7 +89,7 @@ export default function CardContainer({
       {cards.map((card) => (
         <CardItem
           key={card.id}
-          id={card.id}
+          id={card.text} // ? may be changed to card.id in future 
           src={card.src}
           srcInverted={card.srcInverted}
           text={t(`${translationPath}.${card.text}`)}
@@ -73,7 +98,8 @@ export default function CardContainer({
             t(`${translationPath}.${card.additionalQuestion}`)
           }
           isMulti={card.isMulti}
-          selectedCards={selectedCards}
+          // selectedCards={selectedCards}
+          selectedCards={formData.services}
           onToggle={handleCardToggle}
           onUpdateCount={updateCardCount}
         />

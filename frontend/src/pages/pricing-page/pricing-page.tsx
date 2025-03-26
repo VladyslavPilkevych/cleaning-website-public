@@ -27,13 +27,15 @@ import Chemics from "./components/chemics";
 import { useMediaQuery } from "react-responsive";
 import Property from "./components/property";
 import Windows from "./components/windows";
-import { PricingPageFormData } from "./helpers/types";
+import { PricingPageFormData, ServicesFormData } from "./helpers/types";
 import { defaultPricingPageFormData } from "./helpers/utils";
 import { Dayjs } from "dayjs";
 
+type HandleChangeValueType = string | boolean | number | Dayjs | ServicesFormData[] | null;
+
 export type ChangeFormDataType = (
   name: string,
-  value: string | boolean | number | Dayjs | null
+  value: HandleChangeValueType
 ) => void;
 
 export default function PricingPage() {
@@ -73,7 +75,7 @@ export default function PricingPage() {
 
   const handleChangeFormData = (
     name: string,
-    value: string | boolean | number | Dayjs | null,
+    value: HandleChangeValueType,
   ) => {
     setFormData((prev) => {
       const keys = name.split(".");
@@ -144,6 +146,8 @@ export default function PricingPage() {
         </Title>
       </Flex>
       <CardContainer
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
         cards={serviceCards}
         translationPath="pricing.services.cards"
       />
@@ -169,6 +173,8 @@ export default function PricingPage() {
         css={{ marginTop: "2rem" }}
       >
         <CardContainer
+          formData={formData}
+          handleChangeFormData={handleChangeFormData}
           cards={chemicalCleaningCards}
           translationPath="pricing.services.cleaning-cards"
         />
