@@ -1,18 +1,27 @@
 require("dotenv").config();
 const express = require("express");
+const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
+const dotenv = require("dotenv");
+const formRoutes = require("./routes/formRoutes");
 
 const server = express();
+
+dotenv.config();
 
 server.use(express.static(__dirname + "/public"));
 server.use(express.json());
 
 server.use(cors());
+server.use(bodyParser.json());
 
 // server.get("*", (req, res) => {
 //   res.sendFile("public/index.html", { root: __dirname });
 // });
+
+
+server.use("/api/form", formRoutes);
 
 server.post("/api/contacts", async (req, res) => {
   try {
