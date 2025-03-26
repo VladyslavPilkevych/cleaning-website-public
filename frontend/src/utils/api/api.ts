@@ -15,5 +15,5 @@ type ContactFormData = {
 };
 
 export function contactFormAPI(formData: ContactFormData) {
-  return api.post(`${BASE_URL}/contacts`, formData);
+  return api.post(`${BASE_URL}/contacts/send`, formData);
 }
