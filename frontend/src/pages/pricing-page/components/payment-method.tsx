@@ -7,8 +7,13 @@ import { FontWeight } from "../../../utils/theme/fonts";
 import ThemeColors from "../../../utils/theme/colors";
 import { useMediaQuery } from "react-responsive";
 import { FlexDirection } from "../../../components/flex/flex.constants";
-import { PAYMENT_METHOD, PricingPageFormData } from "../helpers/types";
+import {
+  PAYMENT_METHOD,
+  PricingPageFormData,
+  PricingPageFormDataErrors,
+} from "../helpers/types";
 import { ChangeFormDataType } from "../pricing-page";
+import Flex from "../../../components/flex";
 
 const SelectWrapper = styled.div`
   margin-top: 5rem;
@@ -38,68 +43,81 @@ const Option = styled.div<{ $active: boolean }>`
 
 type PaymentMethodProps = {
   formData: PricingPageFormData;
+  formErrors: PricingPageFormDataErrors;
   handleChangeFormData: ChangeFormDataType;
 };
 
 export default function PaymentMethod({
   formData,
+  formErrors,
   handleChangeFormData,
 }: PaymentMethodProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
-    <SelectWrapper
-      style={{
-        flexDirection: isMobile ? FlexDirection.COLUMN : FlexDirection.ROW,
-      }}
-    >
-      <Option
-        $active={formData.paymentMethod === PAYMENT_METHOD.CARD}
-        onClick={() =>
-          handleChangeFormData("paymentMethod", PAYMENT_METHOD.CARD)
-        }
+    <Flex flexDirection={FlexDirection.COLUMN}>
+      <SelectWrapper
+        style={{
+          flexDirection: isMobile ? FlexDirection.COLUMN : FlexDirection.ROW,
+        }}
       >
-        {formData.paymentMethod === PAYMENT_METHOD.CARD ? (
-          <SvgIcon src="/icons/check.svg" css={{ marginTop: "6px" }} />
-        ) : (
-          <SvgIcon src="/icons/credit-card.svg" />
-        )}
-        <Title
-          size={TitleSize.H4}
-          fontWeight={FontWeight.Bold}
-          color={
-            formData.paymentMethod === PAYMENT_METHOD.CARD
-              ? ThemeColors.Background
-              : ThemeColors.Primary
+        <Option
+          $active={formData.paymentMethod === PAYMENT_METHOD.CARD}
+          onClick={() =>
+            handleChangeFormData("paymentMethod", PAYMENT_METHOD.CARD)
           }
         >
-          {t("pricing.payment-method.card")}
-        </Title>
-      </Option>
-      <Option
-        $active={formData.paymentMethod === PAYMENT_METHOD.CASH}
-        onClick={() =>
-          handleChangeFormData("paymentMethod", PAYMENT_METHOD.CASH)
-        }
-      >
-        {formData.paymentMethod === PAYMENT_METHOD.CASH ? (
-          <SvgIcon src="/icons/check.svg" css={{ marginTop: "6px" }} />
-        ) : (
-          <SvgIcon src="/icons/cash.svg" />
-        )}
-        <Title
-          size={TitleSize.H4}
-          fontWeight={FontWeight.Bold}
-          color={
-            formData.paymentMethod === PAYMENT_METHOD.CASH
-              ? ThemeColors.Background
-              : ThemeColors.Primary
+          {formData.paymentMethod === PAYMENT_METHOD.CARD ? (
+            <SvgIcon src="/icons/check.svg" css={{ marginTop: "6px" }} />
+          ) : (
+            <SvgIcon src="/icons/credit-card.svg" />
+          )}
+          <Title
+            size={TitleSize.H4}
+            fontWeight={FontWeight.Bold}
+            color={
+              formData.paymentMethod === PAYMENT_METHOD.CARD
+                ? ThemeColors.Background
+                : ThemeColors.Primary
+            }
+          >
+            {t("pricing.payment-method.card")}
+          </Title>
+        </Option>
+        <Option
+          $active={formData.paymentMethod === PAYMENT_METHOD.CASH}
+          onClick={() =>
+            handleChangeFormData("paymentMethod", PAYMENT_METHOD.CASH)
           }
         >
-          {t("pricing.payment-method.cash")}
+          {formData.paymentMethod === PAYMENT_METHOD.CASH ? (
+            <SvgIcon src="/icons/check.svg" css={{ marginTop: "6px" }} />
+          ) : (
+            <SvgIcon src="/icons/cash.svg" />
+          )}
+          <Title
+            size={TitleSize.H4}
+            fontWeight={FontWeight.Bold}
+            color={
+              formData.paymentMethod === PAYMENT_METHOD.CASH
+                ? ThemeColors.Background
+                : ThemeColors.Primary
+            }
+          >
+            {t("pricing.payment-method.cash")}
+          </Title>
+        </Option>
+      </SelectWrapper>
+      {formErrors.paymentMethod && (
+        <Title
+          size={TitleSize.H5}
+          fontWeight={FontWeight.Bold}
+          color={ThemeColors.Warning}
+        >
+          {formErrors.paymentMethod}
         </Title>
-      </Option>
-    </SelectWrapper>
+      )}
+    </Flex>
   );
 }

@@ -7,7 +7,7 @@ export const defaultPricingPageFormData: PricingPageFormData = {
     type: null,
     area: null,
     rooms: null,
-    steps: null,
+    steps: false,
   },
   windows: {
     cleaning: null,

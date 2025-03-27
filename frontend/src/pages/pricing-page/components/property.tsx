@@ -12,17 +12,23 @@ import Box from "../../../components/box";
 import { useTranslation } from "react-i18next";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import FormInput from "../../../components/form-input";
-import { PricingPageFormData, PropertyType } from "../helpers/types";
+import {
+  PricingPageFormData,
+  PricingPageFormDataErrors,
+  PropertyType,
+} from "../helpers/types";
 import { ChangeFormDataType } from "../pricing-page";
 
 type PropertyProps = {
   formData: PricingPageFormData;
   handleChangeFormData: ChangeFormDataType;
+  formErrors: PricingPageFormDataErrors;
 };
 
 export default function Property({
   formData,
   handleChangeFormData,
+  formErrors,
 }: PropertyProps) {
   const { t } = useTranslation("translation");
 
@@ -103,36 +109,55 @@ export default function Property({
               }
             />
           </RadioGroup>
+          {formErrors.propertyType && (
+            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+              {formErrors.propertyType}
+            </Title>
+          )}
         </Box>
         <Flex
           justifyContent={JustifyContent.CENTER}
           flexDirection={FlexDirection.COLUMN}
           gap="1rem"
         >
-          <FormInput
-            handleChange={(
-              event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-            ) => handleChangeFormData("property.area", event.target.value)}
-            formValue={formData.property.area || ""}
-            placeholder={t("pricing.property.area")}
-            name="area"
-            label={t("pricing.property.area")}
-            labelColor={ThemeColors.Primary}
-            css={{ width: "300px" }}
-            type="number"
-          />
-          <FormInput
-            handleChange={(
-              event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-            ) => handleChangeFormData("property.rooms", event.target.value)}
-            formValue={formData.property.rooms || ""}
-            placeholder={t("pricing.property.rooms")}
-            name="rooms"
-            label={t("pricing.property.rooms")}
-            labelColor={ThemeColors.Primary}
-            css={{ width: "300px" }}
-            type="number"
-          />
+          <Box>
+            <FormInput
+              handleChange={(
+                event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+              ) => handleChangeFormData("property.area", event.target.value)}
+              formValue={formData.property.area || ""}
+              placeholder={t("pricing.property.area")}
+              name="area"
+              label={t("pricing.property.area")}
+              labelColor={ThemeColors.Primary}
+              css={{ width: "300px" }}
+              type="number"
+            />
+            {formErrors.propertyArea && (
+              <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+                {formErrors.propertyArea}
+              </Title>
+            )}
+          </Box>
+          <Box>
+            <FormInput
+              handleChange={(
+                event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+              ) => handleChangeFormData("property.rooms", event.target.value)}
+              formValue={formData.property.rooms || ""}
+              placeholder={t("pricing.property.rooms")}
+              name="rooms"
+              label={t("pricing.property.rooms")}
+              labelColor={ThemeColors.Primary}
+              css={{ width: "300px" }}
+              type="number"
+            />
+            {formErrors.propertyRooms && (
+              <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+                {formErrors.propertyRooms}
+              </Title>
+            )}
+          </Box>
         </Flex>
         <Box width="300px">
           <Flex gap="2rem" justifyContent={JustifyContent.CENTER}>

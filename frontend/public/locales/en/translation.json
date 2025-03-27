@@ -168,7 +168,24 @@
       "cash": "Pay in cash"
     },
     "total": "Total:",
-    "prepayment-alert": "The prices on the website are approximate and may change depending on pollution, area, and additional needs."
+    "prepayment-alert": "The prices on the website are approximate and may change depending on pollution, area, and additional needs.",
+    "errors": {
+      "date": "Please select a date.",
+      "time": "Please select a time.",
+      "propertyType": "Please select a property type.",
+      "propertyArea": "Please enter a property area.",
+      "propertyRooms": "Please enter a property rooms.",
+      "propertySteps": "Please select a property steps.",
+      "addressStreet": "Please enter an address street.",
+      "addressCity": "Please enter an address city.",
+      "addressPsc": "Please enter an address PSC.",
+      "addressHouse": "Please enter an address house.",
+      "contactsName": "Please enter a contacts name.",
+      "contactsEmail": "Please enter a contacts email.",
+      "contactsPhone": "Please enter a contacts phone.",
+      "contactsMessage": "Please enter a contacts message.",
+      "paymentMethod": "Please select a payment method."
+    }
   },
   "footer": {
     "links": "Links",

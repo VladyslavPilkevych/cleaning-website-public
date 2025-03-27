@@ -32,7 +32,7 @@ type FormErrors = {
   phone?: string;
   message?: string;
 };
-
+ 
 export default function ContactForm({
   labelColor = ThemeColors.White,
 }: ContactFormProps) {

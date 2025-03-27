@@ -8,26 +8,99 @@ import Button from "../../../components/button";
 import Flex from "../../../components/flex";
 import { JustifyContent } from "../../../components/flex/flex.constants";
 import { useMediaQuery } from "react-responsive";
-import { PricingPageFormData } from "../helpers/types";
+import {
+  PricingPageFormData,
+  PricingPageFormDataErrors,
+} from "../helpers/types";
 import { savePricesFormAPI } from "../../../utils/api/api";
 import { toast } from "react-toastify";
 
 type PaymentBtnProps = {
   formData: PricingPageFormData;
   restartForm: () => void;
+  setFormErrors: (errors: PricingPageFormDataErrors) => void;
 };
 
-export default function PaymentBtn({ formData, restartForm }: PaymentBtnProps) {
+export default function PaymentBtn({ formData, restartForm, setFormErrors }: PaymentBtnProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
+  const validateForm = (): boolean => {
+    const errors: PricingPageFormDataErrors = {};
+
+    if (!formData.date) {
+      errors.date = t("pricing.errors.date");
+    }
+
+    if (!formData.time) {
+      errors.time = t("pricing.errors.time");
+    }
+
+    if (!formData.property.type) {
+      errors.propertyType = t("pricing.errors.propertyType");
+    }
+
+    if (!formData.property.area) {
+      errors.propertyArea = t("pricing.errors.propertyArea");
+    }
+
+    if (!formData.property.rooms) {
+      errors.propertyRooms = t("pricing.errors.propertyRooms");
+    }
+
+    if (!formData.property.steps) {
+      errors.propertySteps = t("pricing.errors.propertySteps");
+    }
+
+    if (!formData.address.street) {
+      errors.addressStreet = t("pricing.errors.addressStreet");
+    }
+
+    if (!formData.address.city) {
+      errors.addressCity = t("pricing.errors.addressCity");
+    }
+
+    if (!formData.address.psc) {
+      errors.addressPsc = t("pricing.errors.addressPsc");
+    }
+
+    if (!formData.address.house) {
+      errors.addressHouse = t("pricing.errors.addressHouse");
+    }
+
+    if (!formData.contacts.name) {
+      errors.contactsName = t("pricing.errors.contactsName");
+    }
+
+    if (!formData.contacts.email) {
+      errors.contactsEmail = t("pricing.errors.contactsEmail");
+    }
+
+    if (!formData.contacts.phone) {
+      errors.contactsPhone = t("pricing.errors.contactsPhone");
+    }
+
+    if (!formData.paymentMethod) {
+      errors.paymentMethod = t("pricing.errors.paymentMethod");
+    }
+
+    setFormErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
 
   const totalPrice = formData.services.reduce((total, service) => {
     return total + service.price * service.count;
   }, 0);
 
-  console.log(totalPrice);
-
   async function submit() {
+    console.log(formData);
+
+    if (!validateForm()) {
+      toast.error(t("toast.fill-all-fields"));
+      return;
+    }
+
     const toastId = toast.info(t("toast.sending"), { autoClose: false });
 
     await savePricesFormAPI(formData)
@@ -52,8 +125,6 @@ export default function PaymentBtn({ formData, restartForm }: PaymentBtnProps) {
         });
         console.error("Error submitting contact form:", err);
       });
-
-    console.log(formData);
   }
   return (
     <Flex
@@ -70,14 +141,18 @@ export default function PaymentBtn({ formData, restartForm }: PaymentBtnProps) {
       >
         <Box css={{ display: "flex", gap: "3rem", alignItems: "center" }}>
           <Title color={ThemeColors.White}>{t("pricing.total")}</Title>
-          <Title color={ThemeColors.White}>{`${Math.round(totalPrice * 100)/100} EUR`}</Title>
-          <Title
-            size={TitleSize.H4}
-            color={ThemeColors.White}
-            css={{ textDecoration: "line-through", opacity: 0.5 }}
-          >
-            {`${Math.round(totalPrice * 1.4 * 100)/100} EUR`}
-          </Title>
+          <Title color={ThemeColors.White}>{`${
+            Math.round(totalPrice * 100) / 100
+          } EUR`}</Title>
+          {totalPrice > 0 && (
+            <Title
+              size={TitleSize.H4}
+              color={ThemeColors.White}
+              css={{ textDecoration: "line-through", opacity: 0.5 }}
+            >
+              {`${Math.round(totalPrice * 1.4 * 100) / 100} EUR`}
+            </Title>
+          )}
         </Box>
       </Button>
     </Flex>

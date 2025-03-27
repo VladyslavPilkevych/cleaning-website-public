@@ -109,23 +109,16 @@ export type PricingPageFormData = {
 export type PricingPageFormDataErrors = {
   date?: string;
   time?: string;
-  property?: {
-    type?: string;
-    area?: string;
-    rooms?: string;
-    steps?: string;
-  };
-  address?: {
-    street?: string;
-    city?: string;
-    psc?: string;
-    house?: string;
-  };
-  contacts?: {
-    name?: string;
-    email?: string;
-    phone?: string;
-    message?: string;
-  };
+  propertyType?: string;
+  propertyArea?: string;
+  propertyRooms?: string;
+  propertySteps?: string;
+  addressStreet?: string;
+  addressCity?: string;
+  addressPsc?: string;
+  addressHouse?: string;
+  contactsName?: string;
+  contactsEmail?: string;
+  contactsPhone?: string;
   paymentMethod?: string;
 };

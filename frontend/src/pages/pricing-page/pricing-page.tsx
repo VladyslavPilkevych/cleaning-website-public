@@ -27,7 +27,7 @@ import Chemics from "./components/chemics";
 import { useMediaQuery } from "react-responsive";
 import Property from "./components/property";
 import Windows from "./components/windows";
-import { PricingPageFormData, ServicesFormData } from "./helpers/types";
+import { PricingPageFormData, PricingPageFormDataErrors, ServicesFormData } from "./helpers/types";
 import { defaultPricingPageFormData } from "./helpers/utils";
 import { Dayjs } from "dayjs";
 
@@ -51,6 +51,8 @@ export default function PricingPage() {
   const [formData, setFormData] = useState<PricingPageFormData>(
     defaultPricingPageFormData
   );
+
+  const [formErrors, setFormErrors] = useState<PricingPageFormDataErrors>({});
 
   // const [formErrors, setFormErrors] = useState<FormErrors>({});
 
@@ -86,6 +88,9 @@ export default function PricingPage() {
   };
 
   const handleChangeFormData = (name: string, value: HandleChangeValueType) => {
+    const errorName = name.replace(/\.([a-z])/g, (_, letter) => letter.toUpperCase());
+    setFormErrors((prev) => ({ ...prev, [errorName]: undefined }));
+
     setFormData((prev) => {
       const keys = name.split(".");
       const updatedFormData = { ...prev };
@@ -123,15 +128,18 @@ export default function PricingPage() {
       >
         <DateCalendarValue
           formData={formData}
+          formErrors={formErrors}
           handleChangeFormData={handleChangeFormData}
         />
         <TimePicker
           formData={formData}
           handleChangeFormData={handleChangeFormData}
+          formErrors={formErrors}
         />
       </Flex>
 
       <Property
+        formErrors={formErrors}
         formData={formData}
         handleChangeFormData={handleChangeFormData}
       />
@@ -193,16 +201,19 @@ export default function PricingPage() {
 
       <AddressForm
         formData={formData}
+        formErrors={formErrors}
         handleChangeFormData={handleChangeFormData}
       />
 
       <ContactForm
         formData={formData}
+        formErrors={formErrors}
         handleChangeFormData={handleChangeFormData}
       />
 
       <PaymentMethod
         formData={formData}
+        formErrors={formErrors}
         handleChangeFormData={handleChangeFormData}
       />
 
@@ -212,7 +223,7 @@ export default function PricingPage() {
       >
         <Title size={TitleSize.H5}>{t("pricing.prepayment-alert")}</Title>
       </Flex>
-      <PaymentBtn formData={formData} restartForm={restartForm} />
+      <PaymentBtn formData={formData} restartForm={restartForm} setFormErrors={setFormErrors} />
 
       <Separator />
 

@@ -9,17 +9,23 @@ import { FlexDirection } from "../../../components/flex/flex.constants";
 import { FontWeight } from "../../../utils/theme/fonts";
 import FormTextarea from "../../../components/form-textarea";
 import { useMediaQuery } from "react-responsive";
-import { PricingPageFormData } from "../helpers/types";
+import {
+  PricingPageFormData,
+  PricingPageFormDataErrors,
+} from "../helpers/types";
 import { ChangeFormDataType } from "../pricing-page";
+import Box from "../../../components/box";
 
 type ContactFormProps = {
   formData: PricingPageFormData;
   handleChangeFormData: ChangeFormDataType;
+  formErrors: PricingPageFormDataErrors;
 };
 
 export default function ContactForm({
   formData,
   handleChangeFormData,
+  formErrors,
 }: ContactFormProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
@@ -52,30 +58,51 @@ export default function ContactForm({
         css={{ width: "100%" }}
         flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
       >
-        <FormInput
-          name="name"
-          label={t("pricing.contact-form.name")}
-          placeholder={t("pricing.contact-form.name-placeholder")}
-          labelColor={ThemeColors.Primary}
-          handleChange={handleChange}
-          formValue={formData.contacts.name || ""}
-        />
-        <FormInput
-          name="phone"
-          label={t("pricing.contact-form.phone")}
-          placeholder={t("pricing.contact-form.phone-placeholder")}
-          labelColor={ThemeColors.Primary}
-          handleChange={handleChange}
-          formValue={formData.contacts.phone || ""}
-        />
-        <FormInput
-          name="email"
-          label={t("pricing.contact-form.email")}
-          placeholder={t("pricing.contact-form.email-placeholder")}
-          labelColor={ThemeColors.Primary}
-          handleChange={handleChange}
-          formValue={formData.contacts.email || ""}
-        />
+        <Box>
+          <FormInput
+            name="name"
+            label={t("pricing.contact-form.name")}
+            placeholder={t("pricing.contact-form.name-placeholder")}
+            labelColor={ThemeColors.Primary}
+            handleChange={handleChange}
+            formValue={formData.contacts.name || ""}
+          />
+          {formErrors.contactsName && (
+            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+              {formErrors.contactsName}
+            </Title>
+          )}
+        </Box>
+        <Box>
+          <FormInput
+            name="phone"
+            label={t("pricing.contact-form.phone")}
+            placeholder={t("pricing.contact-form.phone-placeholder")}
+            labelColor={ThemeColors.Primary}
+            handleChange={handleChange}
+            formValue={formData.contacts.phone || ""}
+          />
+          {formErrors.contactsPhone && (
+            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+              {formErrors.contactsPhone}
+            </Title>
+          )}
+        </Box>
+        <Box>
+          <FormInput
+            name="email"
+            label={t("pricing.contact-form.email")}
+            placeholder={t("pricing.contact-form.email-placeholder")}
+            labelColor={ThemeColors.Primary}
+            handleChange={handleChange}
+            formValue={formData.contacts.email || ""}
+          />
+          {formErrors.contactsEmail && (
+            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+              {formErrors.contactsEmail}
+            </Title>
+          )}
+        </Box>
       </Flex>
 
       <FormTextarea

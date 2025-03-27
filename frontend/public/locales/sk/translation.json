@@ -168,7 +168,24 @@
       "cash": "Platiť v hotovosti"
     },
     "total": "Celkom:",
-    "prepayment-alert": "Ceny na stránke sú približné a môžu sa zmeniť v závislosti od znečistenia, plochy a ďalších potrieb."
+    "prepayment-alert": "Ceny na stránke sú približné a môžu sa zmeniť v závislosti od znečistenia, plochy a ďalších potrieb.",
+    "errors": {
+      "date": "Prosím, vyberte dátum.",
+      "time": "Prosím, vyberte čas.",
+      "propertyType": "Prosím, vyberte typ nehnuteľnosti.",
+      "propertyArea": "Prosím, zadajte plochu nehnuteľnosti.",
+      "propertyRooms": "Prosím, zadajte počet izieb.",
+      "propertySteps": "Prosím, vyberte kroky nehnuteľnosti.",
+      "addressStreet": "Prosím, zadajte ulicu.",
+      "addressCity": "Prosím, zadajte mesto.",
+      "addressPsc": "Prosím, zadajte PSČ.",
+      "addressHouse": "Prosím, zadajte číslo domu.",
+      "contactsName": "Prosím, zadajte meno.",
+      "contactsEmail": "Prosím, zadajte e-mail.",
+      "contactsPhone": "Prosím, zadajte telefónne číslo.",
+      "contactsMessage": "Prosím, zadajte správu.",
+      "paymentMethod": "Prosím, vyberte spôsob platby."
+    }
   },
   "footer": {
     "links": "Odkazy",

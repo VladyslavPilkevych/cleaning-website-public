@@ -2,7 +2,12 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import styled from "styled-components";
 import ThemeColors from "../../../utils/theme/colors";
 import { ChangeFormDataType } from "../pricing-page";
-import { PricingPageFormData } from "../helpers/types";
+import {
+  PricingPageFormData,
+  PricingPageFormDataErrors,
+} from "../helpers/types";
+import Title from "../../../components/title";
+import { TitleSize } from "../../../components/title/title.constants";
 
 const CustomCalendar = styled.div`
   .MuiDayCalendar-header {
@@ -45,10 +50,12 @@ const CustomCalendar = styled.div`
 type DateCalendarProps = {
   formData: PricingPageFormData;
   handleChangeFormData: ChangeFormDataType;
+  formErrors: PricingPageFormDataErrors;
 };
 
 export default function DateCalendarValue({
   formData,
+  formErrors,
   handleChangeFormData,
 }: DateCalendarProps) {
   // const [value, setValue] = React.useState<Dayjs | null>(dayjs(new Date()));
@@ -61,6 +68,11 @@ export default function DateCalendarValue({
         disablePast
         onChange={(newValue) => handleChangeFormData("date", newValue)}
       />
+      {formErrors.date && (
+        <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+          {formErrors.date}
+        </Title>
+      )}
     </CustomCalendar>
   );
 }
