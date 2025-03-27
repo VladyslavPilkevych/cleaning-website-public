@@ -44,12 +44,13 @@ export default function CardContainer({
   // };
   const handleCardToggle = (id: string, isMulti: boolean) => {
     const existingCard = formData.services.find((card) => card.id === id);
+    const price = cards.find((card) => card.text === id)!.price;
 
     const updatedServices = existingCard
       ? formData.services.filter((card) => card.id !== id)
       : isMulti
-      ? [...formData.services, { id, count: 1 }]
-      : [...formData.services, { id, count: 1 }];
+      ? [...formData.services, { id, count: 1, price }]
+      : [...formData.services, { id, count: 1, price }];
 
     handleChangeFormData("services", updatedServices);
   };
@@ -92,6 +93,7 @@ export default function CardContainer({
           id={card.text} // ? may be changed to card.id in future 
           src={card.src}
           srcInverted={card.srcInverted}
+          price={card.price}
           text={t(`${translationPath}.${card.text}`)}
           additionalQuestion={
             card.additionalQuestion &&

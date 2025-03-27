@@ -6,6 +6,7 @@ export type ServiceCardType = {
   srcInverted: string;
   text: string;
   additionalQuestion?: string;
+  price: number;
   isMulti: boolean;
 };
 
@@ -85,6 +86,7 @@ export enum PAYMENT_METHOD {
 export type ServicesFormData = {
   id: string;
   count: number;
+  price: number;
 };
 
 export type PricingPageFormData = {
@@ -102,4 +104,28 @@ export type PricingPageFormData = {
   contacts: ContactFormData;
   paymentMethod: PAYMENT_METHOD | null;
   // totalPrice: string | null;
+};
+
+export type PricingPageFormDataErrors = {
+  date?: string;
+  time?: string;
+  property?: {
+    type?: string;
+    area?: string;
+    rooms?: string;
+    steps?: string;
+  };
+  address?: {
+    street?: string;
+    city?: string;
+    psc?: string;
+    house?: string;
+  };
+  contacts?: {
+    name?: string;
+    email?: string;
+    phone?: string;
+    message?: string;
+  };
+  paymentMethod?: string;
 };

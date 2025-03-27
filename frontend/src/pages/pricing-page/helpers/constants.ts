@@ -6,6 +6,7 @@ export const serviceCards: ServiceCardType[] = [
     src: "/icons/cards/oven.svg",
     srcInverted: "/icons/cards/oven-inverted.svg",
     text: "oven",
+    price: 14.99,
     isMulti: false,
   },
   {
@@ -13,6 +14,7 @@ export const serviceCards: ServiceCardType[] = [
     src: "/icons/cards/iron.svg",
     srcInverted: "/icons/cards/iron-inverted.svg",
     text: "iron",
+    price: 14.99,
     isMulti: true,
   },
   {
@@ -20,6 +22,7 @@ export const serviceCards: ServiceCardType[] = [
     src: "/icons/cards/fridge.svg",
     srcInverted: "/icons/cards/fridge-inverted.svg",
     text: "fridge",
+    price: 14.99,
     isMulti: false,
   },
   {
@@ -27,6 +30,7 @@ export const serviceCards: ServiceCardType[] = [
     src: "/icons/cards/balcony.svg",
     srcInverted: "/icons/cards/balcony-inverted.svg",
     text: "balcony",
+    price: 14.99,
     isMulti: false,
   },
   {
@@ -34,6 +38,7 @@ export const serviceCards: ServiceCardType[] = [
     src: "/icons/cards/microwave.svg",
     srcInverted: "/icons/cards/microwave-inverted.svg",
     text: "microwave",
+    price: 14.99,
     isMulti: false,
   },
   // {
@@ -48,6 +53,7 @@ export const serviceCards: ServiceCardType[] = [
     src: "/icons/cards/wardrobe.svg",
     srcInverted: "/icons/cards/wardrobe-inverted.svg",
     text: "wardrobe",
+    price: 14.99,
     isMulti: false,
   },
   {
@@ -55,6 +61,7 @@ export const serviceCards: ServiceCardType[] = [
     src: "/icons/cards/pet.svg",
     srcInverted: "/icons/cards/pet-inverted.svg",
     text: "pet",
+    price: 14.99,
     isMulti: false,
   },
   {
@@ -62,6 +69,7 @@ export const serviceCards: ServiceCardType[] = [
     src: "/icons/cards/plates.svg",
     srcInverted: "/icons/cards/plates-inverted.svg",
     text: "plates",
+    price: 14.99,
     isMulti: false,
   },
   {
@@ -69,6 +77,7 @@ export const serviceCards: ServiceCardType[] = [
     src: "/icons/cards/blinds.svg",
     srcInverted: "/icons/cards/blinds-inverted.svg",
     text: "blinds",
+    price: 14.99,
     isMulti: true,
   },
   {
@@ -76,6 +85,7 @@ export const serviceCards: ServiceCardType[] = [
     src: "/icons/cards/radiator.svg",
     srcInverted: "/icons/cards/radiator-inverted.svg",
     text: "radiator",
+    price: 14.99,
     isMulti: true,
   },
 ];
@@ -86,6 +96,7 @@ export const chemicalCleaningCards: ServiceCardType[] = [
     src: "/icons/cleaning-cards/sofa.svg",
     srcInverted: "/icons/cleaning-cards/sofa-inverted.svg",
     text: "sofa",
+    price: 14.99,
     isMulti: false,
   },
   {
@@ -93,6 +104,7 @@ export const chemicalCleaningCards: ServiceCardType[] = [
     src: "/icons/cleaning-cards/sofa-single.svg",
     srcInverted: "/icons/cleaning-cards/sofa-single-inverted.svg",
     text: "sofa-single",
+    price: 14.99,
     isMulti: false,
   },
   {
@@ -100,6 +112,7 @@ export const chemicalCleaningCards: ServiceCardType[] = [
     src: "/icons/cleaning-cards/armchair.svg",
     srcInverted: "/icons/cleaning-cards/armchair-inverted.svg",
     text: "armchair",
+    price: 14.99,
     isMulti: false,
   },
   {
@@ -107,6 +120,7 @@ export const chemicalCleaningCards: ServiceCardType[] = [
     src: "/icons/cleaning-cards/sofa-corner.svg",
     srcInverted: "/icons/cleaning-cards/sofa-corner-inverted.svg",
     text: "sofa-corner",
+    price: 14.99,
     additionalQuestion: "sofa-corner-question",
     isMulti: true,
   },
@@ -115,6 +129,7 @@ export const chemicalCleaningCards: ServiceCardType[] = [
     src: "/icons/cleaning-cards/carpet.svg",
     srcInverted: "/icons/cleaning-cards/carpet-inverted.svg",
     text: "carpet",
+    price: 14.99,
     isMulti: true,
   },
   {
@@ -122,6 +137,7 @@ export const chemicalCleaningCards: ServiceCardType[] = [
     src: "/icons/cleaning-cards/mattress.svg",
     srcInverted: "/icons/cleaning-cards/mattress-inverted.svg",
     text: "mattress",
+    price: 14.99,
     isMulti: true,
   },
   {
@@ -129,6 +145,7 @@ export const chemicalCleaningCards: ServiceCardType[] = [
     src: "/icons/cleaning-cards/mattress.svg",
     srcInverted: "/icons/cleaning-cards/mattress-inverted.svg",
     text: "mattress-double",
+    price: 14.99,
     isMulti: true,
   },
 ];

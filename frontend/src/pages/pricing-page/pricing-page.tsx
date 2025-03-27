@@ -52,6 +52,8 @@ export default function PricingPage() {
     defaultPricingPageFormData
   );
 
+  // const [formErrors, setFormErrors] = useState<FormErrors>({});
+
   // event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   // const handleChangeFormData = (
   //   name: string,

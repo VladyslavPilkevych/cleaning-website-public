@@ -33,8 +33,9 @@ export default function Windows({
         <Flex>
           <Checkbox
             checked={formData.windows.cleaning ?? false}
-            onChange={(event: ChangeEvent<HTMLInputElement>) =>
-              handleChangeFormData("windows.cleaning", event.target.value)
+            onChange={() =>{
+              handleChangeFormData("windows.cleaning", !formData.windows.cleaning)
+            }
             }
             inputProps={{ "aria-label": "controlled" }}
             sx={{

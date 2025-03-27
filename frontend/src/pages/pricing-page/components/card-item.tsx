@@ -74,6 +74,7 @@ type CardItemProps = {
   onToggle: (id: string, isMulti: boolean) => void;
   onUpdateCount: (id: string, newCount: number) => void;
   additionalQuestion?: string;
+  price: number;
 };
 
 export default function CardItem({
@@ -85,6 +86,7 @@ export default function CardItem({
   additionalQuestion,
   selectedCards,
   onToggle,
+  price,
   onUpdateCount,
 }: CardItemProps) {
   const isSelected = selectedCards.some((card) => card.id === id);
@@ -156,13 +158,13 @@ export default function CardItem({
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          14.99 EUR
+          {`${price} EUR`}
         </Title>
         <Title
           size={TitleSize.H6}
           css={{ opacity: 0.5, textDecoration: "line-through" }}
         >
-          20.00 EUR
+          {`${Math.round(price * 1.4)}.99 EUR`}
         </Title>
       </Flex>
     </Card>

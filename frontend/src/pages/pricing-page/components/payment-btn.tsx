@@ -21,6 +21,12 @@ export default function PaymentBtn({ formData, restartForm }: PaymentBtnProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
+  const totalPrice = formData.services.reduce((total, service) => {
+    return total + service.price * service.count;
+  }, 0);
+
+  console.log(totalPrice);
+
   async function submit() {
     const toastId = toast.info(t("toast.sending"), { autoClose: false });
 
@@ -64,13 +70,13 @@ export default function PaymentBtn({ formData, restartForm }: PaymentBtnProps) {
       >
         <Box css={{ display: "flex", gap: "3rem", alignItems: "center" }}>
           <Title color={ThemeColors.White}>{t("pricing.total")}</Title>
-          <Title color={ThemeColors.White}>117.50 EUR</Title>
+          <Title color={ThemeColors.White}>{`${Math.round(totalPrice * 100)/100} EUR`}</Title>
           <Title
             size={TitleSize.H4}
             color={ThemeColors.White}
             css={{ textDecoration: "line-through", opacity: 0.5 }}
           >
-            180.00 EUR
+            {`${Math.round(totalPrice * 1.4 * 100)/100} EUR`}
           </Title>
         </Box>
       </Button>
