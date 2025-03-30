@@ -86,6 +86,7 @@ type Event = {
   start: string;
   end: string;
   description: string;
+  services?: string[];
 };
 
 const events: Event[] = [
@@ -94,30 +95,35 @@ const events: Event[] = [
     start: "2025-03-16T10:00:00",
     end: "2025-03-16T12:00:00",
     description: "House cleaning. Card",
+    services: ["Window cleaning"],
   },
   {
     title: "Martina",
     start: "2025-03-17T13:00:00",
     end: "2025-03-17T14:00:00",
     description: "Apartment cleaning. Cash",
+    services: ["Window cleaning"],
   },
   {
     title: "Tomas",
     start: "2025-03-18T09:00:00",
     end: "2025-03-18T11:00:00",
     description: "Apartment cleaning. Card",
+    services: ["Window cleaning"],
   },
   {
     title: "Vasko",
     start: "2025-03-18T10:00:00",
     end: "2025-03-18T12:00:00",
     description: "Apartment cleaning. Cash",
+    services: ["Window cleaning"],
   },
   {
     title: "Lily",
     start: "2025-03-19T15:00:00",
     end: "2025-03-19T16:30:00",
     description: "House cleaning. Cash",
+    services: ["Window cleaning"],
   },
 ];
 
@@ -188,6 +194,10 @@ export default function AdminPanel() {
           <Flex gap="1rem">
             <Title size={TitleSize.H6} color={ThemeColors.Dark} fontWeight={FontWeight.Bold}>Description:</Title>
             <Title size={TitleSize.H5} color={ThemeColors.Primary}>{selectedEvent?.description}</Title>
+          </Flex>
+          <Flex gap="1rem">
+            <Title size={TitleSize.H6} color={ThemeColors.Dark} fontWeight={FontWeight.Bold}>Services:</Title>
+            <Title size={TitleSize.H5} color={ThemeColors.Primary}>{selectedEvent?.services?.join(", ") || ""}</Title>
           </Flex>
         </Box>
       )}
