@@ -128,8 +128,6 @@ export default function HomePage() {
           <Form />
         </Box>
       </ImageComponent>
-
-      {/* <Box width="100%" height="50px" /> */}
     </Box>
   );
 }
