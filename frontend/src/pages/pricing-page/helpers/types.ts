@@ -103,7 +103,7 @@ export type PricingPageFormData = {
   address: AddressFormData;
   contacts: ContactFormData;
   paymentMethod: PAYMENT_METHOD | null;
-  // totalPrice: string | null;
+  totalPrice: number | null;
 };
 
 export type PricingPageFormDataErrors = {

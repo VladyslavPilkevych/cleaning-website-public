@@ -54,35 +54,6 @@ export default function PricingPage() {
 
   const [formErrors, setFormErrors] = useState<PricingPageFormDataErrors>({});
 
-  // const [formErrors, setFormErrors] = useState<FormErrors>({});
-
-  // event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // const handleChangeFormData = (
-  //   name: string,
-  //   value: string | boolean | number | Dayjs | null
-  // ) => {
-  //   // setFormData((prev) => ({ ...prev, [name]: value }));
-  //   setFormData((prev) => {
-  //     const keys = name.split(".");
-  //     const updatedFormData = { ...prev };
-
-  //     let current = updatedFormData;
-  //     for (let i = 0; i < keys.length - 1; i++) {
-  //       const key = keys[i];
-
-  //       if (!current[key]) {
-  //         current[key] = {};
-  //       }
-
-  //       current = current[key];
-  //     }
-
-  //     current[keys[keys.length - 1]] = value;
-
-  //     return updatedFormData;
-  //   });
-  // };
-
   const restartForm = () => {
     setFormData(defaultPricingPageFormData);
   };

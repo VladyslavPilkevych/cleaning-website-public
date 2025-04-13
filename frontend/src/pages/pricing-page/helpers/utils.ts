@@ -56,5 +56,5 @@ export const defaultPricingPageFormData: PricingPageFormData = {
     message: null,
   },
   paymentMethod: null,
-//   totalPrice: null,
+  totalPrice: 46,
 };
