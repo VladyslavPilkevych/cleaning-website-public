@@ -30,19 +30,6 @@ export type WindowFormData = {
   count: string | null;
 };
 
-// export type ServicesFormData = {
-//   oven: boolean | null;
-//   iron: string | null;
-//   fridge: boolean | null;
-//   balcony: boolean | null;
-//   microwave: boolean | null;
-//   wardrobe: boolean | null;
-//   pet: boolean | null;
-//   plates: boolean | null;
-//   blinds: string | null;
-//   radiator: string | null;
-// };
-
 export enum ChemicalCleaningType {
   REGULAR = "regular",
   BIO = "bio",
@@ -52,16 +39,6 @@ export type ChemicalCleaningFormData = {
   chemic: boolean | null;
   type: ChemicalCleaningType | null;
 };
-
-// export type ChemicalServicesFormData = {
-//   sofa: boolean | null;
-//   sofaSingle: boolean | null;
-//   armchair: boolean | null;
-//   sofaCorner: string | null;
-//   carpet: string | null;
-//   mattress: string | null;
-//   mattressDouble: string | null;
-// };
 
 export type AddressFormData = {
   street: string | null;
@@ -94,12 +71,10 @@ export type PricingPageFormData = {
   time: string | null;
   property: PropertyFormData;
   windows: WindowFormData;
-  // services: ServicesFormData;
   // services: { [key: string]: boolean | string | null };
   services: ServicesFormData[];
   vacuum: boolean | null;
   chemicalCleaning: ChemicalCleaningFormData;
-  // chemicalServices: ChemicalServicesFormData;
   address: AddressFormData;
   contacts: ContactFormData;
   paymentMethod: PAYMENT_METHOD | null;

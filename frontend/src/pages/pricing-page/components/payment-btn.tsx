@@ -96,7 +96,7 @@ export default function PaymentBtn({ formData, restartForm, setFormErrors }: Pay
     return total + service.price * service.count;
   }, formData.totalPrice || 0)
     + (Number(formData?.property?.rooms) * 5)
-    + (Number(formData?.property?.area) * 1.2)
+    + (Number(formData?.property?.area) * 1.1)
     + (formData.property.steps ? 10 : 0)
     + (formData.windows.cleaning ? 
       (Number(formData.windows.count) * Number(formData?.windows?.count || 0) * 10) : 0)
