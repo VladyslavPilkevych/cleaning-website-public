@@ -5,7 +5,7 @@ import ContactsPage from "../../pages/contacts-page";
 import AboutPage from "../../pages/about-page";
 import PricingPage from "../../pages/pricing-page";
 import { RouteNames } from "./routes.constants";
-import AdminPanel from "../../pages/admin-panel.tsx";
+import AdminPanel from "../../pages/admin-panel";
 
 function AppRoutes() {
   return (

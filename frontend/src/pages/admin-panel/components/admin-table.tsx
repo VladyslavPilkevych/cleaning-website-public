@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import Box from "../../components/box";
-import ImageComponent from "../../components/image";
+import Box from "../../../components/box";
+import ImageComponent from "../../../components/image";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import Title from "../../components/title";
-import { TitleSize } from "../../components/title/title.constants";
-import ThemeColors from "../../utils/theme/colors";
-import Flex from "../../components/flex";
-import { FontWeight } from "../../utils/theme/fonts";
+import Title from "../../../components/title";
+import { TitleSize } from "../../../components/title/title.constants";
+import ThemeColors from "../../../utils/theme/colors";
+import Flex from "../../../components/flex";
+import { FontWeight } from "../../../utils/theme/fonts";
 import styled from "styled-components";
 
 const StyledCalendarWrapper = styled.div`
@@ -127,7 +127,7 @@ const events: Event[] = [
   },
 ];
 
-export default function AdminPanel() {
+export default function AdminTable() {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
   const handleEventClick = (clickInfo: any) => {
