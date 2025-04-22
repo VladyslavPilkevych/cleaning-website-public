@@ -14,6 +14,7 @@ import {
 } from "../helpers/types";
 import { ChangeFormDataType } from "../pricing-page";
 import Flex from "../../../components/flex";
+import CheckoutForm from "./CheckoutForm";
 
 const SelectWrapper = styled.div`
   margin-top: 5rem;
@@ -56,6 +57,7 @@ export default function PaymentMethod({
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
+    <>
     <Flex flexDirection={FlexDirection.COLUMN}>
       <SelectWrapper
         style={{
@@ -119,5 +121,7 @@ export default function PaymentMethod({
         </Title>
       )}
     </Flex>
+    {formData.paymentMethod === PAYMENT_METHOD.CARD && <CheckoutForm />}
+    </>
   );
 }

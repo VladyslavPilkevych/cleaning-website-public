@@ -27,9 +27,19 @@ import Chemics from "./components/chemics";
 import { useMediaQuery } from "react-responsive";
 import Property from "./components/property";
 import Windows from "./components/windows";
-import { PricingPageFormData, PricingPageFormDataErrors, ServicesFormData } from "./helpers/types";
+import {
+  PricingPageFormData,
+  PricingPageFormDataErrors,
+  ServicesFormData,
+} from "./helpers/types";
 import { defaultPricingPageFormData } from "./helpers/utils";
 import { Dayjs } from "dayjs";
+import { CheckoutProvider } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripeKey = process.env.REACT_APP_STRIPE_KEY;
+console.log(stripeKey);
+const stripePromise = loadStripe(stripeKey || "");
 
 type HandleChangeValueType =
   | string
@@ -45,6 +55,18 @@ export type ChangeFormDataType = (
 ) => void;
 
 export default function PricingPage() {
+  const fetchClientSecret = () =>
+    fetch("http://localhost:5000/api/payment/create-checkout-session", {
+      method: "POST",
+    })
+      .then((res) => res.json())
+      .then((data) => data.clientSecret);
+
+  const appearance = {
+    theme: "stripe" as const,
+  };
+  const options = { fetchClientSecret, elementsOptions: { appearance } };
+
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
@@ -59,7 +81,9 @@ export default function PricingPage() {
   };
 
   const handleChangeFormData = (name: string, value: HandleChangeValueType) => {
-    const errorName = name.replace(/\.([a-z])/g, (_, letter) => letter.toUpperCase());
+    const errorName = name.replace(/\.([a-z])/g, (_, letter) =>
+      letter.toUpperCase()
+    );
     setFormErrors((prev) => ({ ...prev, [errorName]: undefined }));
 
     setFormData((prev) => {
@@ -84,141 +108,147 @@ export default function PricingPage() {
   };
 
   return (
-    <Box>
-      <ImageComponent
-        height="500px"
-        asBackground
-        src="/images/pricing-header.png"
-      />
-
-      <Flex
-        justifyContent={JustifyContent.SPACE_EVENLY}
-        css={{ margin: "4rem auto 0" }}
-        flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
-        gap="2rem"
-      >
-        <DateCalendarValue
-          formData={formData}
-          formErrors={formErrors}
-          handleChangeFormData={handleChangeFormData}
+    <CheckoutProvider stripe={stripePromise} options={options}>
+      <Box>
+        <ImageComponent
+          height="500px"
+          asBackground
+          src="/images/pricing-header.png"
         />
-        <TimePicker
-          formData={formData}
-          handleChangeFormData={handleChangeFormData}
-          formErrors={formErrors}
-        />
-      </Flex>
 
-      <Property
-        formErrors={formErrors}
-        formData={formData}
-        handleChangeFormData={handleChangeFormData}
-      />
-
-      <Separator />
-
-      <Windows
-        formData={formData}
-        handleChangeFormData={handleChangeFormData}
-      />
-
-      <Separator />
-
-      <Flex>
-        <Title
-          size={isMobile ? TitleSize.H4 : TitleSize.H2}
-          fontWeight={FontWeight.Bold}
+        <Flex
+          justifyContent={JustifyContent.SPACE_EVENLY}
           css={{ margin: "4rem auto 0" }}
+          flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+          gap="2rem"
         >
-          {t("pricing.services.title")}
-        </Title>
-      </Flex>
-      <CardContainer
-        formData={formData}
-        handleChangeFormData={handleChangeFormData}
-        cards={serviceCards}
-        translationPath="pricing.services.cards"
-      />
+          <DateCalendarValue
+            formData={formData}
+            formErrors={formErrors}
+            handleChangeFormData={handleChangeFormData}
+          />
+          <TimePicker
+            formData={formData}
+            handleChangeFormData={handleChangeFormData}
+            formErrors={formErrors}
+          />
+        </Flex>
 
-      <Checkbox
-        text={t("pricing.vacuum-cleaner")}
-        price="14.99 EUR"
-        icon={<SvgIcon src="/icons/vacuum.svg" />}
-        formData={formData.vacuum}
-        handleChangeFormData={handleChangeFormData}
-        name="vacuum"
-      />
+        <Property
+          formErrors={formErrors}
+          formData={formData}
+          handleChangeFormData={handleChangeFormData}
+        />
 
-      <Chemics
-        formData={formData}
-        handleChangeFormData={handleChangeFormData}
-      />
+        <Separator />
 
-      <Separator />
+        <Windows
+          formData={formData}
+          handleChangeFormData={handleChangeFormData}
+        />
 
-      <Checkbox
-        text={t("pricing.chemical-cleaning")}
-        css={{ marginTop: "2rem" }}
-      >
+        <Separator />
+
+        <Flex>
+          <Title
+            size={isMobile ? TitleSize.H4 : TitleSize.H2}
+            fontWeight={FontWeight.Bold}
+            css={{ margin: "4rem auto 0" }}
+          >
+            {t("pricing.services.title")}
+          </Title>
+        </Flex>
         <CardContainer
           formData={formData}
           handleChangeFormData={handleChangeFormData}
-          cards={chemicalCleaningCards}
-          translationPath="pricing.services.cleaning-cards"
+          cards={serviceCards}
+          translationPath="pricing.services.cards"
         />
-      </Checkbox>
 
-      <Separator />
+        <Checkbox
+          text={t("pricing.vacuum-cleaner")}
+          price="14.99 EUR"
+          icon={<SvgIcon src="/icons/vacuum.svg" />}
+          formData={formData.vacuum}
+          handleChangeFormData={handleChangeFormData}
+          name="vacuum"
+        />
 
-      <AddressForm
-        formData={formData}
-        formErrors={formErrors}
-        handleChangeFormData={handleChangeFormData}
-      />
+        <Chemics
+          formData={formData}
+          handleChangeFormData={handleChangeFormData}
+        />
 
-      <ContactForm
-        formData={formData}
-        formErrors={formErrors}
-        handleChangeFormData={handleChangeFormData}
-      />
+        <Separator />
 
-      <PaymentMethod
-        formData={formData}
-        formErrors={formErrors}
-        handleChangeFormData={handleChangeFormData}
-      />
-
-      <Flex
-        justifyContent={JustifyContent.CENTER}
-        css={{ margin: "4rem 1rem 0" }}
-      >
-        <Title size={TitleSize.H5}>{t("pricing.prepayment-alert")}</Title>
-      </Flex>
-      <PaymentBtn formData={formData} restartForm={restartForm} setFormErrors={setFormErrors} />
-
-      <Separator />
-
-      <ImageComponent
-        height={isMobile ? "300px" : "500px"}
-        asBackground
-        src="/images/pricing-vary.png"
-        css={{
-          alignItems: "center",
-          display: "flex",
-          justifyContent: "center",
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${process.env.PUBLIC_URL}/images/pricing-vary.png)`,
-        }}
-      >
-        <Title
-          size={isMobile ? TitleSize.H3 : TitleSize.H1}
-          fontWeight={FontWeight.Bold}
-          color={ThemeColors.White}
+        <Checkbox
+          text={t("pricing.chemical-cleaning")}
+          css={{ marginTop: "2rem" }}
         >
-          {t("prices-vary.title")}
-        </Title>
-      </ImageComponent>
+          <CardContainer
+            formData={formData}
+            handleChangeFormData={handleChangeFormData}
+            cards={chemicalCleaningCards}
+            translationPath="pricing.services.cleaning-cards"
+          />
+        </Checkbox>
 
-      <PricesVary showTitle={false} />
-    </Box>
+        <Separator />
+
+        <AddressForm
+          formData={formData}
+          formErrors={formErrors}
+          handleChangeFormData={handleChangeFormData}
+        />
+
+        <ContactForm
+          formData={formData}
+          formErrors={formErrors}
+          handleChangeFormData={handleChangeFormData}
+        />
+
+        <PaymentMethod
+          formData={formData}
+          formErrors={formErrors}
+          handleChangeFormData={handleChangeFormData}
+        />
+
+        <Flex
+          justifyContent={JustifyContent.CENTER}
+          css={{ margin: "4rem 1rem 0" }}
+        >
+          <Title size={TitleSize.H5}>{t("pricing.prepayment-alert")}</Title>
+        </Flex>
+        <PaymentBtn
+          formData={formData}
+          restartForm={restartForm}
+          setFormErrors={setFormErrors}
+        />
+
+        <Separator />
+
+        <ImageComponent
+          height={isMobile ? "300px" : "500px"}
+          asBackground
+          src="/images/pricing-vary.png"
+          css={{
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "center",
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${process.env.PUBLIC_URL}/images/pricing-vary.png)`,
+          }}
+        >
+          <Title
+            size={isMobile ? TitleSize.H3 : TitleSize.H1}
+            fontWeight={FontWeight.Bold}
+            color={ThemeColors.White}
+          >
+            {t("prices-vary.title")}
+          </Title>
+        </ImageComponent>
+
+        <PricesVary showTitle={false} />
+      </Box>
+    </CheckoutProvider>
   );
 }
