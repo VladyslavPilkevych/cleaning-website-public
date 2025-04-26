@@ -71,7 +71,6 @@ export type PricingPageFormData = {
   time: string | null;
   property: PropertyFormData;
   windows: WindowFormData;
-  // services: { [key: string]: boolean | string | null };
   services: ServicesFormData[];
   vacuum: boolean | null;
   chemicalCleaning: ChemicalCleaningFormData;
@@ -96,4 +95,32 @@ export type PricingPageFormDataErrors = {
   contactsEmail?: string;
   contactsPhone?: string;
   paymentMethod?: string;
+};
+
+export type DbPricingFormData = {
+  date: string | null;
+  time: string | null;
+  property_type: string | null;
+  property_area: string | null;
+  property_rooms: string | null;
+  property_steps: boolean | null;
+  windows_cleaning: boolean | null;
+  windows_mold: boolean | null;
+  windows_area: string | null;
+  windows_count: string | null;
+  services: string | null; // JSON строка
+  vacuum: boolean | null;
+  chemical_cleaning: boolean | null;
+  chemical_cleaning_type: string | null;
+  address_street: string | null;
+  address_city: string | null;
+  address_psc: string | null;
+  address_house: string | null;
+  address_floor: string | null;
+  contact_name: string | null;
+  contact_email: string | null;
+  contact_phone: string | null;
+  contact_message: string | null;
+  payment_method: string | null;
+  total_price: number | null;
 };

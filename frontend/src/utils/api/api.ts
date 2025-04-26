@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PricingPageFormData } from "../../pages/pricing-page/helpers/types";
+import { DbPricingFormData, PricingPageFormData } from "../../pages/pricing-page/helpers/types";
 
 const BASE_URL = "http://localhost:5000/api";
 
@@ -29,4 +29,8 @@ export function getAllClientsAPI() {
 
 export function filterClientsAPI(startDate: string, endDate: string) {
   return api.get(`${BASE_URL}/form/data/filter`, { params: { startDate, endDate } });
+}
+
+export function superbaseSubmitFormAPI(formData: DbPricingFormData) {
+  return api.post(`${BASE_URL}/superbase/submit-pricing-form`, { params: { formData } });
 }

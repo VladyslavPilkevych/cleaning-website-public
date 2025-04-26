@@ -13,8 +13,9 @@ import {
   PricingPageFormData,
   PricingPageFormDataErrors,
 } from "../helpers/types";
-import { savePricesFormAPI } from "../../../utils/api/api";
+import { superbaseSubmitFormAPI } from "../../../utils/api/api";
 import { toast } from "react-toastify";
+import { convertPricingFormToDb } from "../helpers/utils";
 
 type PaymentBtnProps = {
   formData: PricingPageFormData;
@@ -49,10 +50,6 @@ export default function PaymentBtn({ formData, restartForm, setFormErrors }: Pay
       errors.propertyRooms = t("pricing.errors.propertyRooms");
     }
 
-    if (!formData.property.steps) {
-      errors.propertySteps = t("pricing.errors.propertySteps");
-    }
-
     if (!formData.address.street) {
       errors.addressStreet = t("pricing.errors.addressStreet");
     }
@@ -85,6 +82,7 @@ export default function PaymentBtn({ formData, restartForm, setFormErrors }: Pay
       errors.paymentMethod = t("pricing.errors.paymentMethod");
     }
 
+    console.log(errors);
     setFormErrors(errors);
 
     return Object.keys(errors).length === 0;
@@ -114,7 +112,7 @@ export default function PaymentBtn({ formData, restartForm, setFormErrors }: Pay
 
     const toastId = toast.info(t("toast.sending"), { autoClose: false });
 
-    await savePricesFormAPI(formData)
+    await superbaseSubmitFormAPI(convertPricingFormToDb(formData))
       .then((rsp) => {
         if (rsp.status === 200) {
           toast.update(toastId, {
@@ -136,6 +134,29 @@ export default function PaymentBtn({ formData, restartForm, setFormErrors }: Pay
         });
         console.error("Error submitting contact form:", err);
       });
+
+    // await savePricesFormAPI(formData)
+    //   .then((rsp) => {
+    //     if (rsp.status === 200) {
+    //       toast.update(toastId, {
+    //         render: t("toast.success"),
+    //         type: "success",
+    //         isLoading: false,
+    //         autoClose: 3000,
+    //       });
+    //       console.log("Contact form submitted successfully");
+    //       restartForm();
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     toast.update(toastId, {
+    //       render: t("toast.error"),
+    //       type: "error",
+    //       isLoading: false,
+    //       autoClose: 3000,
+    //     });
+    //     console.error("Error submitting contact form:", err);
+    //   });
   }
   return (
     <Flex

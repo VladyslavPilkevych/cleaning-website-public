@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const formRoutes = require("./routes/formRoutes");
 const emailRoutes = require("./routes/emailRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const superbaseRoutes = require("./routes/superbaseRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const server = express();
 
@@ -21,6 +22,7 @@ server.use("/api/form", formRoutes);
 server.use("/api/email", emailRoutes);
 server.use("/api/admin-panel", adminRoutes);
 server.use("/api/payment", paymentRoutes);
+server.use("/api/superbase", superbaseRoutes);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {

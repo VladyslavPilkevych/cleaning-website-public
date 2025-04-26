@@ -34,13 +34,6 @@ import {
 } from "./helpers/types";
 import { defaultPricingPageFormData } from "./helpers/utils";
 import { Dayjs } from "dayjs";
-// import { CheckoutProvider } from "@stripe/react-stripe-js";
-// import { loadStripe, StripeCheckoutOptions } from "@stripe/stripe-js";
-// import Loader from "../../components/loader";
-
-// const stripeKey = process.env.REACT_APP_STRIPE_KEY;
-// console.log(stripeKey);
-// const stripePromise = loadStripe(stripeKey || "");
 
 type HandleChangeValueType =
   | string
@@ -56,30 +49,6 @@ export type ChangeFormDataType = (
 ) => void;
 
 export default function PricingPage() {
-  // const [loading, setLoading] = useState(true);
-  // const [clientSecret, setClientSecret] = useState<string>("");
-
-  // useEffect(() => {
-  //   const fetchClientSecret = async () => {
-  //     try {
-  //       const res = await fetch("http://localhost:5000/api/payment/create-checkout-session", {
-  //         method: "POST",
-  //       });
-  //       const data = await res.json();
-  //       setClientSecret(data.clientSecret);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("Failed to fetch client secret", error);
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchClientSecret();
-  // }, []);
-
-  // const appearance = { theme: "stripe" as const };
-  // const options: StripeCheckoutOptions = { fetchClientSecret: () => Promise.resolve(clientSecret), elementsOptions: { appearance } };
-
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
@@ -120,15 +89,6 @@ export default function PricingPage() {
     });
   };
 
-  // if (loading || !clientSecret.length) {
-  //   return (
-  //     <Box height="calc(100vh - 479px)">
-  //       <Loader />
-  //     </Box>
-  //   );
-  // }
-
-  // <CheckoutProvider stripe={stripePromise} options={options}>
   return (
       <Box>
         <ImageComponent
@@ -271,5 +231,4 @@ export default function PricingPage() {
         <PricesVary showTitle={false} />
       </Box>
   );
-  // </CheckoutProvider>
 }
