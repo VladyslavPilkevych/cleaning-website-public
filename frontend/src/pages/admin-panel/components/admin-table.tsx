@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "../../../components/box";
 import ImageComponent from "../../../components/image";
 import FullCalendar from "@fullcalendar/react";
@@ -11,6 +11,7 @@ import ThemeColors from "../../../utils/theme/colors";
 import Flex from "../../../components/flex";
 import { FontWeight } from "../../../utils/theme/fonts";
 import styled from "styled-components";
+import { superbaseGetAllOrdersAPI } from "../../../utils/api/api";
 
 const StyledCalendarWrapper = styled.div`
   max-height: 800px;
@@ -80,7 +81,6 @@ const StyledCalendarWrapper = styled.div`
   }
 `;
 
-
 type Event = {
   title: string;
   start: string;
@@ -89,46 +89,64 @@ type Event = {
   services?: string[];
 };
 
-const events: Event[] = [
-  {
-    title: "Danies",
-    start: "2025-03-16T10:00:00",
-    end: "2025-03-16T12:00:00",
-    description: "House cleaning. Card",
-    services: ["Window cleaning"],
-  },
-  {
-    title: "Martina",
-    start: "2025-03-17T13:00:00",
-    end: "2025-03-17T14:00:00",
-    description: "Apartment cleaning. Cash",
-    services: ["Window cleaning"],
-  },
-  {
-    title: "Tomas",
-    start: "2025-03-18T09:00:00",
-    end: "2025-03-18T11:00:00",
-    description: "Apartment cleaning. Card",
-    services: ["Window cleaning"],
-  },
-  {
-    title: "Vasko",
-    start: "2025-03-18T10:00:00",
-    end: "2025-03-18T12:00:00",
-    description: "Apartment cleaning. Cash",
-    services: ["Window cleaning"],
-  },
-  {
-    title: "Lily",
-    start: "2025-03-19T15:00:00",
-    end: "2025-03-19T16:30:00",
-    description: "House cleaning. Cash",
-    services: ["Window cleaning"],
-  },
-];
+// const events: Event[] = [
+//   {
+//     title: "Danies",
+//     start: "2025-03-16T10:00:00",
+//     end: "2025-03-16T12:00:00",
+//     description: "House cleaning. Card",
+//     services: ["Window cleaning"],
+//   },
+//   {
+//     title: "Martina",
+//     start: "2025-03-17T13:00:00",
+//     end: "2025-03-17T14:00:00",
+//     description: "Apartment cleaning. Cash",
+//     services: ["Window cleaning"],
+//   },
+//   {
+//     title: "Tomas",
+//     start: "2025-03-18T09:00:00",
+//     end: "2025-03-18T11:00:00",
+//     description: "Apartment cleaning. Card",
+//     services: ["Window cleaning"],
+//   },
+//   {
+//     title: "Vasko",
+//     start: "2025-03-18T10:00:00",
+//     end: "2025-03-18T12:00:00",
+//     description: "Apartment cleaning. Cash",
+//     services: ["Window cleaning"],
+//   },
+//   {
+//     title: "Lily",
+//     start: "2025-03-19T15:00:00",
+//     end: "2025-03-19T16:30:00",
+//     description: "House cleaning. Cash",
+//     services: ["Window cleaning"],
+//   },
+// ];
 
 export default function AdminTable() {
+  const [events, setEvents] = useState<Event[] | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+
+  async function getOrders() {
+    await superbaseGetAllOrdersAPI()
+      .then((rsp) => {
+        console.log(rsp);
+        if (rsp.status === 200) {
+          setEvents(rsp.data);
+        }
+      })
+      .catch((err) => {
+        console.error("Error submitting contact form:", err);
+      });
+  }
+
+  useEffect(() => {
+    getOrders();
+  }, []);
 
   const handleEventClick = (clickInfo: any) => {
     setSelectedEvent({
@@ -153,23 +171,25 @@ export default function AdminTable() {
           alignContent: "center",
         }}
       />
-      <StyledCalendarWrapper>
-        <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView="timeGridWeek"
-          events={events}
-          headerToolbar={{
-            start: "prev,next today",
-            center: "title",
-            end: "dayGridMonth,timeGridWeek,timeGridDay",
-          }}
-          editable={true}
-          selectable={true}
-          eventClick={handleEventClick}
-          slotMinTime="06:00:00"
-          slotMaxTime="20:00:00"
-        />
-      </StyledCalendarWrapper>
+      {events && (
+        <StyledCalendarWrapper>
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="timeGridWeek"
+            events={events}
+            headerToolbar={{
+              start: "prev,next today",
+              center: "title",
+              end: "dayGridMonth,timeGridWeek,timeGridDay",
+            }}
+            editable={true}
+            selectable={true}
+            eventClick={handleEventClick}
+            slotMinTime="06:00:00"
+            slotMaxTime="20:00:00"
+          />
+        </StyledCalendarWrapper>
+      )}
       {selectedEvent && (
         <Box
           css={{
@@ -184,20 +204,52 @@ export default function AdminTable() {
         >
           <Title size={TitleSize.H4}>{selectedEvent?.title}</Title>
           <Flex gap="1rem">
-            <Title size={TitleSize.H6} color={ThemeColors.Dark} fontWeight={FontWeight.Bold}>Start time:</Title>
-            <Title size={TitleSize.H5} color={ThemeColors.Primary}>{selectedEvent?.start?.toLocaleString()}</Title>
+            <Title
+              size={TitleSize.H6}
+              color={ThemeColors.Dark}
+              fontWeight={FontWeight.Bold}
+            >
+              Start time:
+            </Title>
+            <Title size={TitleSize.H5} color={ThemeColors.Primary}>
+              {selectedEvent?.start?.toLocaleString()}
+            </Title>
           </Flex>
           <Flex gap="1rem">
-            <Title size={TitleSize.H6} color={ThemeColors.Dark} fontWeight={FontWeight.Bold}>End time:</Title>
-            <Title size={TitleSize.H5} color={ThemeColors.Primary}>{selectedEvent?.end?.toLocaleString()}</Title>
+            <Title
+              size={TitleSize.H6}
+              color={ThemeColors.Dark}
+              fontWeight={FontWeight.Bold}
+            >
+              End time:
+            </Title>
+            <Title size={TitleSize.H5} color={ThemeColors.Primary}>
+              {selectedEvent?.end?.toLocaleString()}
+            </Title>
           </Flex>
           <Flex gap="1rem">
-            <Title size={TitleSize.H6} color={ThemeColors.Dark} fontWeight={FontWeight.Bold}>Description:</Title>
-            <Title size={TitleSize.H5} color={ThemeColors.Primary}>{selectedEvent?.description}</Title>
+            <Title
+              size={TitleSize.H6}
+              color={ThemeColors.Dark}
+              fontWeight={FontWeight.Bold}
+            >
+              Description:
+            </Title>
+            <Title size={TitleSize.H5} color={ThemeColors.Primary}>
+              {selectedEvent?.description}
+            </Title>
           </Flex>
           <Flex gap="1rem">
-            <Title size={TitleSize.H6} color={ThemeColors.Dark} fontWeight={FontWeight.Bold}>Services:</Title>
-            <Title size={TitleSize.H5} color={ThemeColors.Primary}>{selectedEvent?.services?.join(", ") || ""}</Title>
+            <Title
+              size={TitleSize.H6}
+              color={ThemeColors.Dark}
+              fontWeight={FontWeight.Bold}
+            >
+              Services:
+            </Title>
+            <Title size={TitleSize.H5} color={ThemeColors.Primary}>
+              {selectedEvent?.services?.join(", ") || ""}
+            </Title>
           </Flex>
         </Box>
       )}

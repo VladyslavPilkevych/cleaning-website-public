@@ -34,3 +34,11 @@ export function filterClientsAPI(startDate: string, endDate: string) {
 export function superbaseSubmitFormAPI(formData: DbPricingFormData) {
   return api.post(`${BASE_URL}/superbase/submit-pricing-form`, { params: { formData } });
 }
+
+export function adminPanelAuthAPI(password: string) {
+  return api.post(`${BASE_URL}/admin-panel/auth`, { password });
+}
+
+export function superbaseGetAllOrdersAPI() {
+  return api.get(`${BASE_URL}/superbase/pricing-orders-table`);
+}

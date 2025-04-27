@@ -20,6 +20,21 @@ router.post('/submit-pricing-form', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-})
+});
+
+router.get('/pricing-orders-table', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('pricing_page_form_data')
+      .select('*');
+    if (error) {
+      console.error('Error:', error);
+      return res.status(500).json({ error: error.message });
+    }
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 module.exports = router;
