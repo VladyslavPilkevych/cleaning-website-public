@@ -98,6 +98,7 @@ export type PricingPageFormDataErrors = {
 };
 
 export type DbPricingFormData = {
+  id?: string;
   date: string | null;
   time: string | null;
   property_type: string | null;

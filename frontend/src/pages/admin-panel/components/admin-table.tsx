@@ -12,6 +12,9 @@ import Flex from "../../../components/flex";
 import { FontWeight } from "../../../utils/theme/fonts";
 import styled from "styled-components";
 import { superbaseGetAllOrdersAPI } from "../../../utils/api/api";
+import { convertToEvent } from "./helpers/utils";
+import { DbPricingFormData } from "../../pricing-page/helpers/types";
+import { TableEvent } from "./helpers/types";
 
 const StyledCalendarWrapper = styled.div`
   max-height: 800px;
@@ -81,15 +84,7 @@ const StyledCalendarWrapper = styled.div`
   }
 `;
 
-type Event = {
-  title: string;
-  start: string;
-  end: string;
-  description: string;
-  services?: string[];
-};
-
-// const events: Event[] = [
+// const events: TableEvent[] = [
 //   {
 //     title: "Danies",
 //     start: "2025-03-16T10:00:00",
@@ -128,15 +123,16 @@ type Event = {
 // ];
 
 export default function AdminTable() {
-  const [events, setEvents] = useState<Event[] | null>(null);
-  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [events, setEvents] = useState<TableEvent[] | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<TableEvent | null>(null);
 
   async function getOrders() {
     await superbaseGetAllOrdersAPI()
       .then((rsp) => {
         console.log(rsp);
         if (rsp.status === 200) {
-          setEvents(rsp.data);
+          setEvents(rsp.data.map((data: DbPricingFormData) => convertToEvent(data)));
+          console.log(rsp.data.map((data: DbPricingFormData) => convertToEvent(data)));
         }
       })
       .catch((err) => {
