@@ -5,16 +5,15 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
 import ThemeColors from "../../../utils/theme/colors";
-import Flex from "../../../components/flex";
-import { FontWeight } from "../../../utils/theme/fonts";
 import styled from "styled-components";
 import { superbaseGetAllOrdersAPI } from "../../../utils/api/api";
 import { convertToEvent } from "./helpers/utils";
-import { DbPricingFormData } from "../../pricing-page/helpers/types";
+import {
+  DbPricingFormData,
+} from "../../pricing-page/helpers/types";
 import { TableEvent } from "./helpers/types";
+import AdminTableCurrentInfo from "./admin-table-current-info";
 
 const StyledCalendarWrapper = styled.div`
   max-height: 800px;
@@ -84,55 +83,25 @@ const StyledCalendarWrapper = styled.div`
   }
 `;
 
-// const events: TableEvent[] = [
-//   {
-//     title: "Danies",
-//     start: "2025-03-16T10:00:00",
-//     end: "2025-03-16T12:00:00",
-//     description: "House cleaning. Card",
-//     services: ["Window cleaning"],
-//   },
-//   {
-//     title: "Martina",
-//     start: "2025-03-17T13:00:00",
-//     end: "2025-03-17T14:00:00",
-//     description: "Apartment cleaning. Cash",
-//     services: ["Window cleaning"],
-//   },
-//   {
-//     title: "Tomas",
-//     start: "2025-03-18T09:00:00",
-//     end: "2025-03-18T11:00:00",
-//     description: "Apartment cleaning. Card",
-//     services: ["Window cleaning"],
-//   },
-//   {
-//     title: "Vasko",
-//     start: "2025-03-18T10:00:00",
-//     end: "2025-03-18T12:00:00",
-//     description: "Apartment cleaning. Cash",
-//     services: ["Window cleaning"],
-//   },
-//   {
-//     title: "Lily",
-//     start: "2025-03-19T15:00:00",
-//     end: "2025-03-19T16:30:00",
-//     description: "House cleaning. Cash",
-//     services: ["Window cleaning"],
-//   },
-// ];
-
 export default function AdminTable() {
   const [events, setEvents] = useState<TableEvent[] | null>(null);
-  const [selectedEvent, setSelectedEvent] = useState<TableEvent | null>(null);
+  const [orders, setOrders] = useState<DbPricingFormData[] | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<DbPricingFormData | null>(
+    null
+  );
 
   async function getOrders() {
     await superbaseGetAllOrdersAPI()
       .then((rsp) => {
         console.log(rsp);
         if (rsp.status === 200) {
-          setEvents(rsp.data.map((data: DbPricingFormData) => convertToEvent(data)));
-          console.log(rsp.data.map((data: DbPricingFormData) => convertToEvent(data)));
+          setOrders(rsp.data);
+          setEvents(
+            rsp.data.map((data: DbPricingFormData) => convertToEvent(data))
+          );
+          console.log(
+            rsp.data.map((data: DbPricingFormData) => convertToEvent(data))
+          );
         }
       })
       .catch((err) => {
@@ -145,14 +114,14 @@ export default function AdminTable() {
   }, []);
 
   const handleEventClick = (clickInfo: any) => {
-    setSelectedEvent({
-      title: clickInfo.event.title,
-      start: clickInfo.event.start,
-      end: clickInfo.event.end,
-      description: clickInfo.event.extendedProps.description,
-    });
+    console.log(clickInfo.event);
+    const currentTableEvent = orders?.find(
+      (event) => event.id === clickInfo.event.extendedProps.customId
+    );
+    setSelectedEvent(currentTableEvent || null);
   };
 
+  console.log(selectedEvent?.services);
   return (
     <Box>
       <ImageComponent
@@ -187,67 +156,7 @@ export default function AdminTable() {
         </StyledCalendarWrapper>
       )}
       {selectedEvent && (
-        <Box
-          css={{
-            margin: "3rem auto",
-            gap: "1rem",
-            width: "fit-content",
-            border: `1px solid ${ThemeColors.Primary}`,
-            borderRadius: "5px",
-            padding: "3rem",
-            backgroundColor: ThemeColors.Background,
-          }}
-        >
-          <Title size={TitleSize.H4}>{selectedEvent?.title}</Title>
-          <Flex gap="1rem">
-            <Title
-              size={TitleSize.H6}
-              color={ThemeColors.Dark}
-              fontWeight={FontWeight.Bold}
-            >
-              Start time:
-            </Title>
-            <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-              {selectedEvent?.start?.toLocaleString()}
-            </Title>
-          </Flex>
-          <Flex gap="1rem">
-            <Title
-              size={TitleSize.H6}
-              color={ThemeColors.Dark}
-              fontWeight={FontWeight.Bold}
-            >
-              End time:
-            </Title>
-            <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-              {selectedEvent?.end?.toLocaleString()}
-            </Title>
-          </Flex>
-          <Flex gap="1rem">
-            <Title
-              size={TitleSize.H6}
-              color={ThemeColors.Dark}
-              fontWeight={FontWeight.Bold}
-            >
-              Description:
-            </Title>
-            <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-              {selectedEvent?.description}
-            </Title>
-          </Flex>
-          <Flex gap="1rem">
-            <Title
-              size={TitleSize.H6}
-              color={ThemeColors.Dark}
-              fontWeight={FontWeight.Bold}
-            >
-              Services:
-            </Title>
-            <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-              {selectedEvent?.services?.join(", ") || ""}
-            </Title>
-          </Flex>
-        </Box>
+        <AdminTableCurrentInfo selectedEvent={selectedEvent} />
       )}
     </Box>
   );

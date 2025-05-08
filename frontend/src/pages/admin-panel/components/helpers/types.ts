@@ -3,6 +3,4 @@ export type TableEvent = {
     title: string;
     start: string;
     end: string;
-    description: string;
-    services?: string[];
 };
