@@ -135,7 +135,12 @@
 // export default CheckoutForm;
 
 import React, { useEffect, useState } from "react";
-import { CardElement, PaymentRequestButtonElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  CardElement,
+  PaymentRequestButtonElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 import { PaymentRequest } from "@stripe/stripe-js";
 
 import {
@@ -147,36 +152,67 @@ import {
   Spinner,
   StyledHeading,
 } from "./CheckoutForm.styles";
+// import { onlinePaymentStripeAPI } from "../../../utils/api/api";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState<string | null>(null);
+  // const [amount, setAmount] = useState(1000);
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(null);
+  const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(
+    null
+  );
+  // const [clientSecret, setClientSecret] = useState(null);
 
+  // useEffect(() => {
+  // if (stripe) {
+  //   const pr = stripe.paymentRequest({
+  //     country: "SK",
+  //     currency: "eur",
+  //     total: {
+  //       label: "Total",
+  //       amount: 1000,
+  //     },
+  //     requestPayerName: true,
+  //     requestPayerEmail: true,
+  //   });
+
+  //   pr.canMakePayment().then((result) => {
+  //     console.log("canMakePayment result:", result);
+  //     if (result) {
+  //       setPaymentRequest(pr);
+  //     }
+  //   });
+  // }
+  // }, [stripe]);
   useEffect(() => {
-    if (stripe) {
-      const pr = stripe.paymentRequest({
-        country: "US", // можно заменить на "SK" если нужно
-        currency: "usd",
-        total: {
-          label: "Total",
-          amount: 1000, // = $10.00
-        },
-        requestPayerName: true,
-        requestPayerEmail: true,
-      });
+    // (async () => {
+    //   if (amount < 50) return;
+    //   const res = await onlinePaymentStripeAPI({ amount });
+    //   setClientSecret(res.data.clientSecret);
+    // })();
+    if (!stripe) return;
 
-      pr.canMakePayment().then((result) => {
-        console.log("canMakePayment result:", result);
-        if (result) {
-          setPaymentRequest(pr);
-        }
-      });
-    }
+    const pr = stripe.paymentRequest({
+      country: "SK",
+      currency: "eur",
+      total: {
+        label: "Total",
+        amount: 1000,
+      },
+      requestPayerName: true,
+      requestPayerEmail: true,
+    });
+
+    pr.canMakePayment().then((result) => {
+      console.log("canMakePayment result:", result);
+      if (result) {
+        setPaymentRequest(pr);
+      }
+    });
   }, [stripe]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -215,7 +251,9 @@ const CheckoutForm = () => {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="you@example.com"
       />
-      {emailError && <StyledMessage id="email-errors">{emailError}</StyledMessage>}
+      {emailError && (
+        <StyledMessage id="email-errors">{emailError}</StyledMessage>
+      )}
 
       {paymentRequest && (
         <>

@@ -44,9 +44,13 @@ const stripe = require("stripe")(process.env.STRIPE_KEY, {
 
 router.post("/create-payment-intent", async (req, res) => {
   try {
+    const { amount, currency = 'eur' } = req.body.params;
+    if (!amount) {
+      return res.status(400).json({ error: 'Amount is required' });
+    }
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: 1000,
-      currency: "eur",
+      amount,
+      currency,
       automatic_payment_methods: {
         enabled: true,
       },

@@ -42,7 +42,6 @@
 //     elementsOptions: { appearance },
 //   };
 
-
 //   if (loading || !clientSecret.length) {
 //     return (
 //       <Box height="calc(100vh - 479px)">
@@ -73,6 +72,7 @@ import { ToastContainer } from "react-toastify";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
 import Loader from "./components/loader";
+import { onlinePaymentStripeAPI } from "./utils/api/api";
 
 const stripeKey = process.env.REACT_APP_STRIPE_KEY || "";
 const stripePromise = loadStripe(stripeKey);
@@ -81,13 +81,31 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
 
+  // useEffect(() => {
+  //   const fetchClientSecret = async () => {
+  //     try {
+  //       const res = await fetch("http://localhost:5000/api/payment/create-payment-intent", {
+  //         method: "POST",
+  //       });
+  //       const data = await res.json();
+  //       setClientSecret(data.clientSecret);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Failed to fetch client secret", error);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchClientSecret();
+  // }, []);
   useEffect(() => {
     const fetchClientSecret = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/payment/create-payment-intent", {
-          method: "POST",
+        const res = await onlinePaymentStripeAPI({
+          amount: 1000,
+          currency: "eur",
         });
-        const data = await res.json();
+        const data = await res.data;
         setClientSecret(data.clientSecret);
         setLoading(false);
       } catch (error) {
@@ -106,7 +124,9 @@ function App() {
     },
   };
 
-  if (loading || !clientSecret.length) {
+  console.log(loading, clientSecret);
+
+  if (loading || (clientSecret && !clientSecret.length)) {
     return (
       <Box height="calc(100vh - 479px)">
         <Loader />

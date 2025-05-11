@@ -42,3 +42,12 @@ export function adminPanelAuthAPI(password: string) {
 export function superbaseGetAllOrdersAPI() {
   return api.get(`${BASE_URL}/superbase/pricing-orders-table`);
 }
+
+type PaymentFormData = {
+  amount: number;
+  currency?: string;
+};
+
+export function onlinePaymentStripeAPI({ amount, currency = 'eur' }: PaymentFormData) {
+  return api.post(`${BASE_URL}/payment/create-payment-intent`, { params: { amount, currency } });
+}

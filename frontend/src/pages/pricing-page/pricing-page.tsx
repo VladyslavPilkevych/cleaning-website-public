@@ -192,16 +192,6 @@ export default function PricingPage() {
           formData={formData}
           formErrors={formErrors}
           handleChangeFormData={handleChangeFormData}
-        />
-
-        <Flex
-          justifyContent={JustifyContent.CENTER}
-          css={{ margin: "4rem 1rem 0" }}
-        >
-          <Title size={TitleSize.H5}>{t("pricing.prepayment-alert")}</Title>
-        </Flex>
-        <PaymentBtn
-          formData={formData}
           restartForm={restartForm}
           setFormErrors={setFormErrors}
         />
