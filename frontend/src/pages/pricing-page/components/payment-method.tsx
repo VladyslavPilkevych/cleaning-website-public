@@ -11,6 +11,7 @@ import {
   JustifyContent,
 } from "../../../components/flex/flex.constants";
 import {
+  ChemicalCleaningType,
   PAYMENT_METHOD,
   PricingPageFormData,
   PricingPageFormDataErrors,
@@ -66,6 +67,23 @@ export default function PaymentMethod({
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
+  console.log(formData);
+
+  const totalPrice: number =
+    formData.services.reduce((total, service) => {
+      return total + service.price * service.count;
+    }, formData.totalPrice || 0) +
+    Number(formData?.property?.rooms) * 5 +
+    Number(formData?.property?.area) * 1.1 +
+    (formData.property.steps ? 10 : 0) +
+    (formData.windows.cleaning
+      ? Number(formData.windows.count) *
+        Number(formData?.windows?.count || 0) *
+        10
+      : 0) +
+    (formData.vacuum ? 14.99 : 0) +
+    (formData.chemicalCleaning.chemic ? 10 : 0) +
+    (formData.chemicalCleaning.type === ChemicalCleaningType.REGULAR ? 10 : 20);
   return (
     <>
       <Flex flexDirection={FlexDirection.COLUMN}>
@@ -138,15 +156,17 @@ export default function PaymentMethod({
       >
         <Title size={TitleSize.H5}>{t("pricing.prepayment-alert")}</Title>
       </Flex>
-      {formData.paymentMethod === PAYMENT_METHOD.CARD ? (
-        <CheckoutForm />
-      ) : (
-        <PaymentBtn
-          formData={formData}
-          restartForm={restartForm}
-          setFormErrors={setFormErrors}
-        />
-      )}
+      {totalPrice &&
+        (formData.paymentMethod === PAYMENT_METHOD.CARD ? (
+          <CheckoutForm totalPrice={totalPrice} key={totalPrice} />
+        ) : (
+          <PaymentBtn
+            totalPrice={totalPrice}
+            formData={formData}
+            restartForm={restartForm}
+            setFormErrors={setFormErrors}
+          />
+        ))}
     </>
   );
 }

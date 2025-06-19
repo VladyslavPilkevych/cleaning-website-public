@@ -152,9 +152,13 @@ import {
   Spinner,
   StyledHeading,
 } from "./CheckoutForm.styles";
-// import { onlinePaymentStripeAPI } from "../../../utils/api/api";
+import { onlinePaymentStripeAPI } from "../../../utils/api/api";
 
-const CheckoutForm = () => {
+type CheckoutFormProps = {
+  totalPrice: number;
+};
+
+function CheckoutForm({ totalPrice }: CheckoutFormProps) {
   const stripe = useStripe();
   const elements = useElements();
   const [email, setEmail] = useState("");
@@ -188,32 +192,80 @@ const CheckoutForm = () => {
   //   });
   // }
   // }, [stripe]);
+  // useEffect(() => {
+  //   // (async () => {
+  //   //   if (amount < 50) return;
+  //   //   const res = await onlinePaymentStripeAPI({ amount });
+  //   //   setClientSecret(res.data.clientSecret);
+  //   // })();
+  //   if (!stripe) return;
+
+  //   const pr = stripe.paymentRequest({
+  //     country: "SK",
+  //     currency: "eur",
+  //     total: {
+  //       label: "Total",
+  //       amount: Math.round(totalPrice * 100),
+  //     },
+  //     requestPayerName: true,
+  //     requestPayerEmail: true,
+  //   });
+
+  //   pr.canMakePayment().then((result) => {
+  //     console.log("canMakePayment result:", result);
+  //     if (result) {
+  //       setPaymentRequest(pr);
+  //     }
+  //   });
+  // }, [stripe, totalPrice]);
+  // useEffect(() => {
+  //   if (!stripe || !totalPrice) return;
+
+  //   const pr = stripe.paymentRequest({
+  //     country: "SK",
+  //     currency: "eur",
+  //     total: {
+  //       label: "Total",
+  //       amount: Math.round(totalPrice * 100),
+  //     },
+  //     requestPayerName: true,
+  //     requestPayerEmail: true,
+  //   });
+
+  //   pr.canMakePayment().then((result) => {
+  //     if (result) {
+  //       setPaymentRequest(pr);
+  //     } else {
+  //       setPaymentRequest(null);
+  //     }
+  //   });
+  // }, [stripe, totalPrice]);
   useEffect(() => {
-    // (async () => {
-    //   if (amount < 50) return;
-    //   const res = await onlinePaymentStripeAPI({ amount });
-    //   setClientSecret(res.data.clientSecret);
-    // })();
-    if (!stripe) return;
-
-    const pr = stripe.paymentRequest({
-      country: "SK",
-      currency: "eur",
-      total: {
-        label: "Total",
-        amount: 1000,
-      },
-      requestPayerName: true,
-      requestPayerEmail: true,
-    });
-
-    pr.canMakePayment().then((result) => {
-      console.log("canMakePayment result:", result);
+    if (!stripe || !totalPrice) return;
+  
+    const createRequest = async () => {
+      const pr = stripe.paymentRequest({
+        country: "SK",
+        currency: "eur",
+        total: {
+          label: "Total",
+          amount: Math.round(totalPrice * 100),
+        },
+        requestPayerName: true,
+        requestPayerEmail: true,
+      });
+  
+      const result = await pr.canMakePayment();
       if (result) {
         setPaymentRequest(pr);
+      } else {
+        setPaymentRequest(null);
       }
-    });
-  }, [stripe]);
+    };
+  
+    createRequest();
+  }, [stripe, totalPrice]);
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -234,6 +286,10 @@ const CheckoutForm = () => {
       setMessage(error.message || "Something went wrong");
     } else {
       setMessage("Payment method created: " + paymentMethod.id);
+      const res = await onlinePaymentStripeAPI({
+        amount: Math.round(totalPrice * 100),
+      });
+      console.log(res);
     }
 
     setIsLoading(false);
@@ -249,7 +305,7 @@ const CheckoutForm = () => {
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="you@example.com"
+        placeholder="Enter your email to receive receipt"
       />
       {emailError && (
         <StyledMessage id="email-errors">{emailError}</StyledMessage>
@@ -258,7 +314,10 @@ const CheckoutForm = () => {
       {paymentRequest && (
         <>
           <StyledLabel>Pay with GPay / Apple Pay</StyledLabel>
-          <PaymentRequestButtonElement options={{ paymentRequest }} />
+          <PaymentRequestButtonElement
+            key={`prb-${Math.round(totalPrice * 100)}`} 
+            options={{ paymentRequest }}
+          />
         </>
       )}
 
@@ -266,12 +325,16 @@ const CheckoutForm = () => {
       <CardElement options={{ style: { base: { fontSize: "16px" } } }} />
 
       <StyledButton disabled={isLoading || !stripe}>
-        {isLoading ? <Spinner /> : "Pay Now"}
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          `Pay Now ${Math.round(totalPrice * 100) / 100} EUR`
+        )}
       </StyledButton>
 
       {message && <StyledMessage>{message}</StyledMessage>}
     </StyledForm>
   );
-};
+}
 
 export default CheckoutForm;

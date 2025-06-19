@@ -21,9 +21,10 @@ type PaymentBtnProps = {
   formData: PricingPageFormData;
   restartForm: () => void;
   setFormErrors: (errors: PricingPageFormDataErrors) => void;
+  totalPrice: number;
 };
 
-export default function PaymentBtn({ formData, restartForm, setFormErrors }: PaymentBtnProps) {
+export default function PaymentBtn({ formData, restartForm, setFormErrors, totalPrice }: PaymentBtnProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
@@ -87,20 +88,6 @@ export default function PaymentBtn({ formData, restartForm, setFormErrors }: Pay
 
     return Object.keys(errors).length === 0;
   };
-
-  console.log(formData);
-
-  const totalPrice = formData.services.reduce((total, service) => {
-    return total + service.price * service.count;
-  }, formData.totalPrice || 0)
-    + (Number(formData?.property?.rooms) * 5)
-    + (Number(formData?.property?.area) * 1.1)
-    + (formData.property.steps ? 10 : 0)
-    + (formData.windows.cleaning ? 
-      (Number(formData.windows.count) * Number(formData?.windows?.count || 0) * 10) : 0)
-    + (formData.vacuum ? 14.99 : 0)
-    + (formData.chemicalCleaning.chemic ? 10 : 0)
-    + (formData.chemicalCleaning.type === ChemicalCleaningType.REGULAR ? 10 : 20);
 
   async function submit() {
     console.log(formData);
