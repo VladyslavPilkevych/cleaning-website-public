@@ -1,10 +1,10 @@
 import React from "react";
 import CardItem from "./card-item";
 import { useTranslation } from "react-i18next";
-import { ServiceCardType } from "../helpers/types";
+import { ServiceCardType } from "../../helpers/types";
 import { useMediaQuery } from "react-responsive";
-import { PricingPageFormData } from "../helpers/types";
-import { ChangeFormDataType } from "../pricing-page";
+import { PricingPageFormData } from "../../helpers/types";
+import { ChangeFormDataType } from "../../pricing-page";
 
 type CardContainerProps = {
   cards: ServiceCardType[];

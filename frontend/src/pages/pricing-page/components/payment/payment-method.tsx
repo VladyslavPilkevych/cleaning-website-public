@@ -1,23 +1,23 @@
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import SvgIcon from "./svg-icon";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
-import { FontWeight } from "../../../utils/theme/fonts";
-import ThemeColors from "../../../utils/theme/colors";
+import SvgIcon from "../common/svg-icon";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
+import { FontWeight } from "../../../../utils/theme/fonts";
+import ThemeColors from "../../../../utils/theme/colors";
 import { useMediaQuery } from "react-responsive";
 import {
   FlexDirection,
   JustifyContent,
-} from "../../../components/flex/flex.constants";
+} from "../../../../components/flex/flex.constants";
 import {
   ChemicalCleaningType,
   PAYMENT_METHOD,
   PricingPageFormData,
   PricingPageFormDataErrors,
-} from "../helpers/types";
-import { ChangeFormDataType } from "../pricing-page";
-import Flex from "../../../components/flex";
+} from "../../helpers/types";
+import { ChangeFormDataType } from "../../pricing-page";
+import Flex from "../../../../components/flex";
 import CheckoutForm from "./CheckoutForm";
 import PaymentBtn from "./payment-btn";
 

@@ -1,5 +1,6 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
 import styled from "styled-components";
+import ThemeColors from "../../../../utils/theme/colors";
 
 const StyledForm = styled.form`
   font-family: "Montserrat";
@@ -25,7 +26,7 @@ const StyledInput = styled.input`
 `;
 
 const StyledButton = styled.button`
-  background: #0055de;
+  background: ${ThemeColors.Primary};
   font-family: Arial, sans-serif;
   color: #ffffff;
   border-radius: 4px;
@@ -56,7 +57,7 @@ const StyledPaymentElement = styled(PaymentElement)`
 `;
 
 const StyledMessage = styled.div`
-  color: rgb(105, 115, 134);
+  color: ${ThemeColors.Warning};
   font-size: 16px;
   line-height: 20px;
   padding-top: 12px;

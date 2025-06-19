@@ -1,21 +1,20 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
-import ThemeColors from "../../../utils/theme/colors";
-import Box from "../../../components/box";
-import Button from "../../../components/button";
-import Flex from "../../../components/flex";
-import { JustifyContent } from "../../../components/flex/flex.constants";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
+import ThemeColors from "../../../../utils/theme/colors";
+import Box from "../../../../components/box";
+import Button from "../../../../components/button";
+import Flex from "../../../../components/flex";
+import { JustifyContent } from "../../../../components/flex/flex.constants";
 import { useMediaQuery } from "react-responsive";
 import {
-  ChemicalCleaningType,
   PricingPageFormData,
   PricingPageFormDataErrors,
-} from "../helpers/types";
-import { superbaseSubmitFormAPI } from "../../../utils/api/api";
+} from "../../helpers/types";
+import { superbaseSubmitFormAPI } from "../../../../utils/api/api";
 import { toast } from "react-toastify";
-import { convertPricingFormToDb } from "../helpers/utils";
+import { convertPricingFormToDb } from "../../helpers/utils";
 
 type PaymentBtnProps = {
   formData: PricingPageFormData;

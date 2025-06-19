@@ -1,17 +1,17 @@
 import * as React from "react";
 import Checkbox from "@mui/material/Checkbox";
-import ThemeColors from "../../../utils/theme/colors";
-import Flex from "../../../components/flex";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
-import { FontWeight } from "../../../utils/theme/fonts";
+import ThemeColors from "../../../../utils/theme/colors";
+import Flex from "../../../../components/flex";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
+import { FontWeight } from "../../../../utils/theme/fonts";
 import {
   FlexDirection,
   JustifyContent,
-} from "../../../components/flex/flex.constants";
-import Box from "../../../components/box";
+} from "../../../../components/flex/flex.constants";
+import Box from "../../../../components/box";
 import { useMediaQuery } from "react-responsive";
-import { ChangeFormDataType } from "../pricing-page";
+import { ChangeFormDataType } from "../../pricing-page";
 
 type CheckboxProps = {
   icon?: React.ReactNode;

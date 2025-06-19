@@ -1,12 +1,12 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
-import ThemeColors from "../../../utils/theme/colors";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
+import ThemeColors from "../../../../utils/theme/colors";
 import SvgIcon from "./svg-icon";
-import { FontWeight } from "../../../utils/theme/fonts";
-import Flex from "../../../components/flex";
-import { FlexDirection } from "../../../components/flex/flex.constants";
+import { FontWeight } from "../../../../utils/theme/fonts";
+import Flex from "../../../../components/flex";
+import { FlexDirection } from "../../../../components/flex/flex.constants";
 
 const Card = styled.div<{ selected?: boolean }>`
   height: 220px;

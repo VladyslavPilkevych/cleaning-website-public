@@ -1,13 +1,13 @@
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import styled from "styled-components";
-import ThemeColors from "../../../utils/theme/colors";
-import { ChangeFormDataType } from "../pricing-page";
+import ThemeColors from "../../../../utils/theme/colors";
+import { ChangeFormDataType } from "../../pricing-page";
 import {
   PricingPageFormData,
   PricingPageFormDataErrors,
-} from "../helpers/types";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
+} from "../../helpers/types";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
 
 const CustomCalendar = styled.div`
   .MuiDayCalendar-header {

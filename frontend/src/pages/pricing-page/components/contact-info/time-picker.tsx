@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import ThemeColors from "../../../utils/theme/colors";
+import ThemeColors from "../../../../utils/theme/colors";
 import {
   PricingPageFormData,
   PricingPageFormDataErrors,
-} from "../helpers/types";
-import { ChangeFormDataType } from "../pricing-page";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
-import Flex from "../../../components/flex";
-import { FlexDirection } from "../../../components/flex/flex.constants";
+} from "../../helpers/types";
+import { ChangeFormDataType } from "../../pricing-page";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
+import Flex from "../../../../components/flex";
+import { FlexDirection } from "../../../../components/flex/flex.constants";
 
 const GridContainer = styled.div`
   display: grid;

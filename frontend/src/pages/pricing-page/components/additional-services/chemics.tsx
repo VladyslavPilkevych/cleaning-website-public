@@ -1,15 +1,15 @@
 import * as React from "react";
 import Checkbox from "@mui/material/Checkbox";
-import ThemeColors from "../../../utils/theme/colors";
-import Flex from "../../../components/flex";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
-import { JustifyContent } from "../../../components/flex/flex.constants";
-import Box from "../../../components/box";
+import ThemeColors from "../../../../utils/theme/colors";
+import Flex from "../../../../components/flex";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
+import { JustifyContent } from "../../../../components/flex/flex.constants";
+import Box from "../../../../components/box";
 import { useTranslation } from "react-i18next";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import { ChangeFormDataType } from "../pricing-page";
-import { ChemicalCleaningType, PricingPageFormData } from "../helpers/types";
+import { ChangeFormDataType } from "../../pricing-page";
+import { ChemicalCleaningType, PricingPageFormData } from "../../helpers/types";
 
 type ChemicsProps = {
   formData?: PricingPageFormData;

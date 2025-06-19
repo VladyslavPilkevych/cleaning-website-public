@@ -1,23 +1,23 @@
 import { ChangeEvent } from "react";
-import ThemeColors from "../../../utils/theme/colors";
-import Flex from "../../../components/flex";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
+import ThemeColors from "../../../../utils/theme/colors";
+import Flex from "../../../../components/flex";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
 import {
   FlexDirection,
   FlexWrap,
   JustifyContent,
-} from "../../../components/flex/flex.constants";
-import Box from "../../../components/box";
+} from "../../../../components/flex/flex.constants";
+import Box from "../../../../components/box";
 import { useTranslation } from "react-i18next";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import FormInput from "../../../components/form-input";
+import FormInput from "../../../../components/form-input";
 import {
   PricingPageFormData,
   PricingPageFormDataErrors,
   PropertyType,
-} from "../helpers/types";
-import { ChangeFormDataType } from "../pricing-page";
+} from "../../helpers/types";
+import { ChangeFormDataType } from "../../pricing-page";
 
 type PropertyProps = {
   formData: PricingPageFormData;

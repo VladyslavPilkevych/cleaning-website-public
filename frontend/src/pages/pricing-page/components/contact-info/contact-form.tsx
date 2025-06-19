@@ -1,20 +1,20 @@
 import { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
-import ThemeColors from "../../../utils/theme/colors";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
-import FormInput from "../../../components/form-input";
-import Flex from "../../../components/flex";
-import { FlexDirection } from "../../../components/flex/flex.constants";
-import { FontWeight } from "../../../utils/theme/fonts";
-import FormTextarea from "../../../components/form-textarea";
+import ThemeColors from "../../../../utils/theme/colors";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
+import FormInput from "../../../../components/form-input";
+import Flex from "../../../../components/flex";
+import { FlexDirection } from "../../../../components/flex/flex.constants";
+import { FontWeight } from "../../../../utils/theme/fonts";
+import FormTextarea from "../../../../components/form-textarea";
 import { useMediaQuery } from "react-responsive";
 import {
   PricingPageFormData,
   PricingPageFormDataErrors,
-} from "../helpers/types";
-import { ChangeFormDataType } from "../pricing-page";
-import Box from "../../../components/box";
+} from "../../helpers/types";
+import { ChangeFormDataType } from "../../pricing-page";
+import Box from "../../../../components/box";
 
 type ContactFormProps = {
   formData: PricingPageFormData;

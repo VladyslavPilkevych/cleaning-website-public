@@ -1,21 +1,20 @@
 import React, { useState } from "react";
-import DateCalendarValue from "./components/calendar";
-import TimePicker from "./components/time-picker";
+import DateCalendarValue from "./components/contact-info/calendar";
+import TimePicker from "./components/contact-info/time-picker";
 import Flex from "../../components/flex";
 import {
   FlexDirection,
   JustifyContent,
 } from "../../components/flex/flex.constants";
 import Box from "../../components/box";
-import CardContainer from "./components/card-container";
-import Checkbox from "./components/checkbox";
-import SvgIcon from "./components/svg-icon";
+import CardContainer from "./components/common/card-container";
+import Checkbox from "./components/common/checkbox";
+import SvgIcon from "./components/common/svg-icon";
 import { useTranslation } from "react-i18next";
 import ThemeColors from "../../utils/theme/colors";
-import AddressForm from "./components/address-form";
-import ContactForm from "./components/contact-form";
-import PaymentMethod from "./components/payment-method";
-import PaymentBtn from "./components/payment-btn";
+import AddressForm from "./components/contact-info/address-form";
+import ContactForm from "./components/contact-info/contact-form";
+import PaymentMethod from "./components/payment/payment-method";
 import Title from "../../components/title";
 import { TitleSize } from "../../components/title/title.constants";
 import { FontWeight } from "../../utils/theme/fonts";
@@ -23,10 +22,10 @@ import ImageComponent from "../../components/image";
 import PricesVary from "../../components/prices-vary";
 import { chemicalCleaningCards, serviceCards } from "./helpers/constants";
 import Separator from "../../components/separator";
-import Chemics from "./components/chemics";
+import Chemics from "./components/additional-services/chemics";
 import { useMediaQuery } from "react-responsive";
-import Property from "./components/property";
-import Windows from "./components/windows";
+import Property from "./components/contact-info/property";
+import Windows from "./components/additional-services/windows";
 import {
   PricingPageFormData,
   PricingPageFormDataErrors,

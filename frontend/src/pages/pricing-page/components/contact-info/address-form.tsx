@@ -1,19 +1,19 @@
 import { ChangeEvent } from "react";
-import Box from "../../../components/box";
+import Box from "../../../../components/box";
 import { useTranslation } from "react-i18next";
-import ThemeColors from "../../../utils/theme/colors";
-import Title from "../../../components/title";
-import { TitleSize } from "../../../components/title/title.constants";
-import FormInput from "../../../components/form-input";
-import Flex from "../../../components/flex";
-import { FlexDirection } from "../../../components/flex/flex.constants";
-import { FontWeight } from "../../../utils/theme/fonts";
+import ThemeColors from "../../../../utils/theme/colors";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
+import FormInput from "../../../../components/form-input";
+import Flex from "../../../../components/flex";
+import { FlexDirection } from "../../../../components/flex/flex.constants";
+import { FontWeight } from "../../../../utils/theme/fonts";
 import { useMediaQuery } from "react-responsive";
-import { ChangeFormDataType } from "../pricing-page";
+import { ChangeFormDataType } from "../../pricing-page";
 import {
   PricingPageFormData,
   PricingPageFormDataErrors,
-} from "../helpers/types";
+} from "../../helpers/types";
 
 export type AddressFormProps = {
   formData: PricingPageFormData;
