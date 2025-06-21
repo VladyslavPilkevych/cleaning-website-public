@@ -15,6 +15,7 @@ import {
 import { superbaseSubmitFormAPI } from "../../../../utils/api/api";
 import { toast } from "react-toastify";
 import { convertPricingFormToDb } from "../../helpers/utils";
+import { validatePricingPageForm } from "../../helpers/form-validation";
 
 type PaymentBtnProps = {
   formData: PricingPageFormData;
@@ -23,75 +24,19 @@ type PaymentBtnProps = {
   totalPrice: number;
 };
 
-export default function PaymentBtn({ formData, restartForm, setFormErrors, totalPrice }: PaymentBtnProps) {
+export default function PaymentBtn({
+  formData,
+  restartForm,
+  setFormErrors,
+  totalPrice,
+}: PaymentBtnProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-
-  const validateForm = (): boolean => {
-    const errors: PricingPageFormDataErrors = {};
-
-    if (!formData.date) {
-      errors.date = t("pricing.errors.date");
-    }
-
-    if (!formData.time) {
-      errors.time = t("pricing.errors.time");
-    }
-
-    if (!formData.property.type) {
-      errors.propertyType = t("pricing.errors.propertyType");
-    }
-
-    if (!formData.property.area) {
-      errors.propertyArea = t("pricing.errors.propertyArea");
-    }
-
-    if (!formData.property.rooms) {
-      errors.propertyRooms = t("pricing.errors.propertyRooms");
-    }
-
-    if (!formData.address.street) {
-      errors.addressStreet = t("pricing.errors.addressStreet");
-    }
-
-    if (!formData.address.city) {
-      errors.addressCity = t("pricing.errors.addressCity");
-    }
-
-    if (!formData.address.psc) {
-      errors.addressPsc = t("pricing.errors.addressPsc");
-    }
-
-    if (!formData.address.house) {
-      errors.addressHouse = t("pricing.errors.addressHouse");
-    }
-
-    if (!formData.contacts.name) {
-      errors.contactsName = t("pricing.errors.contactsName");
-    }
-
-    if (!formData.contacts.email) {
-      errors.contactsEmail = t("pricing.errors.contactsEmail");
-    }
-
-    if (!formData.contacts.phone) {
-      errors.contactsPhone = t("pricing.errors.contactsPhone");
-    }
-
-    if (!formData.paymentMethod) {
-      errors.paymentMethod = t("pricing.errors.paymentMethod");
-    }
-
-    console.log(errors);
-    setFormErrors(errors);
-
-    return Object.keys(errors).length === 0;
-  };
 
   async function submit() {
     console.log(formData);
 
-    if (!validateForm()) {
+    if (!validatePricingPageForm(formData, t, setFormErrors)) {
       toast.error(t("toast.fill-all-fields"));
       return;
     }

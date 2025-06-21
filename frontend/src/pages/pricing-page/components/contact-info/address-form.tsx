@@ -14,6 +14,7 @@ import {
   PricingPageFormData,
   PricingPageFormDataErrors,
 } from "../../helpers/types";
+import DeliveryCalculator from "./delivery-calculator";
 
 export type AddressFormProps = {
   formData: PricingPageFormData;
@@ -61,7 +62,7 @@ export default function AddressForm({
         css={{ width: "100%", position: "relative" }}
         flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
       >
-        <Box>
+        {/* <Box>
           <FormInput
             name="city"
             label={t("pricing.address-form.city")}
@@ -76,8 +77,8 @@ export default function AddressForm({
               {formErrors.addressCity}
             </Title>
           )}
-        </Box>
-        <Box>
+        </Box> */}
+        {/* <Box>
           <FormInput
             name="street"
             label={t("pricing.address-form.street")}
@@ -91,8 +92,9 @@ export default function AddressForm({
               {formErrors.addressStreet}
             </Title>
           )}
-        </Box>
-        <Box>
+        </Box> */}
+        <DeliveryCalculator />
+        {/* <Box>
           <FormInput
             name="psc"
             label={t("pricing.address-form.psc")}
@@ -106,7 +108,7 @@ export default function AddressForm({
               {formErrors.addressPsc}
             </Title>
           )}
-        </Box>
+        </Box> */}
       </Flex>
       <Flex
         gap="2rem"

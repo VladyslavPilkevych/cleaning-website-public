@@ -15,7 +15,7 @@ import {
   StyledMessage,
   Spinner,
   StyledHeading,
-} from "./CheckoutForm.styles";
+} from "./checkout-form.styles";
 import { onlinePaymentStripeAPI } from "../../../../utils/api/api";
 
 type CheckoutFormProps = {

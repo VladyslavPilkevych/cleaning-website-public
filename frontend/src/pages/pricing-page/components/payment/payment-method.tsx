@@ -11,15 +11,17 @@ import {
   JustifyContent,
 } from "../../../../components/flex/flex.constants";
 import {
-  ChemicalCleaningType,
   PAYMENT_METHOD,
   PricingPageFormData,
   PricingPageFormDataErrors,
 } from "../../helpers/types";
 import { ChangeFormDataType } from "../../pricing-page";
 import Flex from "../../../../components/flex";
-import CheckoutForm from "./CheckoutForm";
+import CheckoutForm from "./checkout-form";
 import PaymentBtn from "./payment-btn";
+import { validatePricingPageForm } from "../../helpers/form-validation";
+import { toast } from "react-toastify";
+import { calculateTotalPrice } from "../../helpers/calculate-total-price";
 
 const SelectWrapper = styled.div`
   margin-top: 5rem;
@@ -69,21 +71,20 @@ export default function PaymentMethod({
 
   console.log(formData);
 
-  const totalPrice: number =
-    formData.services.reduce((total, service) => {
-      return total + service.price * service.count;
-    }, formData.totalPrice || 0) +
-    Number(formData?.property?.rooms) * 5 +
-    Number(formData?.property?.area) * 1.1 +
-    (formData.property.steps ? 10 : 0) +
-    (formData.windows.cleaning
-      ? Number(formData.windows.count) *
-        Number(formData?.windows?.count || 0) *
-        10
-      : 0) +
-    (formData.vacuum ? 14.99 : 0) +
-    (formData.chemicalCleaning.chemic ? 10 : 0) +
-    (formData.chemicalCleaning.type === ChemicalCleaningType.REGULAR ? 10 : 20);
+  const totalPrice = calculateTotalPrice(formData);
+
+  function onCardPaymentSelection() {
+    if (!validatePricingPageForm(formData, t, setFormErrors)) {
+      toast.error(t("toast.fill-all-fields"));
+      return;
+    }
+    handleChangeFormData("paymentMethod", PAYMENT_METHOD.CARD);
+  }
+
+  function onCashPaymentSelection() {
+    handleChangeFormData("paymentMethod", PAYMENT_METHOD.CASH);
+  }
+
   return (
     <>
       <Flex flexDirection={FlexDirection.COLUMN}>
@@ -94,9 +95,7 @@ export default function PaymentMethod({
         >
           <Option
             $active={formData.paymentMethod === PAYMENT_METHOD.CARD}
-            onClick={() =>
-              handleChangeFormData("paymentMethod", PAYMENT_METHOD.CARD)
-            }
+            onClick={onCardPaymentSelection}
           >
             {formData.paymentMethod === PAYMENT_METHOD.CARD ? (
               <SvgIcon src="/icons/check.svg" css={{ marginTop: "6px" }} />
@@ -117,9 +116,7 @@ export default function PaymentMethod({
           </Option>
           <Option
             $active={formData.paymentMethod === PAYMENT_METHOD.CASH}
-            onClick={() =>
-              handleChangeFormData("paymentMethod", PAYMENT_METHOD.CASH)
-            }
+            onClick={onCashPaymentSelection}
           >
             {formData.paymentMethod === PAYMENT_METHOD.CASH ? (
               <SvgIcon src="/icons/check.svg" css={{ marginTop: "6px" }} />
@@ -158,7 +155,9 @@ export default function PaymentMethod({
       </Flex>
       {totalPrice &&
         (formData.paymentMethod === PAYMENT_METHOD.CARD ? (
-          <CheckoutForm totalPrice={totalPrice} key={totalPrice} />
+          JSON.stringify(formErrors) === "{}" && (
+            <CheckoutForm totalPrice={totalPrice} key={totalPrice} />
+          )
         ) : (
           <PaymentBtn
             totalPrice={totalPrice}

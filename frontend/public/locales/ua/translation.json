@@ -145,6 +145,8 @@
       "city-helper-text": "За кожен додатковий кілометр понад 35км від Братислави буде +10 EUR. Максимум 100км від Братислави.",
       "street": "Вулиця",
       "street-placeholder": "Назва вулиці...",
+      "address-select": "Вулиця (Братиславська область)",
+      "address-select-placeholder": "Вулиця...",
       "house-number": "Номер будинку",
       "house-number-placeholder": "Ваш номер будинку...",
       "floor": "Поверх",

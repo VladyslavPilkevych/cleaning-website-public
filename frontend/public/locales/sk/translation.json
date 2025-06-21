@@ -145,6 +145,8 @@
       "city-helper-text": "Za každý ďalší kilometer nad 35 km od Bratislavy bude účtovaný poplatok +10 EUR. Maximálna vzdialenosť je 100 km od Bratislavy.",
       "street": "Ulica",
       "street-placeholder": "Názov ulice...",
+      "address-select": "Ulica (Bratislavsky kraj)",
+      "address-select-placeholder": "Ulica...",
       "house-number": "Číslo domu",
       "house-number-placeholder": "Vaše číslo domu...",
       "floor": "Poschodie",

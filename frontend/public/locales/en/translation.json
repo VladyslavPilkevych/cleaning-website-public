@@ -145,6 +145,8 @@
       "city-helper-text": "For every additional kilometer beyond 35 km from Bratislava, there will be an extra charge of +10 EUR. Maximum distance is 100 km from Bratislava.",
       "street": "Street",
       "street-placeholder": "Street name...",
+      "address-select": "Enter street name (Bratislava Region)",
+      "address-select-placeholder": "Street name...",
       "house-number": "House number",
       "house-number-placeholder": "Your house number...",
       "floor": "Floor",
