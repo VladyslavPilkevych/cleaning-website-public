@@ -14,18 +14,22 @@ import {
   PricingPageFormData,
   PricingPageFormDataErrors,
 } from "../../helpers/types";
-import DeliveryCalculator from "./delivery-calculator";
+import { DeliveryCalculator } from "./delivery-calculator";
 
 export type AddressFormProps = {
   formData: PricingPageFormData;
   handleChangeFormData: ChangeFormDataType;
   formErrors: PricingPageFormDataErrors;
+  priceDeliveryExtra: number | null;
+  setPriceDeliveryExtra: (price: number | null) => void;
 };
 
 export default function AddressForm({
   formData,
   handleChangeFormData,
   formErrors,
+  priceDeliveryExtra,
+  setPriceDeliveryExtra,
 }: AddressFormProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
@@ -93,7 +97,7 @@ export default function AddressForm({
             </Title>
           )}
         </Box> */}
-        <DeliveryCalculator />
+        <DeliveryCalculator priceDeliveryExtra={priceDeliveryExtra} setPriceDeliveryExtra={setPriceDeliveryExtra} />
         {/* <Box>
           <FormInput
             name="psc"

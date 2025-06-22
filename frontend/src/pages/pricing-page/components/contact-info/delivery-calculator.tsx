@@ -6,11 +6,8 @@ import { Label, HelperText, customStyles } from "./styled-async-select";
 import Box from "../../../../components/box";
 import { useTranslation } from "react-i18next";
 import { components } from "react-select";
-
-type OptionType = {
-  label: string;
-  value: string;
-};
+import ThemeColors from "../../../../utils/theme/colors";
+import { OptionType } from "../../helpers/types";
 
 const CENTER_COORDS = {
   latitude: 48.1486,
@@ -20,14 +17,21 @@ const CENTER_COORDS = {
 const MAX_RADIUS_KM = 100;
 const SURCHARGE_PER_KM = 0.8;
 
-const DeliveryCalculator: React.FC = () => {
+type DeliveryCalculatorProps = {
+  priceDeliveryExtra: number | null;
+  setPriceDeliveryExtra: (price: number | null) => void;
+};
+
+export function DeliveryCalculator({
+  priceDeliveryExtra,
+  setPriceDeliveryExtra,
+}: DeliveryCalculatorProps) {
   const { t, i18n } = useTranslation("translation");
 
   const [selectedAddress, setSelectedAddress] = useState<OptionType | null>(
     null
   );
   const [distanceKm, setDistanceKm] = useState<number | null>(null);
-  const [priceExtra, setPriceExtra] = useState<number | null>(null);
 
   const loadOptions = async (inputValue: string): Promise<OptionType[]> => {
     if (!inputValue) return [];
@@ -92,43 +96,31 @@ const DeliveryCalculator: React.FC = () => {
     setDistanceKm(km);
 
     if (km > MAX_RADIUS_KM) {
-      setPriceExtra(null);
+      setPriceDeliveryExtra(null);
       alert("Адрес за пределами зоны доставки (100 км)");
     } else {
       const surcharge = Math.round(km * SURCHARGE_PER_KM * 100) / 100;
-      setPriceExtra(surcharge);
+      setPriceDeliveryExtra(surcharge);
     }
   };
-
-  // return (
-  //   <div style={{ maxWidth: 500, margin: "auto" }}>
-  //     <h2>Адрес доставки (Братислава)</h2>
-  //     <AsyncSelect
-  //       loadOptions={loadOptions}
-  //       onChange={handleChange}
-  //       placeholder="Введите улицу"
-  //       cacheOptions
-  //       defaultOptions
-  //     />
-
-  //     {distanceKm !== null && (
-  //       <p>📏 Расстояние от центра: {distanceKm.toFixed(2)} км</p>
-  //     )}
-  //     {priceExtra !== null && (
-  //       <p>💰 Надбавка: {priceExtra.toFixed(2)} EUR</p>
-  //     )}
-  //   </div>
-  // );
 
   const customComponents = {
     LoadingMessage: (props: any) => (
       <components.LoadingMessage {...props}>
-        <span style={{ color: "white", fontFamily: "Montserrat" }}>Загрузка...</span>
+        <span
+          style={{ color: ThemeColors.Secondary, fontFamily: "Montserrat" }}
+        >
+          {t("pricing.address-form.address-loading")}
+        </span>
       </components.LoadingMessage>
     ),
     NoOptionsMessage: (props: any) => (
       <components.NoOptionsMessage {...props}>
-        <span style={{ color: "white", fontFamily: "Montserrat" }}>Ничего не найдено</span>
+        <span
+          style={{ color: ThemeColors.Secondary, fontFamily: "Montserrat" }}
+        >
+          {t("pricing.address-form.address-no-options")}
+        </span>
       </components.NoOptionsMessage>
     ),
   };
@@ -144,17 +136,22 @@ const DeliveryCalculator: React.FC = () => {
         styles={customStyles}
         components={customComponents}
       />
+
       {distanceKm !== null && (
-        <HelperText>Расстояние: {distanceKm.toFixed(2)} км</HelperText>
+        <HelperText style={{ marginTop: "1rem" }}>{`${t(
+          "pricing.address-form.address-distance"
+        )} ${distanceKm.toFixed(2)} ${t(
+          "pricing.address-form.address-km"
+        )}`}</HelperText>
       )}
 
-      {priceExtra !== null && (
-        <HelperText style={{ top: "4rem" }}>
-          Надбавка: {priceExtra.toFixed(2)} EUR
+      {priceDeliveryExtra !== null && (
+        <HelperText>
+          {`${t(
+            "pricing.address-form.address-additional-price"
+          )} ${priceDeliveryExtra.toFixed(2)} EUR`}
         </HelperText>
       )}
     </Box>
   );
-};
-
-export default DeliveryCalculator;
+}

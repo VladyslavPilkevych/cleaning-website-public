@@ -20,13 +20,14 @@ export const customStyles = {
   control: (provided: any) => ({
     ...provided,
     backgroundColor: ThemeColors.Accent,
+    cursor: "pointer",
     border: "none",
     borderRadius: 3,
     padding: "2px 5px",
     color: ThemeColors.White,
     fontFamily: "Montserrat",
     fontSize: "16px",
-    width: "90%",
+    width: "98%",
     boxShadow: "none",
   }),
   input: (provided: any) => ({
@@ -46,18 +47,24 @@ export const customStyles = {
   }),
   menu: (provided: any) => ({
     ...provided,
-    backgroundColor: ThemeColors.Accent,
+    backgroundColor: ThemeColors.Light,
     borderRadius: 3,
     fontFamily: "Montserrat",
-    color: ThemeColors.White,
+    color: ThemeColors.Secondary,
     zIndex: 100,
+    width: "98%",
   }),
   option: (provided: any, state: any) => ({
     ...provided,
     backgroundColor: state.isFocused
-      ? ThemeColors.Dark
+      ? ThemeColors.Primary
       : ThemeColors.Accent,
     color: ThemeColors.White,
     cursor: "pointer",
+    padding: "0.5rem 1rem",
+    fontSize: "16px",
+    fontFamily: "Montserrat",
+    fontWeight: "regular",
+    transition: "all 0.2s ease-in-out",
   }),
 };

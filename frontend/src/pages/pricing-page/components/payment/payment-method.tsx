@@ -57,6 +57,7 @@ type PaymentMethodProps = {
   setFormErrors: React.Dispatch<
     React.SetStateAction<PricingPageFormDataErrors>
   >;
+  priceDeliveryExtra: number | null;
 };
 
 export default function PaymentMethod({
@@ -65,13 +66,14 @@ export default function PaymentMethod({
   handleChangeFormData,
   restartForm,
   setFormErrors,
+  priceDeliveryExtra,
 }: PaymentMethodProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   console.log(formData);
 
-  const totalPrice = calculateTotalPrice(formData);
+  const totalPrice = calculateTotalPrice(formData, priceDeliveryExtra);
 
   function onCardPaymentSelection() {
     if (!validatePricingPageForm(formData, t, setFormErrors)) {

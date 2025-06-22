@@ -1,6 +1,9 @@
 import { ChemicalCleaningType, PricingPageFormData } from "./types";
 
-export function calculateTotalPrice(formData: PricingPageFormData): number {
+export function calculateTotalPrice(
+  formData: PricingPageFormData,
+  priceDeliveryExtra: number | null
+): number {
   return (
     formData.services.reduce((total, service) => {
       return total + service.price * service.count;
@@ -13,6 +16,9 @@ export function calculateTotalPrice(formData: PricingPageFormData): number {
       : 0) +
     (formData.vacuum ? 14.99 : 0) +
     (formData.chemicalCleaning?.chemic ? 10 : 0) +
-    (formData.chemicalCleaning?.type === ChemicalCleaningType.REGULAR ? 10 : 20)
+    (formData.chemicalCleaning?.type === ChemicalCleaningType.REGULAR
+      ? 10
+      : 20) +
+    (priceDeliveryExtra || 0)
   );
 }

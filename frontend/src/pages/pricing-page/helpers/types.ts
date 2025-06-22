@@ -1,5 +1,10 @@
 import { Dayjs } from "dayjs";
 
+export type OptionType = {
+  label: string;
+  value: string;
+};
+
 export type ServiceCardType = {
   id: string;
   src: string;

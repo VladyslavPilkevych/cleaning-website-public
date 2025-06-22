@@ -51,6 +51,9 @@ export default function PricingPage() {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
+  const [priceDeliveryExtra, setPriceDeliveryExtra] = useState<number | null>(
+    null
+  );
   const [formData, setFormData] = useState<PricingPageFormData>(
     defaultPricingPageFormData
   );
@@ -89,135 +92,138 @@ export default function PricingPage() {
   };
 
   return (
-      <Box>
-        <ImageComponent
-          height="500px"
-          asBackground
-          src="/images/pricing-header.png"
-        />
+    <Box>
+      <ImageComponent
+        height="500px"
+        asBackground
+        src="/images/pricing-header.png"
+      />
 
-        <Flex
-          justifyContent={JustifyContent.SPACE_EVENLY}
-          css={{ margin: "4rem auto 0" }}
-          flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
-          gap="2rem"
-        >
-          <DateCalendarValue
-            formData={formData}
-            formErrors={formErrors}
-            handleChangeFormData={handleChangeFormData}
-          />
-          <TimePicker
-            formData={formData}
-            handleChangeFormData={handleChangeFormData}
-            formErrors={formErrors}
-          />
-        </Flex>
-
-        <Property
+      <Flex
+        justifyContent={JustifyContent.SPACE_EVENLY}
+        css={{ margin: "4rem auto 0" }}
+        flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
+        gap="2rem"
+      >
+        <DateCalendarValue
+          formData={formData}
           formErrors={formErrors}
-          formData={formData}
           handleChangeFormData={handleChangeFormData}
         />
-
-        <Separator />
-
-        <Windows
+        <TimePicker
           formData={formData}
           handleChangeFormData={handleChangeFormData}
+          formErrors={formErrors}
         />
+      </Flex>
 
-        <Separator />
+      <Property
+        formErrors={formErrors}
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+      />
 
-        <Flex>
-          <Title
-            size={isMobile ? TitleSize.H4 : TitleSize.H2}
-            fontWeight={FontWeight.Bold}
-            css={{ margin: "4rem auto 0" }}
-          >
-            {t("pricing.services.title")}
-          </Title>
-        </Flex>
+      <Separator />
+
+      <Windows
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+      />
+
+      <Separator />
+
+      <Flex>
+        <Title
+          size={isMobile ? TitleSize.H4 : TitleSize.H2}
+          fontWeight={FontWeight.Bold}
+          css={{ margin: "4rem auto 0" }}
+        >
+          {t("pricing.services.title")}
+        </Title>
+      </Flex>
+      <CardContainer
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+        cards={serviceCards}
+        translationPath="pricing.services.cards"
+      />
+
+      <Checkbox
+        text={t("pricing.vacuum-cleaner")}
+        price="14.99 EUR"
+        icon={<SvgIcon src="/icons/vacuum.svg" />}
+        formData={formData.vacuum}
+        handleChangeFormData={handleChangeFormData}
+        name="vacuum"
+      />
+
+      <Chemics
+        formData={formData}
+        handleChangeFormData={handleChangeFormData}
+      />
+
+      <Separator />
+
+      <Checkbox
+        text={t("pricing.chemical-cleaning")}
+        css={{ marginTop: "2rem" }}
+      >
         <CardContainer
           formData={formData}
           handleChangeFormData={handleChangeFormData}
-          cards={serviceCards}
-          translationPath="pricing.services.cards"
+          cards={chemicalCleaningCards}
+          translationPath="pricing.services.cleaning-cards"
         />
+      </Checkbox>
 
-        <Checkbox
-          text={t("pricing.vacuum-cleaner")}
-          price="14.99 EUR"
-          icon={<SvgIcon src="/icons/vacuum.svg" />}
-          formData={formData.vacuum}
-          handleChangeFormData={handleChangeFormData}
-          name="vacuum"
-        />
+      <Separator />
 
-        <Chemics
-          formData={formData}
-          handleChangeFormData={handleChangeFormData}
-        />
+      <AddressForm
+        formData={formData}
+        formErrors={formErrors}
+        handleChangeFormData={handleChangeFormData}
+        priceDeliveryExtra={priceDeliveryExtra}
+        setPriceDeliveryExtra={setPriceDeliveryExtra}
+      />
 
-        <Separator />
+      <ContactForm
+        formData={formData}
+        formErrors={formErrors}
+        handleChangeFormData={handleChangeFormData}
+      />
 
-        <Checkbox
-          text={t("pricing.chemical-cleaning")}
-          css={{ marginTop: "2rem" }}
+      <PaymentMethod
+        formData={formData}
+        formErrors={formErrors}
+        handleChangeFormData={handleChangeFormData}
+        restartForm={restartForm}
+        setFormErrors={setFormErrors}
+        priceDeliveryExtra={priceDeliveryExtra}
+      />
+
+      <Separator />
+
+      <ImageComponent
+        height={isMobile ? "300px" : "500px"}
+        asBackground
+        src="/images/pricing-vary.png"
+        css={{
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${process.env.PUBLIC_URL}/images/pricing-vary.png)`,
+        }}
+      >
+        <Title
+          size={isMobile ? TitleSize.H3 : TitleSize.H1}
+          fontWeight={FontWeight.Bold}
+          color={ThemeColors.White}
         >
-          <CardContainer
-            formData={formData}
-            handleChangeFormData={handleChangeFormData}
-            cards={chemicalCleaningCards}
-            translationPath="pricing.services.cleaning-cards"
-          />
-        </Checkbox>
+          {t("prices-vary.title")}
+        </Title>
+      </ImageComponent>
 
-        <Separator />
-
-        <AddressForm
-          formData={formData}
-          formErrors={formErrors}
-          handleChangeFormData={handleChangeFormData}
-        />
-
-        <ContactForm
-          formData={formData}
-          formErrors={formErrors}
-          handleChangeFormData={handleChangeFormData}
-        />
-
-        <PaymentMethod
-          formData={formData}
-          formErrors={formErrors}
-          handleChangeFormData={handleChangeFormData}
-          restartForm={restartForm}
-          setFormErrors={setFormErrors}
-        />
-
-        <Separator />
-
-        <ImageComponent
-          height={isMobile ? "300px" : "500px"}
-          asBackground
-          src="/images/pricing-vary.png"
-          css={{
-            alignItems: "center",
-            display: "flex",
-            justifyContent: "center",
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${process.env.PUBLIC_URL}/images/pricing-vary.png)`,
-          }}
-        >
-          <Title
-            size={isMobile ? TitleSize.H3 : TitleSize.H1}
-            fontWeight={FontWeight.Bold}
-            color={ThemeColors.White}
-          >
-            {t("prices-vary.title")}
-          </Title>
-        </ImageComponent>
-
-        <PricesVary showTitle={false} />
-      </Box>
+      <PricesVary showTitle={false} />
+    </Box>
   );
 }
