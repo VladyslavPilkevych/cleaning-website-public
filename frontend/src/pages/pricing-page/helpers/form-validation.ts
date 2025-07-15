@@ -28,17 +28,17 @@ export function validatePricingPageForm(
     errors.propertyRooms = t("pricing.errors.propertyRooms");
   }
 
-  if (!formData.address.street) {
-    errors.addressStreet = t("pricing.errors.addressStreet");
-  }
+  // if (!formData.address.street) {
+  //   errors.addressStreet = t("pricing.errors.addressStreet");
+  // }
 
-  if (!formData.address.city) {
-    errors.addressCity = t("pricing.errors.addressCity");
-  }
+  // if (!formData.address.city) {
+  //   errors.addressCity = t("pricing.errors.addressCity");
+  // }
 
-  if (!formData.address.psc) {
-    errors.addressPsc = t("pricing.errors.addressPsc");
-  }
+  // if (!formData.address.psc) {
+  //   errors.addressPsc = t("pricing.errors.addressPsc");
+  // }
 
   if (!formData.address.house) {
     errors.addressHouse = t("pricing.errors.addressHouse");
@@ -60,7 +60,7 @@ export function validatePricingPageForm(
     errors.paymentMethod = t("pricing.errors.paymentMethod");
   }
 
-  console.log(errors);
+  console.log("errors:", errors);
   setFormErrors(errors);
 
   return Object.keys(errors).length === 0;

@@ -45,9 +45,10 @@ export function superbaseGetAllOrdersAPI() {
 
 type PaymentFormData = {
   amount: number;
+  paymentMethod?: string;
   currency?: string;
 };
 
-export function onlinePaymentStripeAPI({ amount, currency = 'eur' }: PaymentFormData) {
-  return api.post(`${BASE_URL}/payment/create-payment-intent`, { params: { amount, currency } });
+export function onlinePaymentStripeAPI({ amount, currency = 'eur', paymentMethod }: PaymentFormData) {
+  return api.post(`${BASE_URL}/payment/create-payment-intent`, { params: { amount, currency, paymentMethod } });
 }

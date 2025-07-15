@@ -66,32 +66,83 @@ function CheckoutForm({ totalPrice }: CheckoutFormProps) {
     setIsLoading(true);
     const cardElement = elements.getElement(CardElement);
 
-    const { paymentMethod, error } = await stripe.createPaymentMethod({
-      type: "card",
-      card: cardElement!,
-      billing_details: {
-        email,
-      },
-    });
+    // const { paymentMethod, error } = await stripe.createPaymentMethod({
+    //   type: "card",
+    //   card: cardElement!,
+    //   billing_details: {
+    //     email,
+    //   },
+    // });
     
-    if (!isValidEmail(email)) {
-      setEmailError("Please enter a valid email address.");
-      return;
-    } else {
-      setEmailError(null);
-    }
+    // if (!isValidEmail(email)) {
+    //   setEmailError("Please enter a valid email address.");
+    //   return;
+    // } else {
+    //   setEmailError(null);
+    // }
     
-    if (error) {
-      setMessage(error.message || "Something went wrong");
-    } else {
-      setMessage("Payment method created: " + paymentMethod.id);
-      const res = await onlinePaymentStripeAPI({
-        amount: Math.round(totalPrice * 100),
-      });
-      console.log(res);
-    }
+    // if (error) {
+    //   setMessage(error.message || "Something went wrong");
+    // } else {
+    //   setMessage("Payment method created: " + paymentMethod.id);
+    //   const res = await onlinePaymentStripeAPI({
+    //     amount: Math.round(totalPrice * 100),
+    //   });
+    //   console.log(res);
+    // }
 
+    // setIsLoading(false);
+
+
+     // -------------------------------------------------------------------
+
+    // if (!isValidEmail(email)) {
+    //   setEmailError("Please enter a valid email address.");
+    //   setIsLoading(false);
+    //   return;
+    // }
+
+    setEmailError(null);
+
+  // 1. Создание PaymentMethod
+  const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
+    type: "card",
+    card: cardElement!,
+    billing_details: { email },
+  });
+
+  if (pmError || !paymentMethod) {
+    setMessage(pmError?.message || "Failed to create payment method");
     setIsLoading(false);
+    return;
+  }
+
+  // 2. Запрос на сервер для создания PaymentIntent
+  try {
+    const res = await onlinePaymentStripeAPI({
+      amount: Math.round(totalPrice * 100), paymentMethod: paymentMethod.id
+    });
+
+    const clientSecret = res.data.clientSecret;
+
+    // 3. Подтверждение платежа
+    const confirmResult = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: paymentMethod.id,
+    });
+
+    if (confirmResult.error) {
+      setMessage(confirmResult.error.message || "Payment failed");
+    } else if (confirmResult.paymentIntent.status === "succeeded") {
+      setMessage("✅ Payment successful!");
+    } else {
+      setMessage(`Unexpected status: ${confirmResult.paymentIntent.status}`);
+    }
+  } catch (serverError: any) {
+    setMessage(serverError.message || "Server error");
+  }
+
+  setIsLoading(false);
+
   };
 
   const isValidEmail = (email: string) => {
