@@ -8,9 +8,12 @@ const emailRoutes = require("./routes/emailRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const superbaseRoutes = require("./routes/superbaseRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
+const webhookRoutes = require("./routes/webhookRoutes");
 const server = express();
 
 dotenv.config();
+
+server.use("/api/webhook", webhookRoutes);
 
 server.use(express.static(__dirname + "/public"));
 server.use(express.json());

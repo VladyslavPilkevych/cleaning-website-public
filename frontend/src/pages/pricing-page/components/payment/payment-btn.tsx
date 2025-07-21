@@ -65,30 +65,8 @@ export default function PaymentBtn({
         });
         console.error("Error submitting contact form:", err);
       });
-
-    // await savePricesFormAPI(formData)
-    //   .then((rsp) => {
-    //     if (rsp.status === 200) {
-    //       toast.update(toastId, {
-    //         render: t("toast.success"),
-    //         type: "success",
-    //         isLoading: false,
-    //         autoClose: 3000,
-    //       });
-    //       console.log("Contact form submitted successfully");
-    //       restartForm();
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     toast.update(toastId, {
-    //       render: t("toast.error"),
-    //       type: "error",
-    //       isLoading: false,
-    //       autoClose: 3000,
-    //     });
-    //     console.error("Error submitting contact form:", err);
-    //   });
   }
+
   return (
     <Flex
       justifyContent={JustifyContent.CENTER}

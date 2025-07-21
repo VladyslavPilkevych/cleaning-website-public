@@ -20,12 +20,13 @@ import { onlinePaymentStripeAPI } from "../../../../utils/api/api";
 
 type CheckoutFormProps = {
   totalPrice: number;
+  formEmail: string | null;
 };
 
-function CheckoutForm({ totalPrice }: CheckoutFormProps) {
+function CheckoutForm({ totalPrice, formEmail }: CheckoutFormProps) {
   const stripe = useStripe();
   const elements = useElements();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(formEmail || "");
   const [emailError, setEmailError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -96,15 +97,14 @@ function CheckoutForm({ totalPrice }: CheckoutFormProps) {
 
      // -------------------------------------------------------------------
 
-    // if (!isValidEmail(email)) {
-    //   setEmailError("Please enter a valid email address.");
-    //   setIsLoading(false);
-    //   return;
-    // }
+    if (!isValidEmail(email)) {
+      setEmailError("Please enter a valid email address.");
+      setIsLoading(false);
+      return;
+    }
 
     setEmailError(null);
 
-  // 1. Создание PaymentMethod
   const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
     type: "card",
     card: cardElement!,
@@ -117,15 +117,15 @@ function CheckoutForm({ totalPrice }: CheckoutFormProps) {
     return;
   }
 
-  // 2. Запрос на сервер для создания PaymentIntent
   try {
     const res = await onlinePaymentStripeAPI({
-      amount: Math.round(totalPrice * 100), paymentMethod: paymentMethod.id
+      amount: Math.round(totalPrice * 100),
+      name: "test",  // TODO
+      email,
     });
 
     const clientSecret = res.data.clientSecret;
 
-    // 3. Подтверждение платежа
     const confirmResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: paymentMethod.id,
     });

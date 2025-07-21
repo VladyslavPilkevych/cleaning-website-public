@@ -22,6 +22,8 @@ import PaymentBtn from "./payment-btn";
 import { validatePricingPageForm } from "../../helpers/form-validation";
 import { toast } from "react-toastify";
 import { calculateTotalPrice } from "../../helpers/calculate-total-price";
+import { Elements } from "@stripe/react-stripe-js";
+import { stripePromise } from "../../../../utils/api/stripe";
 
 const SelectWrapper = styled.div`
   margin-top: 5rem;
@@ -86,6 +88,8 @@ export default function PaymentMethod({
   function onCashPaymentSelection() {
     handleChangeFormData("paymentMethod", PAYMENT_METHOD.CASH);
   }
+
+  console.log("Stripe key", process.env.REACT_APP_STRIPE_KEY);
 
   return (
     <>
@@ -157,8 +161,15 @@ export default function PaymentMethod({
       </Flex>
       {totalPrice &&
         (formData.paymentMethod === PAYMENT_METHOD.CARD ? (
-          JSON.stringify(formErrors) === "{}" && (
-            <CheckoutForm totalPrice={totalPrice} key={totalPrice} />
+          JSON.stringify(formErrors) === "{}" && stripePromise && (
+              <Elements
+                stripe={stripePromise}
+                options={{
+                  appearance: { theme: "stripe" },
+                }}
+              >
+            <CheckoutForm totalPrice={totalPrice} key={totalPrice} formEmail={formData.contacts.email} />
+            </Elements>
           )
         ) : (
           <PaymentBtn
