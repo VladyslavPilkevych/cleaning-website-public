@@ -15,8 +15,8 @@ type ContactFormData = {
   message: string;
 };
 
-export function contactFormAPI(formData: ContactFormData) {
-  return api.post(`${BASE_URL}/contacts/send`, formData);
+export function contactFormAPI(formData: ContactFormData, language: string) {
+  return api.post(`${BASE_URL}/contacts/send`, formData, { params: { language } });
 }
 
 export function savePricesFormAPI(formData: PricingPageFormData) {
@@ -48,8 +48,14 @@ type PaymentFormData = {
   currency?: string;
   name: string;
   email: string;
+  language: string;
+  formData: PricingPageFormData;
 };
 
-export function onlinePaymentStripeAPI({ amount, currency = 'eur', name, email }: PaymentFormData) {
-  return api.post(`${BASE_URL}/payment/create-payment-intent`, { params: { amount, currency, name, email } });
+export function onlinePaymentStripeAPI({ amount, currency = 'eur', name, email, language, formData }: PaymentFormData) {
+
+  const formDataString = JSON.stringify(formData);
+  console.log(formDataString);
+
+  return api.post(`${BASE_URL}/payment/create-payment-intent`, { params: { amount, currency, name, email, language, formData: formDataString } });
 }

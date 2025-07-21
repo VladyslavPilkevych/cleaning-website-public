@@ -6,7 +6,7 @@ const router = express.Router()
 router.post('/submit-pricing-form', async (req, res) => {
   try {
     const formData = req.body.params.formData;
-    console.log("Received body:", formData); 
+    // console.log("Received body:", formData); 
 
     const { data, error } = await supabase
       .from('pricing_page_form_data')

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
+const translations = require("./emailLocales");
 
 dotenv.config();
 
@@ -18,11 +19,11 @@ const transporter = nodemailer.createTransport({
 
 router.post("/send", async (req, res) => {
   try {
-    const { name, phone, message, email } = req.body;
+    const { name, phone, message, email, language } = req.body.params;
     if (!name || !phone || !message || !email) {
       return res
         .status(400)
-        .send({ status: 400, message: "Missing required fields" });
+        .send({ status: 400, message: translations[language].missingFields });
     }
 
     
@@ -32,9 +33,9 @@ router.post("/send", async (req, res) => {
       subject: `${name} (${phone})`,
       text: message,
       html: `
-        <p>Hello, ${name}</p>
-        <p>Thank you for your message</p>
-        <p>Our team will contact you soon</p>
+        <p>${translations[language].greeting}, ${name}</p>
+        <p>${translations[language].thanks}</p>
+        <p>${translations[language].followup}</p>
         `,
     });
     
@@ -44,17 +45,18 @@ router.post("/send", async (req, res) => {
       subject: `New support request from ${name} (${phone})`,
       text: message,
       html: `
-        <p>Name: ${name}</p>
-        <p>Phone: ${phone}</p>
-        <p>Message: ${message}</p>
+        <p>Ім'я: ${name}</p>
+        <p>Телефон: ${phone}</p>
+        <p>Повідомлення: ${message}</p>
+        <p>Мова спілкування: ${language}</p>
         `,
     });
 
-    return res.status(200).send({ status: 200, message: "Success" });
+    return res.status(200).send({ status: 200, message: translations[language].success });
   } catch (e) {
     return res
       .status(500)
-      .send({ status: 500, message: "Internal server error" });
+      .send({ status: 500, message: translations[language].error });
   }
 });
 

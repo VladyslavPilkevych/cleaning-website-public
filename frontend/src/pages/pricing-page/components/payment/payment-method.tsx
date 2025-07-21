@@ -168,7 +168,7 @@ export default function PaymentMethod({
                   appearance: { theme: "stripe" },
                 }}
               >
-            <CheckoutForm totalPrice={totalPrice} key={totalPrice} formEmail={formData.contacts.email} />
+            <CheckoutForm totalPrice={totalPrice} key={totalPrice} formEmail={formData.contacts.email} formData={formData} />
             </Elements>
           )
         ) : (

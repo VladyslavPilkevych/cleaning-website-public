@@ -17,13 +17,16 @@ import {
   StyledHeading,
 } from "./checkout-form.styles";
 import { onlinePaymentStripeAPI } from "../../../../utils/api/api";
+import { useTranslation } from "react-i18next";
+import { PricingPageFormData } from "../../helpers/types";
 
 type CheckoutFormProps = {
   totalPrice: number;
   formEmail: string | null;
+  formData: PricingPageFormData;
 };
 
-function CheckoutForm({ totalPrice, formEmail }: CheckoutFormProps) {
+function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
   const stripe = useStripe();
   const elements = useElements();
   const [email, setEmail] = useState(formEmail || "");
@@ -33,6 +36,9 @@ function CheckoutForm({ totalPrice, formEmail }: CheckoutFormProps) {
   const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(
     null
   );
+
+  const language = useTranslation().i18n.language;
+
   useEffect(() => {
     if (!stripe || !totalPrice) return;
   
@@ -120,8 +126,10 @@ function CheckoutForm({ totalPrice, formEmail }: CheckoutFormProps) {
   try {
     const res = await onlinePaymentStripeAPI({
       amount: Math.round(totalPrice * 100),
-      name: "test",  // TODO
+      name: formData.contacts.name ?? "",
       email,
+      language,
+      formData,
     });
 
     const clientSecret = res.data.clientSecret;

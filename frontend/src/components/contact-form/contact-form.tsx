@@ -38,6 +38,7 @@ export default function ContactForm({
 }: ContactFormProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 475px)" });
+  const language = useTranslation().i18n.language;
 
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
@@ -93,7 +94,7 @@ export default function ContactForm({
 
     const toastId = toast.info(t("toast.sending"), { autoClose: false });
 
-    await contactFormAPI(formData)
+    await contactFormAPI(formData, language)
       .then((rsp) => {
         if (rsp.status === 200) {
           toast.update(toastId, {
