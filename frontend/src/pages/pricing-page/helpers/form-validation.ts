@@ -5,6 +5,7 @@ export function validatePricingPageForm(
   formData: PricingPageFormData,
   t: TFunction,
   setFormErrors: (errors: PricingPageFormDataErrors) => void,
+  shouldValidatePaymentMethod: boolean = true,
 ): boolean {
   const errors: PricingPageFormDataErrors = {};
 
@@ -56,7 +57,7 @@ export function validatePricingPageForm(
     errors.contactsPhone = t("pricing.errors.contactsPhone");
   }
 
-  if (!formData.paymentMethod) {
+  if (shouldValidatePaymentMethod && !formData.paymentMethod) {
     errors.paymentMethod = t("pricing.errors.paymentMethod");
   }
 

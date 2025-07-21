@@ -78,7 +78,7 @@ export default function PaymentMethod({
   const totalPrice = calculateTotalPrice(formData, priceDeliveryExtra);
 
   function onCardPaymentSelection() {
-    if (!validatePricingPageForm(formData, t, setFormErrors)) {
+    if (!validatePricingPageForm(formData, t, setFormErrors, false)) {
       toast.error(t("toast.fill-all-fields"));
       return;
     }
