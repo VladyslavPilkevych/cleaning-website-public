@@ -27,9 +27,6 @@ router.post(
   async (req, res) => {
     const sig = req.headers["stripe-signature"];
 
-    // console.log("LOLKA");
-    // console.log("✅ Webhook received:", req.headers["stripe-signature"]);
-
     let event;
     try {
       event = stripe.webhooks.constructEvent(
@@ -41,8 +38,6 @@ router.post(
       console.error("Webhook signature verification failed:", err.message);
       return res.status(400).send(`Webhook Error: ${err.message}`);
     }
-
-    // console.log("event, type", event.type);
 
     if (event.type === "payment_intent.succeeded") {
       const paymentIntent = event.data.object;
@@ -110,7 +105,6 @@ router.post(
       // }
       
 
-      console.log("formData", formData);
 
       const amountFormatted = (amount / 100).toFixed(2);
       try {

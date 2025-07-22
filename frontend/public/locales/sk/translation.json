@@ -177,6 +177,10 @@
     },
     "total": "Celkom:",
     "prepayment-alert": "Ceny na stránke sú približné a môžu sa zmeniť v závislosti od znečistenia, plochy a ďalších potrieb.",
+    "payment-success": "Platba úspešná! Skontrolujte svoj email!",
+    "payment-error": "Platba zlyhala. Skúste neskôr.",
+    "payment-unexpected": "Nepredpovedaný stav: ",
+    "payment-server-error": "Chyba servera. Skúste neskôr.",
     "errors": {
       "date": "Prosím, vyberte dátum.",
       "time": "Prosím, vyberte čas.",

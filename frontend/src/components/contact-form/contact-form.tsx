@@ -85,7 +85,6 @@ export default function ContactForm({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Form data:", formData);
   
     if (!validateForm()) {
       toast.error(t("toast.fill-all-fields"));

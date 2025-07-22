@@ -176,6 +176,10 @@
       "cash": "Pay in cash"
     },
     "total": "Total:",
+    "payment-success": "Payment successful! Check your email!",
+    "payment-error": "Payment failed. Try later.",
+    "payment-unexpected": "Unexpected status: ",
+    "payment-server-error": "Server error. Try later.",
     "prepayment-alert": "The prices on the website are approximate and may change depending on pollution, area, and additional needs.",
     "errors": {
       "date": "Please select a date.",

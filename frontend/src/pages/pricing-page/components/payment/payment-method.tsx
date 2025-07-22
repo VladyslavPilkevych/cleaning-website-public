@@ -73,8 +73,6 @@ export default function PaymentMethod({
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
-  console.log(formData);
-
   const totalPrice = calculateTotalPrice(formData, priceDeliveryExtra);
 
   function onCardPaymentSelection() {

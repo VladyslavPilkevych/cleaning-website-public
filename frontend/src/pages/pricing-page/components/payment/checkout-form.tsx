@@ -19,6 +19,7 @@ import {
 import { onlinePaymentStripeAPI } from "../../../../utils/api/api";
 import { useTranslation } from "react-i18next";
 import { PricingPageFormData } from "../../helpers/types";
+import ThemeColors from "../../../../utils/theme/colors";
 
 type CheckoutFormProps = {
   totalPrice: number;
@@ -26,16 +27,23 @@ type CheckoutFormProps = {
   formData: PricingPageFormData;
 };
 
+enum MessageTypeEnum {
+  ERROR = "error",
+  SUCCESS = "success",
+}
+
 function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
   const stripe = useStripe();
   const elements = useElements();
   const [email, setEmail] = useState(formEmail || "");
   const [emailError, setEmailError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const [messageType, setMessageType] = useState<MessageTypeEnum | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(
     null
   );
+  const { t } = useTranslation("translation");
 
   const language = useTranslation().i18n.language;
 
@@ -73,36 +81,6 @@ function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
     setIsLoading(true);
     const cardElement = elements.getElement(CardElement);
 
-    // const { paymentMethod, error } = await stripe.createPaymentMethod({
-    //   type: "card",
-    //   card: cardElement!,
-    //   billing_details: {
-    //     email,
-    //   },
-    // });
-    
-    // if (!isValidEmail(email)) {
-    //   setEmailError("Please enter a valid email address.");
-    //   return;
-    // } else {
-    //   setEmailError(null);
-    // }
-    
-    // if (error) {
-    //   setMessage(error.message || "Something went wrong");
-    // } else {
-    //   setMessage("Payment method created: " + paymentMethod.id);
-    //   const res = await onlinePaymentStripeAPI({
-    //     amount: Math.round(totalPrice * 100),
-    //   });
-    //   console.log(res);
-    // }
-
-    // setIsLoading(false);
-
-
-     // -------------------------------------------------------------------
-
     if (!isValidEmail(email)) {
       setEmailError("Please enter a valid email address.");
       setIsLoading(false);
@@ -119,6 +97,7 @@ function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
 
   if (pmError || !paymentMethod) {
     setMessage(pmError?.message || "Failed to create payment method");
+    setMessageType(MessageTypeEnum.ERROR);
     setIsLoading(false);
     return;
   }
@@ -139,14 +118,18 @@ function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
     });
 
     if (confirmResult.error) {
-      setMessage(confirmResult.error.message || "Payment failed");
+      setMessage(confirmResult.error.message || t("payment-error"));
+      setMessageType(MessageTypeEnum.ERROR);
     } else if (confirmResult.paymentIntent.status === "succeeded") {
-      setMessage("✅ Payment successful!");
+      setMessage(t("payment-success"));
+      setMessageType(MessageTypeEnum.SUCCESS);
     } else {
-      setMessage(`Unexpected status: ${confirmResult.paymentIntent.status}`);
+      setMessage(t("payment-unexpected") + `${confirmResult.paymentIntent.status}`);
+      setMessageType(MessageTypeEnum.ERROR);
     }
   } catch (serverError: any) {
-    setMessage(serverError.message || "Server error");
+    setMessage(serverError.message || t("payment-server-error"));
+    setMessageType(MessageTypeEnum.ERROR);
   }
 
   setIsLoading(false);
@@ -202,7 +185,7 @@ function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
         )}
       </StyledButton>
 
-      {message && <StyledMessage>{message}</StyledMessage>}
+      {message && <StyledMessage style={{color: messageType === MessageTypeEnum.SUCCESS ? ThemeColors.Primary : ThemeColors.Warning}}>{message}</StyledMessage>}
     </StyledForm>
   );
 }

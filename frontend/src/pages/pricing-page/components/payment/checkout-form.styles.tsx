@@ -57,7 +57,6 @@ const StyledPaymentElement = styled(PaymentElement)`
 `;
 
 const StyledMessage = styled.div`
-  color: ${ThemeColors.Warning};
   font-size: 16px;
   line-height: 20px;
   padding-top: 12px;

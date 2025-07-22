@@ -29,7 +29,6 @@ export default function Chemics({
           <Checkbox
             checked={formData?.chemicalCleaning?.chemic ?? false}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              console.log("test ")
               handleChangeFormData?.(
                 "chemicalCleaning.chemic",
                 event.target.checked

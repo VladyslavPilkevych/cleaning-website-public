@@ -10,7 +10,6 @@ const stripe = require("stripe")(process.env.STRIPE_KEY, {
 router.post("/create-payment-intent", async (req, res) => {
   try {
     const { amount, currency = 'eur', name, email, language, formData } = req.body.params;
-    console.log("formData", formData);
 
     const parsedFormData = JSON.parse(formData);
 

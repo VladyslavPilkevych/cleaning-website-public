@@ -32,7 +32,6 @@ export default function CardContainer({
   //   setSelectedCards((prev) => {
   //     const existingCard = prev.find((card) => card.id === id);
 
-  //     console.log(prev, existingCard);
   //     if (existingCard) {
   //       return prev.filter((card) => card.id !== id);
   //     } else {
@@ -59,8 +58,6 @@ export default function CardContainer({
   //   setSelectedCards((prev) =>
   //     prev.map((card) => (card.id === id ? { ...card, count: newCount } : card))
   //   );
-
-  //   // console.log("Selected cards:", selectedCards);
   // };
 
   const updateCardCount = (id: string, newCount: number) => {

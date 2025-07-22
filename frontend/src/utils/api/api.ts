@@ -55,7 +55,6 @@ type PaymentFormData = {
 export function onlinePaymentStripeAPI({ amount, currency = 'eur', name, email, language, formData }: PaymentFormData) {
 
   const formDataString = JSON.stringify(formData);
-  console.log(formDataString);
 
   return api.post(`${BASE_URL}/payment/create-payment-intent`, { params: { amount, currency, name, email, language, formData: formDataString } });
 }
