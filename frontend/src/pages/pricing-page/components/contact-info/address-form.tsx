@@ -97,7 +97,7 @@ export default function AddressForm({
             </Title>
           )}
         </Box> */}
-        <DeliveryCalculator priceDeliveryExtra={priceDeliveryExtra} setPriceDeliveryExtra={setPriceDeliveryExtra} />
+        <DeliveryCalculator priceDeliveryExtra={priceDeliveryExtra} setPriceDeliveryExtra={setPriceDeliveryExtra} handleChangeFormData={handleChangeFormData} />
         {/* <Box>
           <FormInput
             name="psc"

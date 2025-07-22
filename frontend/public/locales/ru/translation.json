@@ -150,6 +150,7 @@
       "address-loading": "Загрузка...",
       "address-no-options": "Ничего не найдено",
       "address-distance": "Расстояние:",
+      "address-distance-error": "Адрес за пределами зоны дистанции (100 км)",
       "address-km": "км",
       "address-additional-price": "Надбавка:",
       "house-number": "Номер дома",

@@ -150,6 +150,7 @@
       "address-loading": "Loading...",
       "address-no-options": "Nothing found",
       "address-distance": "Distance:",
+      "address-distance-error": "Address beyond delivery zone (100 km)",
       "address-km": "km",
       "address-additional-price": "Additional price:",
       "house-number": "House number",

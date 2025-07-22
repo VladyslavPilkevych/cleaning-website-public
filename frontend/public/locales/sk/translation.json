@@ -150,6 +150,7 @@
       "address-loading": "Načítavanie...",
       "address-no-options": "Neboli nájdené možnosti",
       "address-distance": "Vzdialenosť:",
+      "address-distance-error": "Adresa mimo zóny dôslednosti (100 km)",
       "address-km": "km",
       "address-additional-price": "Poplatok:",
       "house-number": "Číslo domu",

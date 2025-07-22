@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import AsyncSelect from "react-select/async";
 import axios from "axios";
 import { getDistance } from "geolib";
@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 import { components } from "react-select";
 import ThemeColors from "../../../../utils/theme/colors";
 import { OptionType } from "../../helpers/types";
+import debounce from 'lodash.debounce';
+import { ChangeFormDataType } from "../../pricing-page";
 
 const CENTER_COORDS = {
   latitude: 48.1486,
@@ -20,11 +22,13 @@ const SURCHARGE_PER_KM = 0.8;
 type DeliveryCalculatorProps = {
   priceDeliveryExtra: number | null;
   setPriceDeliveryExtra: (price: number | null) => void;
+  handleChangeFormData: ChangeFormDataType;
 };
 
 export function DeliveryCalculator({
   priceDeliveryExtra,
   setPriceDeliveryExtra,
+  handleChangeFormData,
 }: DeliveryCalculatorProps) {
   const { t, i18n } = useTranslation("translation");
 
@@ -33,38 +37,68 @@ export function DeliveryCalculator({
   );
   const [distanceKm, setDistanceKm] = useState<number | null>(null);
 
+  // const loadOptions = async (inputValue: string): Promise<OptionType[]> => {
+  //   if (!inputValue) return [];
+  //   const response = await axios.get(
+  //     "https://nominatim.openstreetmap.org/search",
+  //     {
+  //       params: {
+  //         city: "Bratislava",
+  //         street: inputValue,
+  //         format: "json",
+  //         addressdetails: 1,
+  //         limit: 5,
+  //         "accept-language": i18n.language,
+  //         bounded: 1,
+  //         viewbox: "16.7604,47.6985,18.8917,48.9331",
+  //       },
+  //     }
+  //   );
+  //   // params: {
+  //   //   q: inputValue,
+  //   //   format: "json",
+  //   //   addressdetails: 1,
+  //   //   limit: 5,
+  //   //   "accept-language": "sk",
+  //   //   bounded: 1,
+  //   //   viewbox: "16.8,48.6,17.6,47.9", // лево, верх, право, низ (long, lat)
+  //   // }
+
+  //   return response.data.map((item: any) => ({
+  //     label: item.display_name,
+  //     value: item.display_name,
+  //   }));
+  // };
+
   const loadOptions = async (inputValue: string): Promise<OptionType[]> => {
     if (!inputValue) return [];
-    const response = await axios.get(
-      "https://nominatim.openstreetmap.org/search",
-      {
-        params: {
-          city: "Bratislava",
-          street: inputValue,
-          format: "json",
-          addressdetails: 1,
-          limit: 5,
-          "accept-language": i18n.language,
-          bounded: 1,
-          viewbox: "16.7604,47.6985,18.8917,48.9331",
-        },
-      }
-    );
-    // params: {
-    //   q: inputValue,
-    //   format: "json",
-    //   addressdetails: 1,
-    //   limit: 5,
-    //   "accept-language": "sk",
-    //   bounded: 1,
-    //   viewbox: "16.8,48.6,17.6,47.9", // лево, верх, право, низ (long, lat)
-    // }
+
+    const response = await axios.get("https://nominatim.openstreetmap.org/search", {
+      params: {
+        city: "Bratislava",
+        street: inputValue,
+        format: "json",
+        addressdetails: 1,
+        limit: 5,
+        "accept-language": i18n.language,
+        bounded: 1,
+        viewbox: "16.7604,47.6985,18.8917,48.9331",
+      },
+    });
 
     return response.data.map((item: any) => ({
       label: item.display_name,
       value: item.display_name,
     }));
   };
+
+  const debouncedLoadOptions = useCallback(debounce(loadOptions, 500), [i18n.language]);
+
+  useEffect(() => {
+    return () => {
+      debouncedLoadOptions.cancel();
+    };
+  }, [debouncedLoadOptions]);
 
   const handleChange = async (option: OptionType | null) => {
     setSelectedAddress(option);
@@ -97,10 +131,11 @@ export function DeliveryCalculator({
 
     if (km > MAX_RADIUS_KM) {
       setPriceDeliveryExtra(null);
-      alert("Адрес за пределами зоны доставки (100 км)");
+      alert(t("pricing.address-form.address-distance-error"));
     } else {
       const surcharge = Math.round(km * SURCHARGE_PER_KM * 100) / 100;
       setPriceDeliveryExtra(surcharge);
+      handleChangeFormData("address.addressStreet", option.value);
     }
   };
 
@@ -128,7 +163,7 @@ export function DeliveryCalculator({
     <Box>
       <Label>{t("pricing.address-form.address-select")}</Label>
       <AsyncSelect
-        loadOptions={loadOptions}
+        loadOptions={debouncedLoadOptions}
         onChange={handleChange}
         placeholder={t("pricing.address-form.address-select-placeholder")}
         cacheOptions
