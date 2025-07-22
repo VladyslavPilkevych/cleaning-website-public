@@ -20,6 +20,7 @@ const transporter = nodemailer.createTransport({
 router.post("/send", async (req, res) => {
   try {
     const { name, phone, message, email, language } = req.body.params;
+    console.log(language);
     if (!name || !phone || !message || !email) {
       return res
         .status(400)

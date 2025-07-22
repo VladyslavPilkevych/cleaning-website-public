@@ -15,7 +15,7 @@ const translations = {
     success: "Úspech",
     error: "Interná chyba servera",
   },
-  uk: {
+  ua: {
     greeting: "Вітаю!",
     thanks: "Дякуємо за Ваше повідомлення",
     followup: "Наша команда зв'яжеться з Вами найближчим часом",

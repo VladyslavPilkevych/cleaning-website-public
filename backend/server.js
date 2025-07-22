@@ -22,7 +22,7 @@ server.use(bodyParser.json());
 
 // Routes
 server.use("/api/form", formRoutes);
-server.use("/api/email", emailRoutes);
+server.use("/api/contacts", emailRoutes);
 server.use("/api/admin-panel", adminRoutes);
 server.use("/api/payment", paymentRoutes);
 server.use("/api/superbase", superbaseRoutes);

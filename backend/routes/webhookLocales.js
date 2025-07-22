@@ -23,7 +23,7 @@ const translations = {
       "Tento e-mail slúži ako potvrdenie o platbe. Prosím, uchovajte si ho pre vlastné záznamy.",
     paymentFooter: "LexiShine Cleaning · Váš spoľahlivý partner pre čistenie",
   },
-  uk: {
+  ua: {
     paymentSubject: "Дякуємо за вашу оплату",
     paymentGreeting: (name) => `Привіт, ${name},`,
     paymentReceived: (amount) =>

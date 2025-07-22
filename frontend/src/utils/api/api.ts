@@ -16,7 +16,7 @@ type ContactFormData = {
 };
 
 export function contactFormAPI(formData: ContactFormData, language: string) {
-  return api.post(`${BASE_URL}/contacts/send`, formData, { params: { language } });
+  return api.post(`${BASE_URL}/contacts/send`, { params: { ...formData, language } });
 }
 
 export function savePricesFormAPI(formData: PricingPageFormData) {
