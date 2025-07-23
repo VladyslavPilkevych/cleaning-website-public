@@ -20,11 +20,13 @@ import { onlinePaymentStripeAPI } from "../../../../utils/api/api";
 import { useTranslation } from "react-i18next";
 import { PricingPageFormData } from "../../helpers/types";
 import ThemeColors from "../../../../utils/theme/colors";
+import { submitPricingForm } from "../../helpers/submit-form";
 
 type CheckoutFormProps = {
   totalPrice: number;
   formEmail: string | null;
   formData: PricingPageFormData;
+  restartForm: () => void;
 };
 
 enum MessageTypeEnum {
@@ -32,7 +34,12 @@ enum MessageTypeEnum {
   SUCCESS = "success",
 }
 
-function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
+function CheckoutForm({
+  totalPrice,
+  formEmail,
+  formData,
+  restartForm,
+}: CheckoutFormProps) {
   const stripe = useStripe();
   const elements = useElements();
   const [email, setEmail] = useState(formEmail || "");
@@ -49,7 +56,7 @@ function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
 
   useEffect(() => {
     if (!stripe || !totalPrice) return;
-  
+
     const createRequest = async () => {
       const pr = stripe.paymentRequest({
         country: "SK",
@@ -61,7 +68,7 @@ function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
         requestPayerName: true,
         requestPayerEmail: true,
       });
-  
+
       const result = await pr.canMakePayment();
       if (result) {
         setPaymentRequest(pr);
@@ -69,10 +76,9 @@ function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
         setPaymentRequest(null);
       }
     };
-  
+
     createRequest();
   }, [stripe, totalPrice]);
-  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,51 +95,53 @@ function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
 
     setEmailError(null);
 
-  const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
-    type: "card",
-    card: cardElement!,
-    billing_details: { email },
-  });
-
-  if (pmError || !paymentMethod) {
-    setMessage(pmError?.message || "Failed to create payment method");
-    setMessageType(MessageTypeEnum.ERROR);
-    setIsLoading(false);
-    return;
-  }
-
-  try {
-    const res = await onlinePaymentStripeAPI({
-      amount: Math.round(totalPrice * 100),
-      name: formData.contacts.name ?? "",
-      email,
-      language,
-      formData,
+    const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
+      type: "card",
+      card: cardElement!,
+      billing_details: { email },
     });
 
-    const clientSecret = res.data.clientSecret;
-
-    const confirmResult = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: paymentMethod.id,
-    });
-
-    if (confirmResult.error) {
-      setMessage(confirmResult.error.message || t("payment-error"));
+    if (pmError || !paymentMethod) {
+      setMessage(pmError?.message || "Failed to create payment method");
       setMessageType(MessageTypeEnum.ERROR);
-    } else if (confirmResult.paymentIntent.status === "succeeded") {
-      setMessage(t("payment-success"));
-      setMessageType(MessageTypeEnum.SUCCESS);
-    } else {
-      setMessage(t("payment-unexpected") + `${confirmResult.paymentIntent.status}`);
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const res = await onlinePaymentStripeAPI({
+        amount: Math.round(totalPrice * 100),
+        name: formData.contacts.name ?? "",
+        email,
+        language,
+        formData,
+      });
+
+      const clientSecret = res.data.clientSecret;
+
+      const confirmResult = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: paymentMethod.id,
+      });
+
+      if (confirmResult.error) {
+        setMessage(confirmResult.error.message || t("payment-error"));
+        setMessageType(MessageTypeEnum.ERROR);
+      } else if (confirmResult.paymentIntent.status === "succeeded") {
+        setMessage(t("payment-success"));
+        setMessageType(MessageTypeEnum.SUCCESS);
+        await submitPricingForm({ formData, t, restartForm, totalPrice });
+      } else {
+        setMessage(
+          t("payment-unexpected") + `${confirmResult.paymentIntent.status}`
+        );
+        setMessageType(MessageTypeEnum.ERROR);
+      }
+    } catch (serverError: any) {
+      setMessage(serverError.message || t("payment-server-error"));
       setMessageType(MessageTypeEnum.ERROR);
     }
-  } catch (serverError: any) {
-    setMessage(serverError.message || t("payment-server-error"));
-    setMessageType(MessageTypeEnum.ERROR);
-  }
 
-  setIsLoading(false);
-
+    setIsLoading(false);
   };
 
   const isValidEmail = (email: string) => {
@@ -161,14 +169,14 @@ function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
         placeholder="Enter your email to receive receipt"
       />
       {emailError && (
-        <StyledMessage  id="email-errors">{emailError}</StyledMessage>
+        <StyledMessage id="email-errors">{emailError}</StyledMessage>
       )}
 
       {paymentRequest && (
         <>
           <StyledLabel>Pay with GPay / Apple Pay</StyledLabel>
           <PaymentRequestButtonElement
-            key={`prb-${Math.round(totalPrice * 100)}`} 
+            key={`prb-${Math.round(totalPrice * 100)}`}
             options={{ paymentRequest }}
           />
         </>
@@ -185,7 +193,18 @@ function CheckoutForm({ totalPrice, formEmail, formData }: CheckoutFormProps) {
         )}
       </StyledButton>
 
-      {message && <StyledMessage style={{color: messageType === MessageTypeEnum.SUCCESS ? ThemeColors.Primary : ThemeColors.Warning}}>{message}</StyledMessage>}
+      {message && (
+        <StyledMessage
+          style={{
+            color:
+              messageType === MessageTypeEnum.SUCCESS
+                ? ThemeColors.Primary
+                : ThemeColors.Warning,
+          }}
+        >
+          {message}
+        </StyledMessage>
+      )}
     </StyledForm>
   );
 }

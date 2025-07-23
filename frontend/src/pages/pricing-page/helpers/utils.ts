@@ -1,4 +1,8 @@
-import { ChemicalCleaningType, DbPricingFormData, PricingPageFormData } from "./types";
+import {
+  ChemicalCleaningType,
+  DbPricingFormData,
+  PricingPageFormData,
+} from "./types";
 
 export const defaultPricingPageFormData: PricingPageFormData = {
   date: null,
@@ -38,9 +42,14 @@ export const defaultPricingPageFormData: PricingPageFormData = {
   totalPrice: 46,
 };
 
-export function convertPricingFormToDb(input: PricingPageFormData): DbPricingFormData {
+export function convertPricingFormToDb(
+  input: PricingPageFormData,
+  totalPrice: number
+): DbPricingFormData {
+  const date = input.date ? input.date.format("YYYY-MM-DD") : null;
+
   return {
-    date: input.date ? input.date.toISOString() : null,
+    date: date,
     time: input.time,
     property_type: input.property?.type ?? null,
     property_area: input.property?.area ?? null,
@@ -54,9 +63,12 @@ export function convertPricingFormToDb(input: PricingPageFormData): DbPricingFor
     vacuum: input.vacuum,
     chemical_cleaning: input.chemicalCleaning?.chemic ?? null,
     chemical_cleaning_type: input.chemicalCleaning?.type ?? null,
-    address_street: input.address?.street ?? null,
-    address_city: input.address?.city ?? null,
-    address_psc: input.address?.psc ?? null,
+    // address_street: input.address?.street ?? null,
+    // address_city: input.address?.city ?? null,
+    // address_psc: input.address?.psc ?? null,
+    address_street: input.address?.addressStreet ?? null,
+    address_city: null,
+    address_psc: null,
     address_house: input.address?.house ?? null,
     address_floor: input.address?.floor ?? null,
     contact_name: input.contacts?.name ?? null,
@@ -64,6 +76,6 @@ export function convertPricingFormToDb(input: PricingPageFormData): DbPricingFor
     contact_phone: input.contacts?.phone ?? null,
     contact_message: input.contacts?.message ?? null,
     payment_method: input.paymentMethod ?? null,
-    total_price: input.totalPrice,
+    total_price: totalPrice,
   };
 }

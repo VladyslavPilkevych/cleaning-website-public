@@ -12,10 +12,9 @@ import {
   PricingPageFormData,
   PricingPageFormDataErrors,
 } from "../../helpers/types";
-import { superbaseSubmitFormAPI } from "../../../../utils/api/api";
 import { toast } from "react-toastify";
-import { convertPricingFormToDb } from "../../helpers/utils";
 import { validatePricingPageForm } from "../../helpers/form-validation";
+import { submitPricingForm } from "../../helpers/submit-form";
 
 type PaymentBtnProps = {
   formData: PricingPageFormData;
@@ -34,37 +33,12 @@ export default function PaymentBtn({
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   async function submit() {
-    console.log(formData);
-
     if (!validatePricingPageForm(formData, t, setFormErrors)) {
       toast.error(t("toast.fill-all-fields"));
       return;
     }
 
-    const toastId = toast.info(t("toast.sending"), { autoClose: false });
-
-    await superbaseSubmitFormAPI(convertPricingFormToDb(formData))
-      .then((rsp) => {
-        if (rsp.status === 200) {
-          toast.update(toastId, {
-            render: t("toast.success"),
-            type: "success",
-            isLoading: false,
-            autoClose: 3000,
-          });
-          console.log("Contact form submitted successfully");
-          restartForm();
-        }
-      })
-      .catch((err) => {
-        toast.update(toastId, {
-          render: t("toast.error"),
-          type: "error",
-          isLoading: false,
-          autoClose: 3000,
-        });
-        console.error("Error submitting contact form:", err);
-      });
+    await submitPricingForm({ formData, t, restartForm, totalPrice });
   }
 
   return (

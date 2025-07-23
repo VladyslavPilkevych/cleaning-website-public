@@ -135,7 +135,8 @@ export function DeliveryCalculator({
     } else {
       const surcharge = Math.round(km * SURCHARGE_PER_KM * 100) / 100;
       setPriceDeliveryExtra(surcharge);
-      handleChangeFormData("address.addressStreet", option.value);
+      // handleChangeFormData("address.addressStreet", option.value);
+      handleChangeFormData("address.street", option.value);
     }
   };
 

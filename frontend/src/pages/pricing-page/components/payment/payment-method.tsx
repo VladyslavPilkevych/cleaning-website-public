@@ -87,7 +87,7 @@ export default function PaymentMethod({
     handleChangeFormData("paymentMethod", PAYMENT_METHOD.CASH);
   }
 
-  console.log("Stripe key", process.env.REACT_APP_STRIPE_KEY);
+  // console.log("Stripe key", process.env.REACT_APP_STRIPE_KEY);
 
   return (
     <>
@@ -159,14 +159,21 @@ export default function PaymentMethod({
       </Flex>
       {totalPrice &&
         (formData.paymentMethod === PAYMENT_METHOD.CARD ? (
-          JSON.stringify(formErrors) === "{}" && stripePromise && (
-              <Elements
-                stripe={stripePromise}
-                options={{
-                  appearance: { theme: "stripe" },
-                }}
-              >
-            <CheckoutForm totalPrice={totalPrice} key={totalPrice} formEmail={formData.contacts.email} formData={formData} />
+          JSON.stringify(formErrors) === "{}" &&
+          stripePromise && (
+            <Elements
+              stripe={stripePromise}
+              options={{
+                appearance: { theme: "stripe" },
+              }}
+            >
+              <CheckoutForm
+                totalPrice={totalPrice}
+                key={totalPrice}
+                formEmail={formData.contacts.email}
+                formData={formData}
+                restartForm={restartForm}
+              />
             </Elements>
           )
         ) : (

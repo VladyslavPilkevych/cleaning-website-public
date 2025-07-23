@@ -8,6 +8,7 @@ import {
 } from "../../helpers/types";
 import Title from "../../../../components/title";
 import { TitleSize } from "../../../../components/title/title.constants";
+import dayjs from "dayjs";
 
 const CustomCalendar = styled.div`
   .MuiDayCalendar-header {
@@ -67,6 +68,7 @@ export default function DateCalendarValue({
         showDaysOutsideCurrentMonth
         disablePast
         onChange={(newValue) => handleChangeFormData("date", newValue)}
+        minDate={dayjs().add(1, "day")}
       />
       {formErrors.date && (
         <Title size={TitleSize.H6} color={ThemeColors.Warning}>

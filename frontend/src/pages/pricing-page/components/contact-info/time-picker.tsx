@@ -47,6 +47,8 @@ function TimeGrid({
   handleChangeFormData,
   formErrors,
 }: TimeGridProps) {
+  // const isDateToday = formData.date?.isSame(new Date(), "day");
+  
   const times = Array.from({ length: 13 }, (_, i) => `${7 + i}:00`);
   // const [selectedTime, setSelectedTime] = useState<string | null>(null);
 

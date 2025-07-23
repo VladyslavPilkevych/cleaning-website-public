@@ -102,7 +102,6 @@ export default function ContactForm({
             isLoading: false,
             autoClose: 3000,
           });
-          console.log("Contact form submitted successfully");
           setFormData({
             name: "",
             email: "",

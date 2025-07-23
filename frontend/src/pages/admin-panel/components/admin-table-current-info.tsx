@@ -30,25 +30,25 @@ export default function AdminTableCurrentInfo({
         backgroundColor: ThemeColors.Background,
       }}
     >
-    <Flex gap="1rem">
-      <Title
-        size={TitleSize.H6}
-        color={ThemeColors.Dark}
-        fontWeight={FontWeight.Bold}
-      >
-        Name:
-      </Title>
-      <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-        {selectedEvent?.contact_name ?? ""}
-      </Title>
-    </Flex>
       <Flex gap="1rem">
         <Title
           size={TitleSize.H6}
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          Phone:
+          {"Ім'я:"}
+        </Title>
+        <Title size={TitleSize.H5} color={ThemeColors.Primary}>
+          {selectedEvent?.contact_name ?? ""}
+        </Title>
+      </Flex>
+      <Flex gap="1rem">
+        <Title
+          size={TitleSize.H6}
+          color={ThemeColors.Dark}
+          fontWeight={FontWeight.Bold}
+        >
+          {"Телефон:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
           {selectedEvent?.contact_phone ?? ""}
@@ -60,19 +60,19 @@ export default function AdminTableCurrentInfo({
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          Email:
+          {"Email:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
           {selectedEvent?.contact_email ?? ""}
         </Title>
       </Flex>
-      <Flex gap="1rem">
+      {/* <Flex gap="1rem">
         <Title
           size={TitleSize.H6}
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          Start time:
+          {"Початок:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
           {selectedEvent?.date?.toLocaleString() ?? ""}
@@ -84,11 +84,23 @@ export default function AdminTableCurrentInfo({
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          End time:
+          {"Кінець:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
           {selectedEvent?.date?.toLocaleString() ?? ""}
         </Title>
+      </Flex> */}
+      <Flex gap="1rem">
+        <Title
+          size={TitleSize.H6}
+          color={ThemeColors.Dark}
+          fontWeight={FontWeight.Bold}
+        >
+          {"Адреса:"}
+        </Title>
+        <Title size={TitleSize.H5} color={ThemeColors.Primary}>
+          {selectedEvent?.address_street + ", " + selectedEvent?.address_house}
+        </Title>
       </Flex>
       <Flex gap="1rem">
         <Title
@@ -96,34 +108,17 @@ export default function AdminTableCurrentInfo({
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          Address:
+          {"Послуги:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-          {[
-            selectedEvent?.address_city,
-            selectedEvent?.address_psc,
-            selectedEvent?.address_street,
-            selectedEvent?.address_house,
-          ].join(", ")}
-        </Title>
-      </Flex>
-      <Flex gap="1rem">
-        <Title
-          size={TitleSize.H6}
-          color={ThemeColors.Dark}
-          fontWeight={FontWeight.Bold}
-        >
-          Services:
-        </Title>
-        <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-          {selectedEvent?.services
+          {selectedEvent?.services && JSON.parse(selectedEvent?.services as string)?.length > 0
             ? JSON.parse(selectedEvent?.services as string)
                 ?.map(
                   (service: ServicesFormData) =>
                     service.id + ": " + service.count
                 )
                 ?.join(", ")
-            : ""}
+            : "-"}
         </Title>
       </Flex>
       <Flex gap="1rem">
@@ -132,10 +127,12 @@ export default function AdminTableCurrentInfo({
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          Payment method:
+          {"Платіжна система:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-          {selectedEvent?.payment_method ?? ""}
+          {selectedEvent?.payment_method === "card"
+            ? "Карта - заплачено"
+            : "Готівка - оплата на місці"}
         </Title>
       </Flex>
       <Flex gap="1rem">
@@ -144,7 +141,7 @@ export default function AdminTableCurrentInfo({
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          Total price:
+          {"Загальна ціна:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
           {(selectedEvent?.total_price ?? 0).toString() + " EUR"}
@@ -156,7 +153,7 @@ export default function AdminTableCurrentInfo({
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          Property type:
+          {"Тип власності:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
           {selectedEvent?.property_type ?? ""}
@@ -168,7 +165,7 @@ export default function AdminTableCurrentInfo({
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          Property area:
+          {"Площа власності:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
           {selectedEvent?.property_area ?? ""}
@@ -180,7 +177,7 @@ export default function AdminTableCurrentInfo({
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          Property rooms:
+          {"Кількість кімнат:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
           {selectedEvent?.property_rooms ?? ""}
@@ -192,10 +189,10 @@ export default function AdminTableCurrentInfo({
           color={ThemeColors.Dark}
           fontWeight={FontWeight.Bold}
         >
-          Property steps:
+          {"Чи є ступені:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-          {selectedEvent?.property_steps?.toString() ?? ""}
+          {selectedEvent?.property_steps?.toString() === "false" ? "Ні" : "Так"}
         </Title>
       </Flex>
       {selectedEvent?.windows_cleaning && (
@@ -206,10 +203,12 @@ export default function AdminTableCurrentInfo({
               color={ThemeColors.Dark}
               fontWeight={FontWeight.Bold}
             >
-              Windows cleaning:
+              {"Чи потрібна чистка вікон:"}
             </Title>
             <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-              {selectedEvent?.windows_cleaning?.toString() ?? ""}
+              {selectedEvent?.windows_cleaning?.toString() === "false"
+                ? "Ні"
+                : "Так"}
             </Title>
           </Flex>
           <Flex gap="1rem">
@@ -218,10 +217,12 @@ export default function AdminTableCurrentInfo({
               color={ThemeColors.Dark}
               fontWeight={FontWeight.Bold}
             >
-              Windows mold:
+              {"Чи потрібна чистка вікон від грибка:"}
             </Title>
             <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-              {selectedEvent?.windows_mold?.toString() ?? ""}
+              {selectedEvent?.windows_mold?.toString() === "false"
+                ? "Ні"
+                : "Так"}
             </Title>
           </Flex>
           <Flex gap="1rem">
@@ -230,7 +231,7 @@ export default function AdminTableCurrentInfo({
               color={ThemeColors.Dark}
               fontWeight={FontWeight.Bold}
             >
-              Windows area:
+              {"Площа вікон:"}
             </Title>
             <Title size={TitleSize.H5} color={ThemeColors.Primary}>
               {selectedEvent?.windows_area ?? ""}
@@ -242,7 +243,7 @@ export default function AdminTableCurrentInfo({
               color={ThemeColors.Dark}
               fontWeight={FontWeight.Bold}
             >
-              Windows count:
+              {"Кількість вікон:"}
             </Title>
             <Title size={TitleSize.H5} color={ThemeColors.Primary}>
               {selectedEvent?.windows_count ?? ""}

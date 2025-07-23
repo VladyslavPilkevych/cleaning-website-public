@@ -93,15 +93,13 @@ export default function AdminTable() {
   async function getOrders() {
     await superbaseGetAllOrdersAPI()
       .then((rsp) => {
-        console.log(rsp);
         if (rsp.status === 200) {
           setOrders(rsp.data);
+          console.log("orders:", rsp.data);
           setEvents(
             rsp.data.map((data: DbPricingFormData) => convertToEvent(data))
           );
-          console.log(
-            rsp.data.map((data: DbPricingFormData) => convertToEvent(data))
-          );
+          console.log("events:", rsp.data.map((data: DbPricingFormData) => convertToEvent(data)));
         }
       })
       .catch((err) => {
@@ -114,14 +112,12 @@ export default function AdminTable() {
   }, []);
 
   const handleEventClick = (clickInfo: any) => {
-    console.log(clickInfo.event);
     const currentTableEvent = orders?.find(
       (event) => event.id === clickInfo.event.extendedProps.customId
     );
     setSelectedEvent(currentTableEvent || null);
   };
 
-  console.log(selectedEvent?.services);
   return (
     <Box>
       <ImageComponent

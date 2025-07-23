@@ -12,21 +12,31 @@ function toLocalISOString(dt: Date): string {
 }
 
 export function convertToEvent(data: DbPricingFormData): TableEvent {
-  const date = data.date?.split("T")[0];
-  const time = data.time + ":00";
+  if (!data.date) throw new Error("Date is required");
 
-  const startStr = date && time ? `${date}T${time}` : date || "";
-  const eventStart = new Date(startStr);
-  const eventEnd = new Date(eventStart.getTime() + 3 * 60 * 60 * 1000);
+  const [year, month, day] = data.date.split("-").map(Number);
+  const time = data?.time ? Number(data.time.split(":")[0]) : 0;
 
-  const addressParts = [
-    data.address_street,
-    data.address_house,
-    data.address_city,
-    data.address_psc,
-  ]
-    .filter(Boolean)
-    .join(", ");
+  const eventStart = new Date(year, Number(month) - 1, day, time, 0, 0);
+  const eventEnd = new Date(eventStart.getTime() + 3 * 60 * 60 * 1000); // +3 hours
+
+  // const date = data.date?.split("T")[0];
+  // const time = data.time + ":00";
+
+  // const startStr = date && time ? `${date}T${time}` : date || "";
+  // const eventStart = new Date(startStr);
+  // const eventEnd = new Date(eventStart.getTime() + 3 * 60 * 60 * 1000);
+
+  // const addressParts = [
+  //   data.address_street,
+  //   data.address_house,
+  //   data.address_city,
+  //   data.address_psc,
+  // ]
+  //   .filter(Boolean)
+  //   .join(", ");
+
+  const addressParts = data.address_street;
 
   const customTitle = `Name: ${data.contact_name}, Address: ${addressParts}`;
 
