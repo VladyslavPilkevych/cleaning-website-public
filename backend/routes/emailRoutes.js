@@ -38,7 +38,7 @@ router.post("/send", async (req, res) => {
       to: email,
       subject: `${name} (${phone})`,
       text: message,
-      html: generateClientOnlineSupportHTML(name, phone, message, email, language),
+      html: generateClientOnlineSupportHTML(name, language),
     });
 
     await transporter.sendMail({

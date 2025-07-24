@@ -1,4 +1,5 @@
 const paymentTranslations = require("../locales/paymentLocales");
+const onlineSupportTranslations = require("../locales/onlineSupportLocales");
 
 function generateClientPaymentEmailHTML(name, amountFormatted, language, isPaymentReceived = false) {
   return `
@@ -19,7 +20,17 @@ function generateAdminPaymentEmailHTML(formData, amountFormatted) {
   const formatDate = (str) => str || "—";
   const formatBool = (val) => (val ? "Так" : "Ні");
 
-  console.log("formData:", formData);
+  // console.log("formData:", formData);
+
+  const servicesString =
+  formData.services.length > 0
+    ? formData.services
+        .map(
+          (s, i) =>
+            `Послуга ${i + 1}: ID ${s.id}, Кількість ${s.count}, Ціна €${s.price}`
+        )
+        .join(", ")
+    : "Немає додаткових послуг";
 
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
@@ -85,6 +96,9 @@ function generateAdminPaymentEmailHTML(formData, amountFormatted) {
       <ul style="font-size: 15px; color: #333;">
         <li><strong>Пилосос:</strong> ${formatBool(formData.vacuum)}</li>
       </ul>
+
+      <p><strong>Додаткові послуги:</strong></p>
+      <p>${servicesString}</p>
     </div>
   `;
 }
@@ -103,9 +117,6 @@ function generateAdminPaymentEmailHTML(formData, amountFormatted) {
 // }
 
 function generateClientOnlineSupportHTML(name, language) {
-  const formatDate = (str) => str || "—";
-  const formatBool = (val) => (val ? "Так" : "Ні");
-
   return `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
           <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
@@ -117,9 +128,6 @@ function generateClientOnlineSupportHTML(name, language) {
 }
 
 function generateAdminOnlineSupportHTML(name, phone, message, email, language) {
-  const formatDate = (str) => str || "—";
-  const formatBool = (val) => (val ? "Так" : "Ні");
-
   return `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
             <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
