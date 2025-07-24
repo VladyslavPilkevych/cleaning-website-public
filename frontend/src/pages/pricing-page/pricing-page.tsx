@@ -31,7 +31,7 @@ import {
   PricingPageFormDataErrors,
   ServicesFormData,
 } from "./helpers/types";
-import { defaultPricingPageFormData } from "./helpers/utils";
+import { getDefaultPricingPageFormData } from "./helpers/utils";
 import { Dayjs } from "dayjs";
 
 type HandleChangeValueType =
@@ -54,14 +54,15 @@ export default function PricingPage() {
   const [priceDeliveryExtra, setPriceDeliveryExtra] = useState<number | null>(
     null
   );
-  const [formData, setFormData] = useState<PricingPageFormData>(
-    defaultPricingPageFormData
+  const [formData, setFormData] = useState<PricingPageFormData>(() =>
+    getDefaultPricingPageFormData()
   );
 
   const [formErrors, setFormErrors] = useState<PricingPageFormDataErrors>({});
 
   const restartForm = () => {
-    setFormData(defaultPricingPageFormData);
+    setFormData(getDefaultPricingPageFormData());
+    setFormErrors({});
   };
 
   const handleChangeFormData = (name: string, value: HandleChangeValueType) => {
