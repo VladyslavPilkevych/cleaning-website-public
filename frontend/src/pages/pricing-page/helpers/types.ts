@@ -47,7 +47,6 @@ export type ChemicalCleaningFormData = {
 
 export type AddressFormData = {
   street: string | null;
-  addressStreet?: string | null;
   city: string | null;
   psc: string | null;
   house: string | null;

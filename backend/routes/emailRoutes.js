@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
-const translations = require("./emailLocales");
+const paymentTranslations = require("../utils/emails/locales/paymentLocales");
 
 const {
-  generateClientEmailHTML,
-  generateAdminEmailHTML,
-} = require("./emailTemplates");
+  generateClientPaymentEmailHTML,
+  generateAdminPaymentEmailHTML,
+  generateClientOnlineSupportHTML,
+  generateAdminOnlineSupportHTML,
+} = require("../utils/emails/templates/emailTemplates");
 
 dotenv.config();
 
@@ -28,7 +30,7 @@ router.post("/send", async (req, res) => {
     if (!name || !phone || !message || !email) {
       return res
         .status(400)
-        .send({ status: 400, message: translations[language].missingFields });
+        .send({ status: 400, message: "Missing required fields" });
     }
 
     await transporter.sendMail({
@@ -36,14 +38,7 @@ router.post("/send", async (req, res) => {
       to: email,
       subject: `${name} (${phone})`,
       text: message,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
-          <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
-          <p style="font-size: 16px;">${translations[language].greeting}, ${name}</p>
-          <p style="font-size: 16px;">${translations[language].thanks}</p>
-          <p style="font-size: 16px;">${translations[language].followup}</p>
-        </div>
-        `,
+      html: generateClientOnlineSupportHTML(name, phone, message, email, language),
     });
 
     await transporter.sendMail({
@@ -51,28 +46,16 @@ router.post("/send", async (req, res) => {
       to: process.env.EMAIL_USER,
       subject: `New support request from ${name} (${phone})`,
       text: message,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
-            <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
-            <p style="font-size: 16px;">Нова заявка на підтримку:</p>
-            <ul style="font-size: 15px; color: #333; line-height: 1.6;">
-              <li><strong>Ім'я:</strong> ${name}</li>
-              <li><strong>Пошта:</strong> ${email}</li>
-              <li><strong>Телефон:</strong> ${phone}</li>
-              <li><strong>Повідомлення:</strong> ${message}</li>
-              <li><strong>Мова спілкування:</strong> ${language}</li>
-            </ul>
-        </div>
-        `,
+      html: generateAdminOnlineSupportHTML(name, phone, message, email, language),
     });
 
     return res
       .status(200)
-      .send({ status: 200, message: translations[language].success });
+      .send({ status: 200, message: "Success" });
   } catch (e) {
     return res
       .status(500)
-      .send({ status: 500, message: translations[language].error });
+      .send({ status: 500, message: "Internal server error" });
   }
 });
 
@@ -82,20 +65,18 @@ router.post("/mail-payment-cash", async (req, res) => {
   const amountFormatted = Number(totalPrice).toFixed(2);
 
   try {
-    // Email клиенту
     await transporter.sendMail({
       from: `LexiShine Cleaning <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: translations[language].paymentSubjectCash,
-      html: generateClientEmailHTML(name, amountFormatted, language),
+      subject: paymentTranslations[language].paymentSubjectCash,
+      html: generateClientPaymentEmailHTML(name, amountFormatted, language),
     });
 
-    // Email админу
     await transporter.sendMail({
       from: `LexiShine Payment Notification <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       subject: `LexiShine Cash Payment Notification ${name}`,
-      html: generateAdminEmailHTML(formData, amountFormatted),
+      html: generateAdminPaymentEmailHTML(formData, amountFormatted),
     });
 
     res.status(200).json({ success: true });

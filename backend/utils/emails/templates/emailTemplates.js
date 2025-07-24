@@ -1,21 +1,21 @@
-const translations = require("./webhookLocales");
+const paymentTranslations = require("../locales/paymentLocales");
 
-function generateClientEmailHTML(name, amountFormatted, language, isPaymentReceived = false) {
+function generateClientPaymentEmailHTML(name, amountFormatted, language, isPaymentReceived = false) {
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
       <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
-      <p style="font-size: 16px;">${translations[language].paymentGreeting(name)}</p>
-      <p style="font-size: 16px;">${isPaymentReceived ? translations[language].paymentReceived(amountFormatted) : translations[language].paymentInCash(amountFormatted)}</p>
-      <p style="font-size: 16px;">${translations[language].paymentConfirmed}</p>
+      <p style="font-size: 16px;">${paymentTranslations[language].paymentGreeting(name)}</p>
+      <p style="font-size: 16px;">${isPaymentReceived ? paymentTranslations[language].paymentReceived(amountFormatted) : paymentTranslations[language].paymentInCash(amountFormatted)}</p>
+      <p style="font-size: 16px;">${paymentTranslations[language].paymentConfirmed}</p>
       <hr style="margin: 20px 0;">
-      <p style="font-size: 15px; color: #555;">${translations[language].paymentContact}</p>
-      <p style="margin-top: 30px; font-size: 14px; color: #999;">${translations[language].paymentReceiptNote}</p>
-      <p style="font-size: 14px; color: #999;">${translations[language].paymentFooter}</p>
+      <p style="font-size: 15px; color: #555;">${paymentTranslations[language].paymentContact}</p>
+      <p style="margin-top: 30px; font-size: 14px; color: #999;">${paymentTranslations[language].paymentReceiptNote}</p>
+      <p style="font-size: 14px; color: #999;">${paymentTranslations[language].paymentFooter}</p>
     </div>
   `;
 }
 
-function generateAdminEmailHTML(formData, amountFormatted) {
+function generateAdminPaymentEmailHTML(formData, amountFormatted) {
   const formatDate = (str) => str || "—";
   const formatBool = (val) => (val ? "Так" : "Ні");
 
@@ -100,7 +100,42 @@ function generateAdminEmailHTML(formData, amountFormatted) {
 //     : "<li>Немає додаткових послуг</li>"
 // }
 
+function generateClientOnlineSupportHTML(name, language) {
+  const formatDate = (str) => str || "—";
+  const formatBool = (val) => (val ? "Так" : "Ні");
+
+  return `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
+          <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
+          <p style="font-size: 16px;">${onlineSupportTranslations[language].greeting}, ${name}</p>
+          <p style="font-size: 16px;">${onlineSupportTranslations[language].thanks}</p>
+          <p style="font-size: 16px;">${onlineSupportTranslations[language].followup}</p>
+        </div>
+        `;
+}
+
+function generateAdminOnlineSupportHTML(name, phone, message, email, language) {
+  const formatDate = (str) => str || "—";
+  const formatBool = (val) => (val ? "Так" : "Ні");
+
+  return `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
+            <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
+            <p style="font-size: 16px;">Нова заявка на підтримку:</p>
+            <ul style="font-size: 15px; color: #333; line-height: 1.6;">
+              <li><strong>Ім'я:</strong> ${name}</li>
+              <li><strong>Пошта:</strong> ${email}</li>
+              <li><strong>Телефон:</strong> ${phone}</li>
+              <li><strong>Повідомлення:</strong> ${message}</li>
+              <li><strong>Мова спілкування:</strong> ${language}</li>
+            </ul>
+        </div>
+        `;
+}
+
 module.exports = {
-  generateClientEmailHTML,
-  generateAdminEmailHTML,
+  generateClientPaymentEmailHTML,
+  generateAdminPaymentEmailHTML,
+  generateClientOnlineSupportHTML,
+  generateAdminOnlineSupportHTML,
 };

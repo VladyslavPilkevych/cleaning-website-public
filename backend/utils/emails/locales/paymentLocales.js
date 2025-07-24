@@ -1,4 +1,4 @@
-const translations = {
+const paymentTranslations = {
   en: {
     paymentSubject: "Thank you for your payment",
     paymentSubjectCash: "Thank you for your order",
@@ -61,4 +61,4 @@ const translations = {
   },
 };
 
-module.exports = translations;
+module.exports = paymentTranslations;

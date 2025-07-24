@@ -1,4 +1,4 @@
-const translations = {
+const onlineSupportTranslations = {
   en: {
     greeting: "Hello",
     thanks: "Thank you for your message",
@@ -33,4 +33,4 @@ const translations = {
   },
 };
 
-module.exports = translations;
+module.exports = onlineSupportTranslations;

@@ -8,11 +8,11 @@ const stripe = require("stripe")(process.env.STRIPE_KEY, {
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 
-const translations = require("./webhookLocales");
+const paymentTranslations = require("../utils/emails/locales/paymentLocales");
 const {
-  generateClientEmailHTML,
-  generateAdminEmailHTML,
-} = require("./emailTemplates");
+  generateClientPaymentEmailHTML,
+  generateAdminPaymentEmailHTML,
+} = require("../utils/emails/templates/emailTemplates");
 
 const transporter = nodemailer.createTransport({
   service: "Gmail",
@@ -115,15 +115,15 @@ router.post(
         await transporter.sendMail({
           from: `LexiShine Cleaning <${process.env.EMAIL_USER}>`,
           to: email,
-          subject: translations[language].paymentSubject,
-          html: generateClientEmailHTML(name, amountFormatted, language, true),
+          subject: paymentTranslations[language].paymentSubject,
+          html: generateClientPaymentEmailHTML(name, amountFormatted, language, true),
         });
 
         await transporter.sendMail({
           from: `LexiShine Payment Notification <${process.env.EMAIL_USER}>`,
           to: process.env.EMAIL_USER,
           subject: `LexiShine Payment Notification ${name}`,
-          html: generateAdminEmailHTML(formData, amountFormatted),
+          html: generateAdminPaymentEmailHTML(formData, amountFormatted),
         });
       } catch (err) {
         console.error("Error sending emails:", err);

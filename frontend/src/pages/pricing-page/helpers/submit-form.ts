@@ -18,9 +18,11 @@ export async function submitPricingForm({
   totalPrice,
 }: SubmitPricingFormProps) {
   const toastId = toast.info(t("toast.sending"), { autoClose: false });
+  console.log("form data:", formData);
 
   try {
     const rsp = await superbaseSubmitFormAPI(convertPricingFormToDb(formData, totalPrice));
+    console.log("converted data:", convertPricingFormToDb(formData, totalPrice));
 
     if (rsp.status === 200) {
       toast.update(toastId, {
