@@ -59,7 +59,6 @@ export default function DateCalendarValue({
   formErrors,
   handleChangeFormData,
 }: DateCalendarProps) {
-  // const [value, setValue] = React.useState<Dayjs | null>(dayjs(new Date()));
 
   return (
     <CustomCalendar>

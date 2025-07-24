@@ -31,7 +31,7 @@ export function validatePricingPageForm(
 
   // if (!formData.address.street) {
   //   errors.addressStreet = t("pricing.errors.addressStreet");
-  // }
+  // } // todo
 
   // if (!formData.address.city) {
   //   errors.addressCity = t("pricing.errors.addressCity");

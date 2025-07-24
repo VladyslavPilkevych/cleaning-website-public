@@ -37,39 +37,6 @@ export function DeliveryCalculator({
   );
   const [distanceKm, setDistanceKm] = useState<number | null>(null);
 
-  // const loadOptions = async (inputValue: string): Promise<OptionType[]> => {
-  //   if (!inputValue) return [];
-  //   const response = await axios.get(
-  //     "https://nominatim.openstreetmap.org/search",
-  //     {
-  //       params: {
-  //         city: "Bratislava",
-  //         street: inputValue,
-  //         format: "json",
-  //         addressdetails: 1,
-  //         limit: 5,
-  //         "accept-language": i18n.language,
-  //         bounded: 1,
-  //         viewbox: "16.7604,47.6985,18.8917,48.9331",
-  //       },
-  //     }
-  //   );
-  //   // params: {
-  //   //   q: inputValue,
-  //   //   format: "json",
-  //   //   addressdetails: 1,
-  //   //   limit: 5,
-  //   //   "accept-language": "sk",
-  //   //   bounded: 1,
-  //   //   viewbox: "16.8,48.6,17.6,47.9", // лево, верх, право, низ (long, lat)
-  //   // }
-
-  //   return response.data.map((item: any) => ({
-  //     label: item.display_name,
-  //     value: item.display_name,
-  //   }));
-  // };
-
   const loadOptions = async (inputValue: string): Promise<OptionType[]> => {
     if (!inputValue) return [];
 
@@ -135,7 +102,6 @@ export function DeliveryCalculator({
     } else {
       const surcharge = Math.round(km * SURCHARGE_PER_KM * 100) / 100;
       setPriceDeliveryExtra(surcharge);
-      // handleChangeFormData("address.addressStreet", option.value);
       handleChangeFormData("address.street", option.value);
     }
   };

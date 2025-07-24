@@ -46,11 +46,8 @@ function TimeGrid({
   formData,
   handleChangeFormData,
   formErrors,
-}: TimeGridProps) {
-  // const isDateToday = formData.date?.isSame(new Date(), "day");
-  
+}: TimeGridProps) {  
   const times = Array.from({ length: 13 }, (_, i) => `${7 + i}:00`);
-  // const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   return (
     <Flex flexDirection={FlexDirection.COLUMN}>
