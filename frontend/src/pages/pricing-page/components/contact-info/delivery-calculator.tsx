@@ -147,13 +147,13 @@ export function DeliveryCalculator({
         )}`}</HelperText>
       )}
 
-      {priceDeliveryExtra !== null && (
+      {/* {priceDeliveryExtra !== null && (
         <HelperText>
           {`${t(
             "pricing.address-form.address-additional-price"
           )} ${priceDeliveryExtra.toFixed(2)} EUR`}
         </HelperText>
-      )}
+      )} */}
     </Box>
   );
 }

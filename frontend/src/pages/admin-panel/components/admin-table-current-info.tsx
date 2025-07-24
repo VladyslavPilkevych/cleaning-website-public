@@ -144,7 +144,7 @@ export default function AdminTableCurrentInfo({
           {"Загальна ціна:"}
         </Title>
         <Title size={TitleSize.H5} color={ThemeColors.Primary}>
-          {(selectedEvent?.total_price ?? 0).toString() + " EUR"}
+          {(Math.round((selectedEvent?.total_price ?? 0) * 100) / 100).toString() + " EUR"}
         </Title>
       </Flex>
       <Flex gap="1rem">

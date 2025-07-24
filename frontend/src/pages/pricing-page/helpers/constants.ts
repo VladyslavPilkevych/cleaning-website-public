@@ -23,7 +23,7 @@ export const serviceCards: ServiceCardType[] = [
     srcInverted: "/icons/cards/fridge-inverted.svg",
     text: "fridge",
     price: 14.99,
-    isMulti: false,
+    isMulti: true,
   },
   {
     id: "4",
@@ -31,7 +31,7 @@ export const serviceCards: ServiceCardType[] = [
     srcInverted: "/icons/cards/balcony-inverted.svg",
     text: "balcony",
     price: 14.99,
-    isMulti: false,
+    isMulti: true,
   },
   {
     id: "5",
@@ -47,7 +47,7 @@ export const serviceCards: ServiceCardType[] = [
     srcInverted: "/icons/cards/wardrobe-inverted.svg",
     text: "wardrobe",
     price: 9.99,
-    isMulti: false,
+    isMulti: true,
   },
   {
     id: "8",
@@ -63,7 +63,7 @@ export const serviceCards: ServiceCardType[] = [
     srcInverted: "/icons/cards/plates-inverted.svg",
     text: "plates",
     price: 7.99,
-    isMulti: false,
+    isMulti: true,
   },
   {
     id: "10",
