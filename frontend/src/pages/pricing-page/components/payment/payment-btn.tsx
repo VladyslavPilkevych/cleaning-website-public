@@ -15,6 +15,7 @@ import {
 import { toast } from "react-toastify";
 import { validatePricingPageForm } from "../../helpers/form-validation";
 import { submitPricingForm } from "../../helpers/submit-form";
+import { mailPaymentCashAPI } from "../../../../utils/api/api";
 
 type PaymentBtnProps = {
   formData: PricingPageFormData;
@@ -30,6 +31,7 @@ export default function PaymentBtn({
   totalPrice,
 }: PaymentBtnProps) {
   const { t } = useTranslation("translation");
+  const language = useTranslation().i18n.language;
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   async function submit() {
@@ -38,7 +40,9 @@ export default function PaymentBtn({
       return;
     }
 
-    await submitPricingForm({ formData, t, restartForm, totalPrice });
+    await submitPricingForm({ formData, t, restartForm, totalPrice }).then(async () => {
+      await mailPaymentCashAPI(formData, language, totalPrice);
+    });
   }
 
   return (

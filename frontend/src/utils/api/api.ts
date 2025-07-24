@@ -1,5 +1,8 @@
 import axios from "axios";
-import { DbPricingFormData, PricingPageFormData } from "../../pages/pricing-page/helpers/types";
+import {
+  DbPricingFormData,
+  PricingPageFormData,
+} from "../../pages/pricing-page/helpers/types";
 
 const BASE_URL = "http://localhost:5000/api";
 
@@ -16,7 +19,9 @@ type ContactFormData = {
 };
 
 export function contactFormAPI(formData: ContactFormData, language: string) {
-  return api.post(`${BASE_URL}/contacts/send`, { params: { ...formData, language } });
+  return api.post(`${BASE_URL}/contacts/send`, {
+    params: { ...formData, language },
+  });
 }
 
 export function savePricesFormAPI(formData: PricingPageFormData) {
@@ -28,11 +33,15 @@ export function getAllClientsAPI() {
 }
 
 export function filterClientsAPI(startDate: string, endDate: string) {
-  return api.get(`${BASE_URL}/form/data/filter`, { params: { startDate, endDate } });
+  return api.get(`${BASE_URL}/form/data/filter`, {
+    params: { startDate, endDate },
+  });
 }
 
 export function superbaseSubmitFormAPI(formData: DbPricingFormData) {
-  return api.post(`${BASE_URL}/superbase/submit-pricing-form`, { params: { formData } });
+  return api.post(`${BASE_URL}/superbase/submit-pricing-form`, {
+    params: { formData },
+  });
 }
 
 export function adminPanelAuthAPI(password: string) {
@@ -52,9 +61,40 @@ type PaymentFormData = {
   formData: PricingPageFormData;
 };
 
-export function onlinePaymentStripeAPI({ amount, currency = 'eur', name, email, language, formData }: PaymentFormData) {
-
+export function onlinePaymentStripeAPI({
+  amount,
+  currency = "eur",
+  name,
+  email,
+  language,
+  formData,
+}: PaymentFormData) {
   const formDataString = JSON.stringify(formData);
 
-  return api.post(`${BASE_URL}/payment/create-payment-intent`, { params: { amount, currency, name, email, language, formData: formDataString } });
+  return api.post(`${BASE_URL}/payment/create-payment-intent`, {
+    params: {
+      amount,
+      currency,
+      name,
+      email,
+      language,
+      formData: formDataString,
+    },
+  });
+}
+
+export function mailPaymentCashAPI(
+  formData: PricingPageFormData,
+  language: string,
+  totalPrice: number
+) {
+  return api.post(`${BASE_URL}/contacts/mail-payment-cash`, {
+    params: {
+      formData,
+      language,
+      totalPrice,
+      email: formData.contacts.email,
+      name: formData.contacts.name,
+    },
+  });
 }

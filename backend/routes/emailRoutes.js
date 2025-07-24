@@ -4,6 +4,11 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 const translations = require("./emailLocales");
 
+const {
+  generateClientEmailHTML,
+  generateAdminEmailHTML,
+} = require("./emailTemplates");
+
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
@@ -68,6 +73,35 @@ router.post("/send", async (req, res) => {
     return res
       .status(500)
       .send({ status: 500, message: translations[language].error });
+  }
+});
+
+router.post("/mail-payment-cash", async (req, res) => {
+  const { email, name, language, formData, totalPrice } = req.body.params;
+
+  const amountFormatted = Number(totalPrice).toFixed(2);
+
+  try {
+    // Email клиенту
+    await transporter.sendMail({
+      from: `LexiShine Cleaning <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: translations[language].paymentSubjectCash,
+      html: generateClientEmailHTML(name, amountFormatted, language),
+    });
+
+    // Email админу
+    await transporter.sendMail({
+      from: `LexiShine Payment Notification <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      subject: `LexiShine Cash Payment Notification ${name}`,
+      html: generateAdminEmailHTML(formData, amountFormatted),
+    });
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error("Error sending emails:", error);
+    res.status(500).json({ error: "Failed to send email" });
   }
 });
 
