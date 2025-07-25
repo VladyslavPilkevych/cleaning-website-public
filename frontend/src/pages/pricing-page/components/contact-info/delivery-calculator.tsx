@@ -7,9 +7,11 @@ import Box from "../../../../components/box";
 import { useTranslation } from "react-i18next";
 import { components } from "react-select";
 import ThemeColors from "../../../../utils/theme/colors";
-import { OptionType } from "../../helpers/types";
-import debounce from 'lodash.debounce';
+import { OptionType, PricingPageFormDataErrors } from "../../helpers/types";
+import debounce from "lodash.debounce";
 import { ChangeFormDataType } from "../../pricing-page";
+import Title from "../../../../components/title";
+import { TitleSize } from "../../../../components/title/title.constants";
 
 const CENTER_COORDS = {
   latitude: 48.1486,
@@ -23,12 +25,14 @@ type DeliveryCalculatorProps = {
   priceDeliveryExtra: number | null;
   setPriceDeliveryExtra: (price: number | null) => void;
   handleChangeFormData: ChangeFormDataType;
+  formErrors: PricingPageFormDataErrors;
 };
 
 export function DeliveryCalculator({
   priceDeliveryExtra,
   setPriceDeliveryExtra,
   handleChangeFormData,
+  formErrors,
 }: DeliveryCalculatorProps) {
   const { t, i18n } = useTranslation("translation");
 
@@ -40,18 +44,21 @@ export function DeliveryCalculator({
   const loadOptions = async (inputValue: string): Promise<OptionType[]> => {
     if (!inputValue) return [];
 
-    const response = await axios.get("https://nominatim.openstreetmap.org/search", {
-      params: {
-        city: "Bratislava",
-        street: inputValue,
-        format: "json",
-        addressdetails: 1,
-        limit: 5,
-        "accept-language": i18n.language,
-        bounded: 1,
-        viewbox: "16.7604,47.6985,18.8917,48.9331",
-      },
-    });
+    const response = await axios.get(
+      "https://nominatim.openstreetmap.org/search",
+      {
+        params: {
+          city: "Bratislava",
+          street: inputValue,
+          format: "json",
+          addressdetails: 1,
+          limit: 5,
+          "accept-language": i18n.language,
+          bounded: 1,
+          viewbox: "16.7604,47.6985,18.8917,48.9331",
+        },
+      }
+    );
 
     return response.data.map((item: any) => ({
       label: item.display_name,
@@ -59,7 +66,9 @@ export function DeliveryCalculator({
     }));
   };
 
-  const debouncedLoadOptions = useCallback(debounce(loadOptions, 500), [i18n.language]);
+  const debouncedLoadOptions = useCallback(debounce(loadOptions, 500), [
+    i18n.language,
+  ]);
 
   useEffect(() => {
     return () => {
@@ -138,6 +147,12 @@ export function DeliveryCalculator({
         styles={customStyles}
         components={customComponents}
       />
+
+      {formErrors.addressStreet && (
+        <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+          {formErrors.addressStreet}
+        </Title>
+      )}
 
       {distanceKm !== null && (
         <HelperText style={{ marginTop: "1rem" }}>{`${t(

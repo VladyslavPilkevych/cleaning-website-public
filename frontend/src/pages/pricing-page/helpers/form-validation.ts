@@ -29,9 +29,9 @@ export function validatePricingPageForm(
     errors.propertyRooms = t("pricing.errors.propertyRooms");
   }
 
-  // if (!formData.address.street) {
-  //   errors.addressStreet = t("pricing.errors.addressStreet");
-  // } // todo
+  if (!formData.address.street) {
+    errors.addressStreet = t("pricing.errors.addressStreet");
+  }
 
   // if (!formData.address.city) {
   //   errors.addressCity = t("pricing.errors.addressCity");

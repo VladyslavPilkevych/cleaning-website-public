@@ -85,6 +85,7 @@ export default function AddressForm({
           priceDeliveryExtra={priceDeliveryExtra}
           setPriceDeliveryExtra={setPriceDeliveryExtra}
           handleChangeFormData={handleChangeFormData}
+          formErrors={formErrors}
         />
         {/* <Box>
           <FormInput
@@ -107,33 +108,38 @@ export default function AddressForm({
         css={{ width: "100%" }}
         flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
       >
-        <FormInput
-          name="city"
-          label={t("pricing.address-form.city")}
-          placeholder={t("pricing.address-form.city-placeholder")}
-          labelColor={ThemeColors.Primary}
-          handleChange={handleChange}
-          formValue={formData.address.city || ""}
-          // helperText={t("pricing.address-form.city-helper-text")}
-        />
-        {formErrors.addressCity && (
-          <Title size={TitleSize.H6} color={ThemeColors.Warning}>
-            {formErrors.addressCity}
-          </Title>
-        )}
-        <FormInput
-          name="house"
-          label={t("pricing.address-form.house-number")}
-          placeholder={t("pricing.address-form.house-number-placeholder")}
-          labelColor={ThemeColors.Primary}
-          handleChange={handleChange}
-          formValue={formData.address.house || ""}
-        />
-        {formErrors.addressHouse && (
-          <Title size={TitleSize.H6} color={ThemeColors.Warning}>
-            {formErrors.addressHouse}
-          </Title>
-        )}
+        <Box>
+          <FormInput
+            name="city"
+            label={t("pricing.address-form.city")}
+            placeholder={t("pricing.address-form.city-placeholder")}
+            labelColor={ThemeColors.Primary}
+            handleChange={handleChange}
+            formValue={formData.address.city || ""}
+            // helperText={t("pricing.address-form.city-helper-text")}
+          />
+          {/* {formErrors.addressCity && ( // TODO ? validation for city
+            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+              {formErrors.addressCity}
+            </Title>
+          )} */}
+        </Box>
+        <Box>
+          <FormInput
+            name="house"
+            label={t("pricing.address-form.house-number")}
+            placeholder={t("pricing.address-form.house-number-placeholder")}
+            labelColor={ThemeColors.Primary}
+            handleChange={handleChange}
+            formValue={formData.address.house || ""}
+          />
+          {formErrors.addressHouse && (
+            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+              {formErrors.addressHouse}
+            </Title>
+          )}
+        </Box>
+
         <FormInput
           name="floor"
           label={t("pricing.address-form.floor")}
