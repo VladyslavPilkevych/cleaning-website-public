@@ -68,22 +68,6 @@ export default function AddressForm({
       >
         {/* <Box>
           <FormInput
-            name="city"
-            label={t("pricing.address-form.city")}
-            placeholder={t("pricing.address-form.city-placeholder")}
-            labelColor={ThemeColors.Primary}
-            handleChange={handleChange}
-            formValue={formData.address.city || ""}
-            // helperText={t("pricing.address-form.city-helper-text")}
-          />
-          {formErrors.addressCity && (
-            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
-              {formErrors.addressCity}
-            </Title>
-          )}
-        </Box> */}
-        {/* <Box>
-          <FormInput
             name="street"
             label={t("pricing.address-form.street")}
             placeholder={t("pricing.address-form.street-placeholder")}
@@ -97,7 +81,11 @@ export default function AddressForm({
             </Title>
           )}
         </Box> */}
-        <DeliveryCalculator priceDeliveryExtra={priceDeliveryExtra} setPriceDeliveryExtra={setPriceDeliveryExtra} handleChangeFormData={handleChangeFormData} />
+        <DeliveryCalculator
+          priceDeliveryExtra={priceDeliveryExtra}
+          setPriceDeliveryExtra={setPriceDeliveryExtra}
+          handleChangeFormData={handleChangeFormData}
+        />
         {/* <Box>
           <FormInput
             name="psc"
@@ -119,21 +107,33 @@ export default function AddressForm({
         css={{ width: "100%" }}
         flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
       >
-        <Box>
-          <FormInput
-            name="house"
-            label={t("pricing.address-form.house-number")}
-            placeholder={t("pricing.address-form.house-number-placeholder")}
-            labelColor={ThemeColors.Primary}
-            handleChange={handleChange}
-            formValue={formData.address.house || ""}
-          />
-          {formErrors.addressHouse && (
-            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
-              {formErrors.addressHouse}
-            </Title>
-          )}
-        </Box>
+        <FormInput
+          name="city"
+          label={t("pricing.address-form.city")}
+          placeholder={t("pricing.address-form.city-placeholder")}
+          labelColor={ThemeColors.Primary}
+          handleChange={handleChange}
+          formValue={formData.address.city || ""}
+          // helperText={t("pricing.address-form.city-helper-text")}
+        />
+        {formErrors.addressCity && (
+          <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+            {formErrors.addressCity}
+          </Title>
+        )}
+        <FormInput
+          name="house"
+          label={t("pricing.address-form.house-number")}
+          placeholder={t("pricing.address-form.house-number-placeholder")}
+          labelColor={ThemeColors.Primary}
+          handleChange={handleChange}
+          formValue={formData.address.house || ""}
+        />
+        {formErrors.addressHouse && (
+          <Title size={TitleSize.H6} color={ThemeColors.Warning}>
+            {formErrors.addressHouse}
+          </Title>
+        )}
         <FormInput
           name="floor"
           label={t("pricing.address-form.floor")}
@@ -142,7 +142,6 @@ export default function AddressForm({
           handleChange={handleChange}
           formValue={formData.address.floor || ""}
         />
-        <Box />
       </Flex>
     </Flex>
   );
