@@ -199,6 +199,36 @@
       "paymentMethod": "Prosím, vyberte spôsob platby."
     }
   },
+  "admin-panel": {
+    "password": "Zadajte heslo",
+    "submit": "Potvrdiť",
+    "event": {
+      "name": "Meno",
+      "address": "Adresa",
+      "time": "Čas",
+      "date": "Dátum",
+      "email": "Email",
+      "phone": "Telefón",
+      "message": "Správa",
+      "start": "Začiatok",
+      "end": "Koniec",
+      "services": "Služby",
+      "payment-method": "Spôsob platby",
+      "card-paid": "Karta – zaplatené",
+      "cash-paid": "Hotovosť – platba na mieste",
+      "total-price": "Celková cena",
+      "property-type": "Typ nehnuteľnosti",
+      "property-area": "Rozloha",
+      "property-rooms": "Izby",
+      "property-steps": "Sú tam schody",
+      "windows-cleaning": "Je potrebné čistenie okien",
+      "windows-mold": "Je potrebné čistenie plesne z okien",
+      "windows-area": "Rozloha okien",
+      "windows-count": "Počet okien",
+      "yes": "Áno",
+      "no": "Nie"
+    }
+  },
   "footer": {
     "links": "Odkazy",
     "social-media": "Söciálne siete",

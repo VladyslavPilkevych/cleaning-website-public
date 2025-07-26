@@ -12,6 +12,9 @@ import { convertToEvent } from "./helpers/utils";
 import { DbPricingFormData } from "../../pricing-page/helpers/types";
 import { TableEvent } from "./helpers/types";
 import AdminTableCurrentInfo from "./admin-table-current-info";
+import { useTranslation } from "react-i18next";
+import { TFunction } from "i18next";
+import { EventContentArg } from "@fullcalendar/core";
 
 const StyledCalendarWrapper = styled.div`
   max-height: 800px;
@@ -116,7 +119,7 @@ const StyledEventContent = styled.div`
   }
 `;
 
-const renderEventContent = (eventInfo: any) => {
+const renderEventContent = (eventInfo: EventContentArg, t: TFunction<"translation">) => {
   const { timeText, event } = eventInfo;
 
   const name = event.extendedProps?.name || "—";
@@ -126,10 +129,10 @@ const renderEventContent = (eventInfo: any) => {
     <StyledEventContent>
       <div className="event-time">{timeText}</div>
       <div className="event-name">
-        <span className="event-label">Ім’я:</span> {name}
+        <span className="event-label">{t("admin-panel.event.name")}:</span> {name}
       </div>
       <div className="event-address">
-        <span className="event-label">Адреса:</span> {address}
+        <span className="event-label">{t("admin-panel.event.address")}:</span> {address}
       </div>
     </StyledEventContent>
   );
@@ -141,6 +144,7 @@ export default function AdminTable() {
   const [selectedEvent, setSelectedEvent] = useState<DbPricingFormData | null>(
     null
   );
+  const { t } = useTranslation("translation");
 
   async function getOrders() {
     await superbaseGetAllOrdersAPI()
@@ -201,7 +205,7 @@ export default function AdminTable() {
             editable={true}
             selectable={true}
             eventClick={handleEventClick}
-            eventContent={renderEventContent}
+            eventContent={(eventInfo) => renderEventContent(eventInfo, t)}
             slotMinTime="06:00:00"
             slotMaxTime="20:00:00"
           />

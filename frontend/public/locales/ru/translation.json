@@ -199,6 +199,36 @@
       "paymentMethod": "Пожалуйста, выберите способ оплаты."
     }
   },
+  "admin-panel": {
+    "password": "Введите пароль",
+    "submit": "Подтвердить",
+    "event": {
+      "name": "Имя",
+      "address": "Адрес",
+      "time": "Время",
+      "date": "Дата",
+      "email": "Электронная почта",
+      "phone": "Телефон",
+      "message": "Сообщение",
+      "start": "Начало",
+      "end": "Конец",
+      "services": "Услуги",
+      "payment-method": "Платёжная система",
+      "card-paid": "Карта – оплачено",
+      "cash-paid": "Наличные – оплата на месте",
+      "total-price": "Общая стоимость",
+      "property-type": "Тип недвижимости",
+      "property-area": "Площадь",
+      "property-rooms": "Комнаты",
+      "property-steps": "Есть ли ступени",
+      "windows-cleaning": "Нужна ли чистка окон",
+      "windows-mold": "Нужна ли чистка окон от плесени",
+      "windows-area": "Площадь окон",
+      "windows-count": "Количество окон",
+      "yes": "Да",
+      "no": "Нет"
+    }
+  },
   "footer": {
     "links": "Ссылки",
     "social-media": "Социальные сети",

@@ -199,6 +199,36 @@
       "paymentMethod": "Please select a payment method."
     }
   },
+  "admin-panel": {
+    "password": "Enter password",
+    "submit": "Submit",
+    "event": {
+      "name": "Name",
+      "address": "Address",
+      "time": "Time",
+      "date": "Date",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "start": "Start",
+      "end": "End",
+      "services": "Services",
+      "payment-method": "Payment method",
+      "card-paid": "Card – paid",
+      "cash-paid": "Cash – pay on site",
+      "total-price": "Total price",
+      "property-type": "Property type",
+      "property-area": "Area",
+      "property-rooms": "Rooms",
+      "property-steps": "Are there steps",
+      "windows-cleaning": "Is window cleaning needed",
+      "windows-mold": "Is window mold cleaning needed",
+      "windows-area": "Window area",
+      "windows-count": "Number of windows",
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
   "footer": {
     "links": "Links",
     "social-media": "Social Media",

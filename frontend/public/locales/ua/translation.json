@@ -199,6 +199,36 @@
       "paymentMethod": "Будь ласка, виберіть спосіб оплати."
     }
   },
+  "admin-panel": {
+    "password": "Введіть пароль",
+    "submit": "Підтвердити",
+    "event": {
+      "name": "Ім'я",
+      "address": "Адреса",
+      "time": "Час",
+      "date": "Дата",
+      "email": "Email",
+      "phone": "Телефон",
+      "message": "Повідомлення",
+      "start": "Початок",
+      "end": "Кінець",
+      "services": "Послуги",
+      "payment-method": "Платіжна система",
+      "card-paid": "Карта - заплачено",
+      "cash-paid": "Готівка - оплата на місці",
+      "total-price": "Загальна ціна",
+      "property-type": "Тип власності",
+      "property-area": "Площа",
+      "property-rooms": "Кімнати",
+      "property-steps": "Чи є ступені",
+      "windows-cleaning": "Чи потрібна чистка вікон",
+      "windows-mold": "Чи потрібна чистка вікон від грибка",
+      "windows-area": "Площа вікон",
+      "windows-count": "Кількість вікон",
+      "yes": "Так",
+      "no": "Ні"
+    }
+  },
   "footer": {
     "links": "Посилання",
     "social-media": "Соціальні мережі",
