@@ -57,12 +57,15 @@ export default function PricingPage() {
   const [formData, setFormData] = useState<PricingPageFormData>(() =>
     getDefaultPricingPageFormData()
   );
+  const [formDataResetKey, setFormDataResetKey] = useState(0);
 
   const [formErrors, setFormErrors] = useState<PricingPageFormDataErrors>({});
 
   const restartForm = () => {
     setFormData(getDefaultPricingPageFormData());
     setFormErrors({});
+    setFormDataResetKey((prev) => prev + 1);
+    setPriceDeliveryExtra(null);
   };
 
   const handleChangeFormData = (name: string, value: HandleChangeValueType) => {
@@ -185,6 +188,7 @@ export default function PricingPage() {
         handleChangeFormData={handleChangeFormData}
         priceDeliveryExtra={priceDeliveryExtra}
         setPriceDeliveryExtra={setPriceDeliveryExtra}
+        formDataResetKey={formDataResetKey}
       />
 
       <ContactForm

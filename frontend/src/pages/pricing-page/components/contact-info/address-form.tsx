@@ -22,6 +22,7 @@ export type AddressFormProps = {
   formErrors: PricingPageFormDataErrors;
   priceDeliveryExtra: number | null;
   setPriceDeliveryExtra: (price: number | null) => void;
+  formDataResetKey: number;
 };
 
 export default function AddressForm({
@@ -30,6 +31,7 @@ export default function AddressForm({
   formErrors,
   priceDeliveryExtra,
   setPriceDeliveryExtra,
+  formDataResetKey,
 }: AddressFormProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
@@ -86,6 +88,7 @@ export default function AddressForm({
           setPriceDeliveryExtra={setPriceDeliveryExtra}
           handleChangeFormData={handleChangeFormData}
           formErrors={formErrors}
+          key={formDataResetKey}
         />
         {/* <Box>
           <FormInput
