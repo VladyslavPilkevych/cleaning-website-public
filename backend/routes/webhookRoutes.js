@@ -87,7 +87,7 @@ router.post(
           chemic: metadata.chemic === "true",
           type: metadata.chemic_type,
         },
-        services: [],
+        services: JSON.parse(metadata.services),
       };
 
       // for (let i = 1; i <= 10; i++) {

@@ -37,7 +37,7 @@ function generateClientPaymentEmailHTML(
 
 function generateAdminPaymentEmailHTML(formData, amountFormatted) {
   const formatBool = (val) => (val ? "Так" : "Ні");
-  
+
   const formatDate = (str) => {
     if (!str) return "—";
     const date = new Date(str);
@@ -48,17 +48,17 @@ function generateAdminPaymentEmailHTML(formData, amountFormatted) {
     return `${day}.${month}.${year}`;
   };
 
-  const servicesString =
-    formData.services.length > 0
-      ? formData.services
-          .map(
-            (s, i) =>
-              `Послуга ${i + 1}: ID ${s.id}, Кількість ${s.count}, Ціна €${
-                s.price
-              }`
-          )
-          .join(", ")
-      : "Немає додаткових послуг";
+  // const servicesString =
+  //   formData.services.length > 0
+  //     ? formData.services
+  //         .map(
+  //           (s, i) =>
+  //             `Послуга ${i + 1}: ID ${s.id}, Кількість ${s.count}, Ціна €${
+  //               s.price
+  //             }`
+  //         )
+  //         .join(", ")
+  //     : "Немає додаткових послуг";
 
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
@@ -141,26 +141,27 @@ function generateAdminPaymentEmailHTML(formData, amountFormatted) {
       </ul>
 
       <p><strong>Додаткові послуги:</strong></p>
-      <p>${servicesString}</p>
+      ${
+        formData.services.length > 0
+          ? formData.services
+              .map(
+                (s, i) => `
+                  <li><strong>Додаткова послуга ${i + 1}:</strong>${
+                    s.id
+                  }, <strong>Кількість:</strong> ${s.count}, <strong>Ціна:</strong> €${s.price}, <strong>Всього:</strong> €${s.count * s.price}</li>
+                `
+              )
+              .join("")
+          : "<li>Немає додаткових послуг</li>"
+      }
     </div>
   `;
 }
-{/* <li><strong>Поштовий індекс:</strong> ${
+{
+  /* <li><strong>Поштовий індекс:</strong> ${
   formData.address.psc ?? "—"
-}</li> */}
-// ${
-//   formData.services.length > 0
-//     ? formData.services
-//         .map(
-//           (s, i) => `
-//   <li><strong>Додаткова послуга ${i + 1}:</strong> ID: ${
-//             s.id
-//           }, Кількість: ${s.count}, Ціна: €${s.price}</li>
-// `
-//         )
-//         .join("")
-//     : "<li>Немає додаткових послуг</li>"
-// }
+}</li> */
+}
 
 function generateClientOnlineSupportHTML(name, language) {
   return `

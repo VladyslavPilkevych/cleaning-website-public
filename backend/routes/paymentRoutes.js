@@ -17,17 +17,6 @@ router.post("/create-payment-intent", async (req, res) => {
       return res.status(400).json({ error: 'Amount is required' });
     }
 
-    const serviceMeta = {};
-    if(formData?.services && formData?.services.length > 0){
-      formData.services.forEach((s, i) => {
-        serviceMeta[`service_${i + 1}_id`] = s.id;
-        serviceMeta[`service_${i + 1}_count`] = String(s.count);
-        serviceMeta[`service_${i + 1}_price`] = String(s.price);
-      });
-    }
-
-    // todo serviceMeta
-
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency,
@@ -82,6 +71,7 @@ router.post("/create-payment-intent", async (req, res) => {
         chemic: parsedFormData.chemicalCleaning?.chemic ? "true" : "false",
         chemic_type: parsedFormData.chemicalCleaning?.type ?? "",
         
+        services: JSON.stringify(parsedFormData.services),
         // ...serviceMeta // todo
       },
       
