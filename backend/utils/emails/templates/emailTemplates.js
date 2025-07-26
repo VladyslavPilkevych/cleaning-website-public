@@ -1,5 +1,6 @@
 const paymentTranslations = require("../locales/paymentLocales");
 const onlineSupportTranslations = require("../locales/onlineSupportLocales");
+const servicesLocales = require("../locales/servicesLocales");
 
 function generateClientPaymentEmailHTML(
   name,
@@ -147,7 +148,7 @@ function generateAdminPaymentEmailHTML(formData, amountFormatted) {
               .map(
                 (s, i) => `
                   <li><strong>Додаткова послуга ${i + 1}:</strong>${
-                    s.id
+                    servicesLocales['ua'][s.id]
                   }, <strong>Кількість:</strong> ${s.count}, <strong>Ціна:</strong> €${s.price}, <strong>Всього:</strong> €${s.count * s.price}</li>
                 `
               )

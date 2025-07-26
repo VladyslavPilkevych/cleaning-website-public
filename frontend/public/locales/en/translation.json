@@ -120,14 +120,7 @@
         "pet": "Pet Cleaning",
         "plates": "Plates Cleaning",
         "blinds": "Blinds Cleaning",
-        "radiator": "Radiator Cleaning"
-      },
-      "chemics": {
-        "title": "Do you need chemicals cleaning?",
-        "regular": "Regular ?",
-        "bio": "Bio-hypoallergenic ?"
-      },
-      "cleaning-cards": {
+        "radiator": "Radiator Cleaning",
         "sofa": "Sofa Cleaning",
         "sofa-single": "Single Sofa Cleaning",
         "armchair": "Armchair Cleaning",
@@ -136,6 +129,11 @@
         "sofa-corner": "Sofa Corner Cleaning",
         "carpet": "Carpet Cleaning",
         "sofa-corner-question": "Seats count?"
+      },
+      "chemics": {
+        "title": "Do you need chemicals cleaning?",
+        "regular": "Regular ?",
+        "bio": "Bio-hypoallergenic ?"
       }
     },
     "address-form": {

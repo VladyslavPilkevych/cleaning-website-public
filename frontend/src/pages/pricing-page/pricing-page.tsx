@@ -173,7 +173,7 @@ export default function PricingPage() {
           formData={formData}
           handleChangeFormData={handleChangeFormData}
           cards={chemicalCleaningCards}
-          translationPath="pricing.services.cleaning-cards"
+          translationPath="pricing.services.cards"
         />
       </Checkbox>
 

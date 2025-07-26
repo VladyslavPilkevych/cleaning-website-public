@@ -10,6 +10,7 @@ import {
   ServicesFormData,
 } from "../../pricing-page/helpers/types";
 import { useTranslation } from "react-i18next";
+import { AlignItems } from "../../../components/flex/flex.constants";
 
 type AdminTableCurrentInfoProps = {
   selectedEvent: DbPricingFormData | null;
@@ -92,7 +93,7 @@ export default function AdminTableCurrentInfo({
           {selectedEvent?.date?.toLocaleString() ?? ""}
         </Title>
       </Flex> */}
-      <Flex gap="1rem">
+      <Flex gap="1rem" alignItems={AlignItems.START}>
         <Title
           size={TitleSize.H6}
           color={ThemeColors.Dark}
@@ -104,7 +105,7 @@ export default function AdminTableCurrentInfo({
           {selectedEvent?.address_street + ", " + selectedEvent?.address_house}
         </Title>
       </Flex>
-      <Flex gap="1rem">
+      <Flex gap="1rem" alignItems={AlignItems.START}>
         <Title
           size={TitleSize.H6}
           color={ThemeColors.Dark}
@@ -117,9 +118,8 @@ export default function AdminTableCurrentInfo({
             ? JSON.parse(selectedEvent?.services as string)
                 ?.map(
                   (service: ServicesFormData) =>
-                    service.id + ": " + service.count
+                    <li key={service.id}>{t(`pricing.services.cards.${service.id}`)}: {service.count}</li>
                 )
-                ?.join(", ")
             : "-"}
         </Title>
       </Flex>

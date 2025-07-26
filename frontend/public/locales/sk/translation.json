@@ -120,14 +120,7 @@
         "pet": "Čistenie po domácich zvieratách",
         "plates": "Umývanie riadu",
         "blinds": "Čistenie roletov",
-        "radiator": "Čistenie baterie"
-      },
-      "chemics": {
-        "title": "Je potrebné použitie chémie?",
-        "regular": "Bežný ?",
-        "bio": "Bio-hypoalergénnej ?"
-      },
-      "cleaning-cards": {
+        "radiator": "Čistenie baterie",
         "sofa": "Čistenie pohovky",
         "sofa-single": "Čistenie jednosedadlovej pohovky",
         "armchair": "Čistenie kresla",
@@ -136,6 +129,11 @@
         "sofa-corner": "Čistenie rohovej pohovky",
         "carpet": "Čistenie koberca",
         "sofa-corner-question": "Počet sedadiel?"
+      },
+      "chemics": {
+        "title": "Je potrebné použitie chémie?",
+        "regular": "Bežný ?",
+        "bio": "Bio-hypoalergénnej ?"
       }
     },
     "address-form": {
