@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import Box from "../../../../components/box";
 import { useTranslation } from "react-i18next";
 import ThemeColors from "../../../../utils/theme/colors";
@@ -23,6 +23,7 @@ export type AddressFormProps = {
   priceDeliveryExtra: number | null;
   setPriceDeliveryExtra: (price: number | null) => void;
   formDataResetKey: number;
+  setFormErrors: Dispatch<SetStateAction<PricingPageFormDataErrors>>;
 };
 
 export default function AddressForm({
@@ -32,6 +33,7 @@ export default function AddressForm({
   priceDeliveryExtra,
   setPriceDeliveryExtra,
   formDataResetKey,
+  setFormErrors,
 }: AddressFormProps) {
   const { t } = useTranslation("translation");
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
@@ -89,6 +91,7 @@ export default function AddressForm({
           handleChangeFormData={handleChangeFormData}
           formErrors={formErrors}
           key={formDataResetKey}
+          setFormErrors={setFormErrors}
         />
         {/* <Box>
           <FormInput

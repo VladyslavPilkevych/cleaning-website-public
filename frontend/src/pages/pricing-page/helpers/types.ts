@@ -93,6 +93,7 @@ export type PricingPageFormDataErrors = {
   propertyRooms?: string;
   propertySteps?: string;
   addressStreet?: string;
+  addressDistance?: string;
   addressCity?: string;
   addressPsc?: string;
   addressHouse?: string;
