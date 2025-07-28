@@ -189,6 +189,7 @@ export default function PricingPage() {
         priceDeliveryExtra={priceDeliveryExtra}
         setPriceDeliveryExtra={setPriceDeliveryExtra}
         formDataResetKey={formDataResetKey}
+        setFormErrors={setFormErrors}
       />
 
       <ContactForm

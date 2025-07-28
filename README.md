@@ -21,3 +21,5 @@ For more details, see the [LICENSE](./LICENSE) file.
    - `release/v2.1.0-beta`
    - `release/v1.2.3-rc`
    
+- email:
+  - `infolexishine@gmail.com`
