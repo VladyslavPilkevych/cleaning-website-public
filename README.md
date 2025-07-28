@@ -1,6 +1,6 @@
-# CleanNow — Multilingual Cleaning Service Platform
+# Multilingual Cleaning Service Platform
 
-CleanNow is a modern web platform for booking professional cleaning services. It includes a responsive frontend, secure payment via Stripe (including Google Pay and Apple Pay), automated email notifications, a dynamic pricing calculator, a contact form, and an admin panel to manage and view orders. The application supports four languages: English, Slovak, Ukrainian, and Russian.
+Multilingual Cleaning Service Platform is a modern web platform for booking professional cleaning services. It includes a responsive frontend, secure payment via Stripe (including Google Pay and Apple Pay), automated email notifications, a dynamic pricing calculator, a contact form, and an admin panel to manage and view orders. The application supports four languages: English, Slovak, Ukrainian, and Russian.
 
 ---
 
