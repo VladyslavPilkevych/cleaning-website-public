@@ -1,5 +1,13 @@
 # Multilingual Cleaning Service Platform
 
+![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-blue)
+![Status](https://img.shields.io/badge/status-sanitized--public--demo-yellow)
+![Made with React](https://img.shields.io/badge/built%20with-React%2019-blue?logo=react)
+
+> ⚠️ **Notice**: Some implementation details (such as sensitive backend logic and internal routes) have been intentionally removed for security and licensing reasons.  
+> If you're interested in reviewing the full version for hiring or collaboration purposes, feel free to contact me directly.
+
+
 Multilingual Cleaning Service Platform is a modern web platform for booking professional cleaning services. It includes a responsive frontend, secure payment via Stripe (including Google Pay and Apple Pay), automated email notifications, a dynamic pricing calculator, a contact form, and an admin panel to manage and view orders. The application supports four languages: English, Slovak, Ukrainian, and Russian.
 
 ---
@@ -125,7 +133,7 @@ Main backend dependencies:
   }
 ```
 
-## Additional developer information:
+## Developer Notes & Docs:
 
 - [See extended documentation](./docs/README.md)
 
