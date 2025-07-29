@@ -63,7 +63,6 @@ export default function ControlledCheckbox({
             inputProps={{ "aria-label": "controlled" }}
             sx={{
               color: ThemeColors.Primary,
-              // padding: "0.5rem",
               "&.Mui-checked": {
                 color: ThemeColors.Primary,
               },

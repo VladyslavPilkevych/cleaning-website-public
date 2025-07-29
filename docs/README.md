@@ -74,4 +74,4 @@ SSL_KEY_FILE=
   <!-- - `release/v1.2.3-rc` -->
 
 ## email:
-  - `infolexishine@gmail.com`
+  - `example@gmail.com`

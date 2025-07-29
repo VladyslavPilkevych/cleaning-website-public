@@ -24,23 +24,6 @@ export default function CardContainer({
   const isTablet = useMediaQuery({ query: "(max-width: 768px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 480px)" });
 
-  // const [selectedCards, setSelectedCards] = useState<
-  //   { id: string; count: number }[]
-  // >([]);
-
-  // const handleCardToggle = (id: string, isMulti: boolean) => {
-  //   setSelectedCards((prev) => {
-  //     const existingCard = prev.find((card) => card.id === id);
-
-  //     if (existingCard) {
-  //       return prev.filter((card) => card.id !== id);
-  //     } else {
-  //       return isMulti
-  //         ? [...prev, { id, count: 1 }]
-  //         : [...prev, { id, count: 1 }];
-  //     }
-  //   });
-  // };
   const handleCardToggle = (id: string, isMulti: boolean) => {
     const existingCard = formData.services.find((card) => card.id === id);
     const price = cards.find((card) => card.text === id)!.price;
@@ -53,12 +36,6 @@ export default function CardContainer({
 
     handleChangeFormData("services", updatedServices);
   };
-
-  // const updateCardCount = (id: string, newCount: number) => {
-  //   setSelectedCards((prev) =>
-  //     prev.map((card) => (card.id === id ? { ...card, count: newCount } : card))
-  //   );
-  // };
 
   const updateCardCount = (id: string, newCount: number) => {
     const updatedServices = formData.services.map((card) =>
@@ -87,7 +64,7 @@ export default function CardContainer({
       {cards.map((card) => (
         <CardItem
           key={card.id}
-          id={card.text} // ? may be changed to card.id in future 
+          id={card.text} // ? TODO: may be changed to card.id in future 
           src={card.src}
           srcInverted={card.srcInverted}
           price={card.price}
@@ -97,7 +74,6 @@ export default function CardContainer({
             t(`${translationPath}.${card.additionalQuestion}`)
           }
           isMulti={card.isMulti}
-          // selectedCards={selectedCards}
           selectedCards={formData.services}
           onToggle={handleCardToggle}
           onUpdateCount={updateCardCount}

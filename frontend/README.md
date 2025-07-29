@@ -1,4 +1,4 @@
-# Frontend Lexishine Cleaning
+# Frontend Cleaning service
 
 `"i18next": "^23.6.0",`
 

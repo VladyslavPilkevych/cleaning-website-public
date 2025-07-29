@@ -70,21 +70,6 @@ export default function AddressForm({
         css={{ width: "100%", position: "relative" }}
         flexDirection={isMobile ? FlexDirection.COLUMN : FlexDirection.ROW}
       >
-        {/* <Box>
-          <FormInput
-            name="street"
-            label={t("pricing.address-form.street")}
-            placeholder={t("pricing.address-form.street-placeholder")}
-            labelColor={ThemeColors.Primary}
-            handleChange={handleChange}
-            formValue={formData.address.street || ""}
-          />
-          {formErrors.addressStreet && (
-            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
-              {formErrors.addressStreet}
-            </Title>
-          )}
-        </Box> */}
         <DeliveryCalculator
           priceDeliveryExtra={priceDeliveryExtra}
           setPriceDeliveryExtra={setPriceDeliveryExtra}
@@ -93,21 +78,6 @@ export default function AddressForm({
           key={formDataResetKey}
           setFormErrors={setFormErrors}
         />
-        {/* <Box>
-          <FormInput
-            name="psc"
-            label={t("pricing.address-form.psc")}
-            placeholder={t("pricing.address-form.psc-placeholder")}
-            labelColor={ThemeColors.Primary}
-            handleChange={handleChange}
-            formValue={formData.address.psc || ""}
-          />
-          {formErrors.addressPsc && (
-            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
-              {formErrors.addressPsc}
-            </Title>
-          )}
-        </Box> */}
       </Flex>
       <Flex
         gap="2rem"
@@ -122,13 +92,7 @@ export default function AddressForm({
             labelColor={ThemeColors.Primary}
             handleChange={handleChange}
             formValue={formData.address.city || ""}
-            // helperText={t("pricing.address-form.city-helper-text")}
           />
-          {/* {formErrors.addressCity && ( // TODO ? validation for city
-            <Title size={TitleSize.H6} color={ThemeColors.Warning}>
-              {formErrors.addressCity}
-            </Title>
-          )} */}
         </Box>
         <Box>
           <FormInput

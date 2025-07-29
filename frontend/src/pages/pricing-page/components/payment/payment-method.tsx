@@ -87,8 +87,6 @@ export default function PaymentMethod({
     handleChangeFormData("paymentMethod", PAYMENT_METHOD.CASH);
   }
 
-  // console.log("Stripe key", process.env.REACT_APP_STRIPE_KEY);
-
   return (
     <>
       <Flex flexDirection={FlexDirection.COLUMN}>

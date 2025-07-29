@@ -63,7 +63,7 @@ export default function ContactsPage() {
           <Flex gap="2rem">
             <Icon src="/icons/mail.png" />
             <Title size={TitleSize.H5} color={ThemeColors.White}>
-              lexishine@gmail.com
+              example@gmail.com
             </Title>
           </Flex>
           <Flex gap="2rem">

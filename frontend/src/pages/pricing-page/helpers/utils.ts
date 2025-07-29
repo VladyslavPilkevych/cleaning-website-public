@@ -42,44 +42,7 @@ export const getDefaultPricingPageFormData = (): PricingPageFormData => ({
   totalPrice: 46,
 });
 
-// export const defaultPricingPageFormData: PricingPageFormData = {
-//   date: null,
-//   time: null,
-//   property: {
-//     type: null,
-//     area: null,
-//     rooms: null,
-//     steps: false,
-//   },
-//   windows: {
-//     cleaning: null,
-//     mold: null,
-//     area: null,
-//     count: null,
-//   },
-//   services: [],
-//   vacuum: null,
-//   chemicalCleaning: {
-//     chemic: null,
-//     type: ChemicalCleaningType.REGULAR,
-//   },
-//   address: {
-//     street: null,
-//     city: null,
-//     psc: null,
-//     house: null,
-//     floor: null,
-//   },
-//   contacts: {
-//     name: null,
-//     email: null,
-//     phone: null,
-//     message: null,
-//   },
-//   paymentMethod: null,
-//   totalPrice: 46,
-// };
-
+// TODO: implementation hidden for security reasons
 export function convertPricingFormToDb(
   input: PricingPageFormData,
   totalPrice: number
@@ -103,7 +66,7 @@ export function convertPricingFormToDb(
     chemical_cleaning_type: input.chemicalCleaning?.type ?? null,
     address_street: input.address?.street ?? null,
     address_city: input.address?.city ?? null,
-    address_psc: null, // todo: input.address?.psc ?? null,
+    address_psc: null,
     address_house: input.address?.house ?? null,
     address_floor: input.address?.floor ?? null,
     contact_name: input.contacts?.name ?? null,

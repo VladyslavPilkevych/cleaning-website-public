@@ -117,7 +117,6 @@ const Spinner = styled.div`
 const StyledLabel = styled.label`
   display: block;
   font-size: 14px;
-  // margin-bottom: 8px;
   margin: 1rem 0;
   color: #333333;
   font-weight: bold;

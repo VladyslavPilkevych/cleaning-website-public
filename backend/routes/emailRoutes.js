@@ -34,7 +34,7 @@ router.post("/send", async (req, res) => {
     }
 
     await transporter.sendMail({
-      from: `LexiShine cleaning ${process.env.EMAIL_USER}`,
+      from: `Cleaning service ${process.env.EMAIL_USER}`,
       to: email,
       subject: `${name} (${phone})`,
       text: message,
@@ -66,16 +66,16 @@ router.post("/mail-payment-cash", async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: `LexiShine Cleaning <${process.env.EMAIL_USER}>`,
+      from: `Cleaning service <${process.env.EMAIL_USER}>`,
       to: email,
       subject: paymentTranslations[language].paymentSubjectCash,
       html: generateClientPaymentEmailHTML(name, amountFormatted, language),
     });
 
     await transporter.sendMail({
-      from: `LexiShine Payment Notification <${process.env.EMAIL_USER}>`,
+      from: `Payment Notification <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
-      subject: `LexiShine Cash Payment Notification ${name}`,
+      subject: `Cash Payment Notification ${name}`,
       html: generateAdminPaymentEmailHTML(formData, amountFormatted),
     });
 

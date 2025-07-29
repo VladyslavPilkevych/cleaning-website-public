@@ -52,6 +52,7 @@ router.post(
       const amount = paymentIntent.amount;
       const language = metadata.language;
 
+      // TODO: implementation hidden for security reasons
       const formData = {
         date: metadata.cleaning_date,
         time: metadata.cleaning_time,
@@ -90,30 +91,20 @@ router.post(
         services: JSON.parse(metadata.services),
       };
 
-      // for (let i = 1; i <= 10; i++) {
-      //   const id = metadata[`service_${i}_id`];
-      //   if (!id) break;
-      //   formData.services.push({
-      //     id,
-      //     count: Number(metadata[`service_${i}_count`] ?? 0),
-      //     price: Number(metadata[`service_${i}_price`] ?? 0),
-      //   });
-      // } // TODO
-
       const amountFormatted = (amount / 100).toFixed(2);
       try {
         await transporter.sendMail({
-          from: `LexiShine Cleaning <${process.env.EMAIL_USER}>`,
+          from: `Cleaning service <${process.env.EMAIL_USER}>`,
           to: email,
           subject: paymentTranslations[language].paymentSubject,
           html: generateClientPaymentEmailHTML(name, amountFormatted, language, true),
         });
 
         await transporter.sendMail({
-          from: `LexiShine Payment Notification <${process.env.EMAIL_USER}>`,
+          from: `Payment Notification <${process.env.EMAIL_USER}>`,
           to: process.env.EMAIL_USER,
-          subject: `LexiShine Payment Notification ${name}`,
-          html: generateAdminPaymentEmailHTML(formData, amountFormatted),
+          subject: `Payment Notification ${name}`,
+          html: generateAdminPaymentEmailHTML(metadata, amountFormatted),
         });
       } catch (err) {
         console.error("Error sending emails:", err);

@@ -33,14 +33,6 @@ export function validatePricingPageForm(
     errors.addressStreet = t("pricing.errors.addressStreet");
   }
 
-  // if (!formData.address.city) {
-  //   errors.addressCity = t("pricing.errors.addressCity");
-  // }
-
-  // if (!formData.address.psc) {
-  //   errors.addressPsc = t("pricing.errors.addressPsc");
-  // }
-
   if (!formData.address.house) {
     errors.addressHouse = t("pricing.errors.addressHouse");
   }

@@ -105,7 +105,7 @@ export default function Footer() {
             {"+1(123) 456-789"}
           </Title>
           <Title size={TitleSize.H6} color={ThemeColors.White}>
-            {"lexishine@gmail.com"}
+            {"example@gmail.com"}
           </Title>
         </Flex>
       </Flex>

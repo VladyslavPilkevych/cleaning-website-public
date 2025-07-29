@@ -8,11 +8,11 @@ const paymentTranslations = {
     paymentInCash: (amount) =>
       `You have chosen to pay in cash <strong>€${amount}</strong>.`,
     paymentConfirmed:
-      "Thank you for choosing <strong>LexiShine Cleaning</strong>! Your cleaning service is now confirmed.",
-    paymentContact: `If you have any questions, feel free to reply to this email or contact us at <a href="mailto:infolexishine@gmail.com">infolexishine@gmail.com</a>.`,
+      "Thank you for choosing <strong>Cleaning</strong>! Your cleaning service is now confirmed.",
+    paymentContact: `If you have any questions, feel free to reply to this email or contact us at <a href="mailto:example@gmail.com">example@gmail.com</a>.`,
     paymentReceiptNote:
       "This email serves as your receipt. Please keep it for your records.",
-    paymentFooter: "LexiShine Cleaning · Your trusted cleaning partner",
+    paymentFooter: "Cleaning service · Your trusted cleaning partner",
   },
   sk: {
     paymentSubject: "Ďakujeme za vašu platbu",
@@ -23,11 +23,11 @@ const paymentTranslations = {
     paymentInCash: (amount) =>
       `Ste vybrali splatit v hotovosti <strong>€${amount}</strong>.`,
     paymentConfirmed:
-      "Ďakujeme, že ste si vybrali <strong>LexiShine Cleaning</strong>! Vaša čistiaca služba bola potvrdená.",
-    paymentContact: `Ak máte akékoľvek otázky, odpovedzte na tento e-mail alebo nás kontaktujte na <a href="mailto:infolexishine@gmail.com">infolexishine@gmail.com</a>.`,
+      "Ďakujeme, že ste si vybrali <strong>Cleaning service</strong>! Vaša čistiaca služba bola potvrdená.",
+    paymentContact: `Ak máte akékoľvek otázky, odpovedzte na tento e-mail alebo nás kontaktujte na <a href="mailto:example@gmail.com">example@gmail.com</a>.`,
     paymentReceiptNote:
       "Tento e-mail slúži ako potvrdenie o platbe. Prosím, uchovajte si ho pre vlastné záznamy.",
-    paymentFooter: "LexiShine Cleaning · Váš spoľahlivý partner pre čistenie",
+    paymentFooter: "Cleaning service · Váš spoľahlivý partner pre čistenie",
   },
   ua: {
     paymentSubject: "Дякуємо за вашу оплату",
@@ -38,11 +38,11 @@ const paymentTranslations = {
     paymentInCash: (amount) =>
       `Ви обрали оплату готівкою <strong>€${amount}</strong>.`,
     paymentConfirmed:
-      "Дякуємо, що обрали <strong>LexiShine Cleaning</strong>! Вашу послугу прибирання підтверджено.",
-    paymentContact: `Якщо у вас є запитання, просто відповідайте на цей лист або напишіть нам на <a href="mailto:infolexishine@gmail.com">infolexishine@gmail.com</a>.`,
+      "Дякуємо, що обрали <strong>Cleaning service</strong>! Вашу послугу прибирання підтверджено.",
+    paymentContact: `Якщо у вас є запитання, просто відповідайте на цей лист або напишіть нам на <a href="mailto:example@gmail.com">example@gmail.com</a>.`,
     paymentReceiptNote:
       "Цей лист є підтвердженням платежу. Збережіть його для себе.",
-    paymentFooter: "LexiShine Cleaning · Ваш надійний партнер у прибиранні",
+    paymentFooter: "Cleaning service · Ваш надійний партнер у прибиранні",
   },
   ru: {
     paymentSubject: "Спасибо за вашу оплату",
@@ -53,11 +53,11 @@ const paymentTranslations = {
     paymentInCash: (amount) =>
       `Вы выбрали оплату наличными <strong>€${amount}</strong>.`,
     paymentConfirmed:
-      "Спасибо, что выбрали <strong>LexiShine Cleaning</strong>! Ваша уборка подтверждена.",
-    paymentContact: `Если у вас есть вопросы, просто ответьте на это письмо или свяжитесь с нами по адресу <a href="mailto:infolexishine@gmail.com">infolexishine@gmail.com</a>.`,
+      "Спасибо, что выбрали <strong>Cleaning service</strong>! Ваша уборка подтверждена.",
+    paymentContact: `Если у вас есть вопросы, просто ответьте на это письмо или свяжитесь с нами по адресу <a href="mailto:example@gmail.com">example@gmail.com</a>.`,
     paymentReceiptNote:
       "Это письмо служит вашей квитанцией. Пожалуйста, сохраните его.",
-    paymentFooter: "LexiShine Cleaning · Ваш надежный партнёр по уборке",
+    paymentFooter: "Cleaning service · Ваш надежный партнёр по уборке",
   },
 };
 

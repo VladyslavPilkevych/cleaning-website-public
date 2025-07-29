@@ -78,7 +78,7 @@ export default function PricingPage() {
       const keys = name.split(".");
       const updatedFormData = { ...prev };
 
-      let current: any = updatedFormData; // todo any
+      let current = updatedFormData;
       for (let i = 0; i < keys.length - 1; i++) {
         const key = keys[i];
 

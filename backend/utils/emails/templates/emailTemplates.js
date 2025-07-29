@@ -10,7 +10,7 @@ function generateClientPaymentEmailHTML(
 ) {
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
-      <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
+      <h2 style="color: #4CAF50;">Cleaning service</h2>
       <p style="font-size: 16px;">${paymentTranslations[
         language
       ].paymentGreeting(name)}</p>
@@ -49,21 +49,9 @@ function generateAdminPaymentEmailHTML(formData, amountFormatted) {
     return `${day}.${month}.${year}`;
   };
 
-  // const servicesString =
-  //   formData.services.length > 0
-  //     ? formData.services
-  //         .map(
-  //           (s, i) =>
-  //             `Послуга ${i + 1}: ID ${s.id}, Кількість ${s.count}, Ціна €${
-  //               s.price
-  //             }`
-  //         )
-  //         .join(", ")
-  //     : "Немає додаткових послуг";
-
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
-      <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
+      <h2 style="color: #4CAF50;">Cleaning service</h2>
       <p style="font-size: 16px;">Нова оплата отримана:</p>
       <ul style="font-size: 15px; color: #333; line-height: 1.6;">
         <li><strong>Ім'я:</strong> ${formData.contacts.name}</li>
@@ -167,7 +155,7 @@ function generateAdminPaymentEmailHTML(formData, amountFormatted) {
 function generateClientOnlineSupportHTML(name, language) {
   return `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
-          <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
+          <h2 style="color: #4CAF50;">Cleaning service</h2>
           <p style="font-size: 16px;">${onlineSupportTranslations[language].greeting}, ${name}</p>
           <p style="font-size: 16px;">${onlineSupportTranslations[language].thanks}</p>
           <p style="font-size: 16px;">${onlineSupportTranslations[language].followup}</p>
@@ -178,7 +166,7 @@ function generateClientOnlineSupportHTML(name, language) {
 function generateAdminOnlineSupportHTML(name, phone, message, email, language) {
   return `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
-            <h2 style="color: #4CAF50;">LexiShine Cleaning</h2>
+            <h2 style="color: #4CAF50;">Cleaning service</h2>
             <p style="font-size: 16px;">Нова заявка на підтримку:</p>
             <ul style="font-size: 15px; color: #333; line-height: 1.6;">
               <li><strong>Ім'я:</strong> ${name}</li>
